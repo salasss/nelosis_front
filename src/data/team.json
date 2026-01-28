@@ -1,0 +1,35 @@
+[
+    {
+        "id": "president",
+        "name": "Alexandre Dupont",
+        "role": "Président",
+        "bio": "Passionné par l'innovation sociale et l'écologie, Alexandre dirige la stratégie globale de l'association.",
+        "image": "/assets/images/team/president.jpg",
+        "social": {
+            "linkedin": "#",
+            "email": "president@lassonelosis.fr"
+        }
+    },
+    {
+        "id": "treasurer",
+        "name": "Sarah Martin",
+        "role": "Trésorière",
+        "bio": "Experte en finance durable, Sarah veille à la bonne gestion des ressources pour nos projets.",
+        "image": "/assets/images/team/treasurer.jpg",
+        "social": {
+            "linkedin": "#",
+            "email": "tresorier@lassonelosis.fr"
+        }
+    },
+    {
+        "id": "secretary",
+        "name": "Lucas Bernard",
+        "role": "Secrétaire",
+        "bio": "Organisé et rigoureux, Lucas coordonne les activités administratives et la communication interne.",
+        "image": "/assets/images/team/secretary.jpg",
+        "social": {
+            "linkedin": "#",
+            "email": "secretaire@lassonelosis.fr"
+        }
+    }
+]

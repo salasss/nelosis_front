@@ -1,0 +1,89 @@
+[
+    {
+        "id": "vegetall",
+        "slug": "vegetall",
+        "title": "Veget'all",
+        "subtitle": "Des solutions plein les poches !",
+        "description": "Une approche innovante pour l'agriculture urbaine autonome.",
+        "category": "Écologie",
+        "color": "#C7C652",
+        "icon": "leaf",
+        "logo": "/assets/images/projects/vegetall.png",
+        "link": "/programs/vegetall",
+        "size": "large",
+        "content": [
+            {
+                "title": "Quelles innovations sont mises au point actuellement ?",
+                "text": "Pourquoi l'agro-urbanisme ? Gouttes de pluie sur feuille. Les extracteurs d'humidité nocturne.",
+                "image": "/assets/images/projects/vegetall-innovation.svg"
+            },
+            {
+                "title": "Le principe",
+                "text": "Ces dispositifs sont appuyés sur le sujet de thèse de Xavier PY. Ces \"entonnoirs\" permettent l'extraction d'environ 1L d'eau par m² et par nuit, et ce sans dépenses d'énergie. L'extraction est permise par deux principes physiques, le refroidissement radiatif des matériaux et les paramètres de variation de la pression de vapeur saturante. Les gouttes continument récupérées s'infiltrent ensuite dans les sols pour irriguer le bac de culture.",
+                "image": "/assets/images/projects/vegetall-principe.svg"
+            },
+            {
+                "title": "L'organisation",
+                "text": "La structure même du toit est un prototype en soi. Empruntée à des domaines divers tels la terrariophilie bioactive et inspirée de principes d'aquaponie, elle est travaillée de manière à optimiser la fertilité et l'humidité du sol. Son rôle est de conserver l'eau et les nutriments rincés tout en entretenant un lent circuit d'eau qui limite les contaminations. Ce système eau/sol est autonome et demande peu d'entretien.",
+                "image": "/assets/images/projects/vegetall-organisation.svg"
+            }
+        ]
+    },
+    {
+        "id": "bouee-vegetale",
+        "slug": "bouee-vegetale",
+        "title": "Bouée Végétale",
+        "subtitle": "Restauration de la biodiversité marine",
+        "description": "Un dispositif flottant vivant pour relancer la chaîne alimentaire locale.",
+        "category": "Innovation",
+        "color": "#5CC796",
+        "icon": "life-buoy",
+        "logo": "/assets/images/projects/boue.png",
+        "link": "/programs/bouee-vegetale",
+        "size": "normal",
+        "content": [
+            {
+                "title": "Le concept",
+                "text": "Installation de bouées recouvertes d'algues spécifiques. Ces algues attirent les poissons herbivores, qui attirent à leur tour les prédateurs plus gros, recréant ainsi un cycle alimentaire complet et durable."
+            }
+        ]
+    },
+    {
+        "id": "brique-mycelium",
+        "slug": "brique-mycelium",
+        "title": "Brique Mycélium",
+        "subtitle": "Construction vivante",
+        "description": "Des briques écologiques fabriquées à base de champignons.",
+        "category": "Tech",
+        "color": "#FBA824",
+        "icon": "cube",
+        "logo": "/assets/images/projects/BriqueMycelium.png",
+        "link": "/programs/brique-mycelium",
+        "size": "tall",
+        "content": [
+            {
+                "title": "Innovation fongique",
+                "text": "Remplacer les matériaux de construction traditionnels par du mycélium, une alternative biodégradable et isolante."
+            }
+        ]
+    },
+    {
+        "id": "ecoleogie",
+        "slug": "ecoleogie",
+        "title": "Écoléogie",
+        "subtitle": "Éducation durable",
+        "description": "Sensibilisation à l'écologie pour les élèves de primaire et collège.",
+        "category": "Campus",
+        "color": "#FF7D7D",
+        "icon": "school",
+        "logo": "/assets/images/projects/Ecoleogie.png",
+        "link": "/programs/ecoleogie",
+        "size": "normal",
+        "content": [
+            {
+                "title": "Transmission",
+                "text": "Un programme pédagogique pour éveiller la conscience écologique dès le plus jeune âge."
+            }
+        ]
+    }
+]

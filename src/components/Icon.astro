@@ -1,0 +1,21 @@
+---
+import { Leaf, LifeBuoy, Cube, School } from 'lucide-astro';
+
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+
+const iconMap: Record<string, any> = {
+  'leaf': Leaf,
+  'life-buoy': LifeBuoy,
+  'cube': Cube,
+  'school': School,
+};
+
+const IconComponent = iconMap[name];
+---
+
+{IconComponent && <IconComponent class={className} />}

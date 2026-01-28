@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Lasso Nélosis - Innovation Écologique Étudiante" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-dark text-text-main antialiased selection:bg-primary selection:text-white">
+		<slot />
+    <script>
+      import Lenis from 'lenis';
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
+	</body>
+</html>

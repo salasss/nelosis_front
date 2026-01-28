@@ -1,0 +1,202 @@
+---
+import 'leaflet/dist/leaflet.css';
+import antennes from '../data/antennes.json';
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[600px] rounded-2xl overflow-hidden border border-white/5 bg-dark-secondary/50 backdrop-blur-sm">
+  
+  <!-- Interactive List -->
+  <div class="col-span-1 p-6 flex flex-col overflow-y-auto custom-scrollbar">
+    <h3 class="text-2xl font-display font-bold text-white mb-6">Nos Antennes</h3>
+    <div class="space-y-2">
+      {antennes.map((antenne) => (
+        <button 
+          class="w-full text-left p-4 rounded-xl transition-all duration-300 hover:bg-white/5 border border-transparent hover:border-primary/30 group antenne-item"
+          data-lat={antenne.lat}
+          data-lng={antenne.lng}
+          data-id={antenne.id}
+        >
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-bold text-white group-hover:text-primary transition-colors">{antenne.name}</span>
+            {antenne.isHQ && <span class="text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary px-2 py-0.5 rounded-full">Siège</span>}
+          </div>
+          <p class="text-sm text-text-muted truncate">{antenne.contact}</p>
+        </button>
+      ))}
+    </div>
+    
+    <div class="mt-auto pt-6 border-t border-white/5">
+      <p class="text-xs text-text-muted">
+        Sélectionnez une ville pour la localiser sur la carte.
+      </p>
+    </div>
+  </div>
+
+  <!-- Map Container -->
+  <div class="col-span-1 lg:col-span-2 relative h-full min-h-[400px]">
+    <div id="map" class="w-full h-full z-0"></div>
+    <!-- Overlay Gradient for smooth transition -->
+    <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-dark-secondary/50 to-transparent pointer-events-none z-[1000]"></div>
+  </div>
+
+</div>
+
+<script>
+  import L from 'leaflet';
+  import antennes from '../data/antennes.json';
+
+  // Fix for default marker icons
+  // @ts-ignore
+  delete L.Icon.Default.prototype._getIconUrl;
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  });
+
+  // Initialize Map
+  const map = L.map('map', {
+    scrollWheelZoom: false, // Disable scroll zoom to prevent trapping
+    zoomControl: false // Custom position or hidden
+  }).setView([46.603354, 1.888334], 6);
+
+  // Add Zoom Control manually to a better position if needed, or keep default
+  L.control.zoom({
+    position: 'bottomright'
+  }).addTo(map);
+
+  // Dark Theme Tiles
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  const markers = {};
+
+  // Add Markers
+  antennes.forEach((antenne) => {
+    const marker = L.circleMarker([antenne.lat, antenne.lng], {
+      color: '#FBA824',
+      fillColor: '#5CC796',
+      fillOpacity: 0.8,
+      radius: 8,
+      weight: 2
+    }).addTo(map);
+
+    // @ts-ignore
+    markers[antenne.id] = marker;
+
+    const popupContent = `
+      <div class="text-dark p-2 min-w-[200px]">
+        <h3 class="font-bold text-lg mb-1">${antenne.name}</h3>
+        <p class="text-sm text-gray-600 mb-2">${antenne.contact}</p>
+        <a href="mailto:${antenne.contact}" class="text-xs font-bold text-white bg-[#FBA824] px-3 py-1 rounded-full inline-block hover:opacity-90 transition-opacity">Contacter</a>
+      </div>
+    `;
+
+    marker.bindPopup(popupContent, {
+      className: 'custom-popup'
+    });
+
+    marker.on('mouseover', function () {
+      this.openPopup();
+      this.setStyle({ radius: 12, color: '#fff', weight: 3 });
+    });
+
+    marker.on('mouseout', function () {
+      // this.closePopup(); 
+      this.setStyle({ radius: 8, color: '#FBA824', weight: 2 });
+    });
+  });
+
+  // Handle List Interactions
+  const items = document.querySelectorAll('.antenne-item');
+  
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const lat = parseFloat(item.getAttribute('data-lat') || '0');
+      const lng = parseFloat(item.getAttribute('data-lng') || '0');
+      const id = item.getAttribute('data-id');
+
+      // Fly to location
+      map.flyTo([lat, lng], 10, {
+        duration: 1.5,
+        easeLinearity: 0.25
+      });
+
+      // Highlight marker
+      // @ts-ignore
+      if (markers[id]) {
+        // @ts-ignore
+        markers[id].openPopup();
+        // @ts-ignore
+        markers[id].setStyle({ radius: 12, color: '#fff', weight: 3 });
+        
+        // Reset others
+        Object.keys(markers).forEach(key => {
+          if (key !== id) {
+            // @ts-ignore
+            markers[key].setStyle({ radius: 8, color: '#FBA824', weight: 2 });
+            // @ts-ignore
+            markers[key].closePopup();
+          }
+        });
+      }
+
+      // Highlight list item
+      items.forEach(i => i.classList.remove('bg-white/10', 'border-primary/50'));
+      item.classList.add('bg-white/10', 'border-primary/50');
+    });
+
+    item.addEventListener('mouseenter', () => {
+       const id = item.getAttribute('data-id');
+       // @ts-ignore
+       if (markers[id]) {
+         // @ts-ignore
+         markers[id].setStyle({ radius: 12, color: '#fff', weight: 3 });
+       }
+    });
+
+    item.addEventListener('mouseleave', () => {
+       const id = item.getAttribute('data-id');
+       // @ts-ignore
+       if (markers[id]) {
+         // @ts-ignore
+         markers[id].setStyle({ radius: 8, color: '#FBA824', weight: 2 });
+       }
+    });
+  });
+</script>
+
+<style>
+  /* Custom Scrollbar for list */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* Popup Styling Override */
+  :global(.leaflet-popup-content-wrapper) {
+    background: white;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  :global(.leaflet-popup-content) {
+    margin: 0;
+  }
+  :global(.leaflet-popup-tip) {
+    background: white;
+  }
+</style>

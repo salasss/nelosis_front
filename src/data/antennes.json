@@ -1,0 +1,31 @@
+[
+    {
+        "id": "perpignan",
+        "name": "Perpignan",
+        "lat": 42.6986,
+        "lng": 2.8956,
+        "contact": "perpignan@lassonelosis.fr",
+        "isHQ": true
+    },
+    {
+        "id": "montpellier",
+        "name": "Montpellier",
+        "lat": 43.6108,
+        "lng": 3.8767,
+        "contact": "montpellier@lassonelosis.fr"
+    },
+    {
+        "id": "lyon",
+        "name": "Lyon",
+        "lat": 45.7640,
+        "lng": 4.8357,
+        "contact": "lyon@lassonelosis.fr"
+    },
+    {
+        "id": "toulouse",
+        "name": "Toulouse",
+        "lat": 43.6047,
+        "lng": 1.4442,
+        "contact": "toulouse@lassonelosis.fr"
+    }
+]

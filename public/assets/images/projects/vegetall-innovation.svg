@@ -1,0 +1,9 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0f0f1e"/>
+  <circle cx="400" cy="300" r="200" fill="#C7C652" fill-opacity="0.1"/>
+  <path d="M400 100 C 400 100, 500 200, 500 300 C 500 400, 400 500, 400 500 C 400 500, 300 400, 300 300 C 300 200, 400 100, 400 100" fill="#C7C652" fill-opacity="0.2"/>
+  <circle cx="400" cy="300" r="50" fill="#5CC796" fill-opacity="0.5">
+    <animate attributeName="r" values="50;60;50" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <path d="M350 250 Q 400 150 450 250 T 550 250" stroke="#5CC796" stroke-width="2" fill="none"/>
+</svg>
