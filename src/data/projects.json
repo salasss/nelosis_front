@@ -85,5 +85,33 @@
                 "text": "Un programme pédagogique pour éveiller la conscience écologique dès le plus jeune âge."
             }
         ]
+    },
+    {
+        "id": "coming-soon-1",
+        "slug": "#",
+        "title": "Bientôt disponible",
+        "subtitle": "En développement",
+        "description": "Une nouvelle initiative révolutionnaire est en cours de préparation.",
+        "category": "À venir",
+        "color": "#6b7280",
+        "icon": "hourglass",
+        "link": "#",
+        "size": "normal",
+        "status": "coming_soon",
+        "content": []
+    },
+    {
+        "id": "coming-soon-2",
+        "slug": "#",
+        "title": "Bientôt disponible",
+        "subtitle": "Bientôt disponible",
+        "description": "Nous travaillons sur la prochaine grande étape du réseau Nélosis.",
+        "category": "À venir",
+        "color": "#6b7280",
+        "icon": "lock",
+        "link": "#",
+        "size": "large",
+        "status": "coming_soon",
+        "content": []
     }
 ]
