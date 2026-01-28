@@ -1,44 +1,53 @@
-# Astro Starter Kit: Minimal
+# Nélosis
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Site web officiel de l'association **Nélosis** (anciennement Lasso Nélosis), dédiée à l'innovation écologique étudiante.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Ce projet met en avant les initiatives écologiques portées par les étudiants, présente les différentes antennes de l'association à travers la France, et permet de contacter l'équipe.
 
-## 🚀 Project Structure
+## 🚀 Fonctionnalités
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Vitrine de Projets** : Présentation détaillée des projets innovants (Veget'all, Bouée Végétale, Brique Mycélium, etc.).
+- **Carte Interactive** : Visualisation des antennes de l'association (Perpignan, Montpellier, Lyon, Toulouse).
+- **Équipe** : Présentation des membres du bureau et des responsables.
+- **Blog / Actualités** : (À venir) Suivi des événements et avancées.
+- **Contact** : Formulaire de contact et liens vers les réseaux sociaux.
+
+## 🛠️ Technologies
+
+Ce site est construit avec :
+
+- **[Astro](https://astro.build/)** : Framework web rapide et performant.
+- **[Tailwind CSS](https://tailwindcss.com/)** : Framework CSS utilitaire pour le design.
+- **Leaflet** : Pour la carte interactive des antennes.
+- **JSON** : Gestion des données (projets, équipe, antennes) via des fichiers JSON locaux pour une maintenance facile.
+
+## 🧞 Commandes
+
+Toutes les commandes s'exécutent depuis la racine du projet :
+
+| Commande | Action |
+| :--- | :--- |
+| `npm install` | Installe les dépendances du projet |
+| `npm run dev` | Lance le serveur de développement local sur `localhost:4321` |
+| `npm run build` | Compile le site pour la production dans le dossier `./dist/` |
+| `npm run preview` | Prévisualise la version de production localement |
+
+## 📁 Structure du Projet
 
 ```text
 /
-├── public/
+├── public/             # Assets statiques (images, fonts, etc.)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/     # Composants réutilisables (Header, Footer, ProjectCard...)
+│   ├── data/           # Données JSON (projects.json, team.json, antennes.json)
+│   ├── layouts/        # Layouts principaux (BaseLayout.astro)
+│   └── pages/          # Pages et routes du site
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 📝 Contribution
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-# nelosis_front
+1.  Clonez le dépôt.
+2.  Installez les dépendances (`npm install`).
+3.  Lancez le serveur de développement (`npm run dev`).
+4.  Effectuez vos modifications.
