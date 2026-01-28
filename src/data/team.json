@@ -1,9 +1,9 @@
 [
     {
         "id": "president",
-        "name": "Alexandre Dupont",
+        "name": "Loann Faure",
         "role": "Président",
-        "bio": "Passionné par l'innovation sociale et l'écologie, Alexandre dirige la stratégie globale de l'association.",
+        "bio": "Passionné par l'innovation sociale et l'écologie, Loann dirige la stratégie globale de l'association.",
         "image": "/assets/images/team/president.jpg",
         "social": {
             "linkedin": "#",
@@ -12,9 +12,9 @@
     },
     {
         "id": "treasurer",
-        "name": "Sarah Martin",
-        "role": "Trésorière",
-        "bio": "Experte en finance durable, Sarah veille à la bonne gestion des ressources pour nos projets.",
+        "name": "Ali",
+        "role": "Trésorièr",
+        "bio": "Expert en finance, Ali veille à la bonne gestion des ressources pour nos projets.",
         "image": "/assets/images/team/treasurer.jpg",
         "social": {
             "linkedin": "#",
@@ -23,9 +23,9 @@
     },
     {
         "id": "secretary",
-        "name": "Lucas Bernard",
-        "role": "Secrétaire",
-        "bio": "Organisé et rigoureux, Lucas coordonne les activités administratives et la communication interne.",
+        "name": "Natanaël Andral-Meignan",
+        "role": "Vice-président",
+        "bio": "Organisé et rigoureux, Natanaël coordonne les activités administratives et la communication interne.",
         "image": "/assets/images/team/secretary.jpg",
         "social": {
             "linkedin": "#",
