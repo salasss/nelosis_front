@@ -1,12 +1,5 @@
 ---
 import antennes from '../data/antennes.json';
-
-const positions = {
-  perpignan: { x: 420, y: 539 },
-  montpellier: { x: 440, y: 481 },
-  lyon: { x: 495, y: 338 },
-  toulouse: { x: 344, y: 497 }
-};
 ---
 
 <div class="relative">
@@ -165,14 +158,13 @@ const positions = {
 
             <!-- Antenne Markers -->
             {antennes.map((antenne) => {
-              const pos = positions[antenne.id];
               const color = antenne.isHQ ? "#FBA824" : "#5CC796";
               return (
                 <g class="antenne-marker cursor-pointer" data-id={antenne.id}>
                   <!-- Outer pulse ring -->
                   <circle
-                    cx={pos.x}
-                    cy={pos.y}
+                    cx={antenne.x}
+                    cy={antenne.y}
                     r="30"
                     fill={color}
                     opacity="0"
@@ -180,8 +172,8 @@ const positions = {
                   />
                   <!-- Glow circle -->
                   <circle
-                    cx={pos.x}
-                    cy={pos.y}
+                    cx={antenne.x}
+                    cy={antenne.y}
                     r="18"
                     fill={color}
                     opacity="0.15"
@@ -189,8 +181,8 @@ const positions = {
                   />
                   <!-- Main dot with gradient -->
                   <circle
-                    cx={pos.x}
-                    cy={pos.y}
+                    cx={antenne.x}
+                    cy={antenne.y}
                     r="10"
                     fill={color}
                     class="marker-dot"
@@ -198,8 +190,8 @@ const positions = {
                   />
                   <!-- Inner highlight -->
                   <circle
-                    cx={pos.x - 2}
-                    cy={pos.y - 2}
+                    cx={antenne.x - 2}
+                    cy={antenne.y - 2}
                     r="4"
                     fill="white"
                     opacity="0.5"
@@ -207,8 +199,8 @@ const positions = {
                   <!-- Label with background -->
                   <g class="marker-label" opacity="0">
                     <rect
-                      x={pos.x - 45}
-                      y={pos.y - 44}
+                      x={antenne.x - 45}
+                      y={antenne.y - 44}
                       width="90"
                       height="28"
                       fill="rgba(15, 15, 30, 0.95)"
@@ -217,8 +209,8 @@ const positions = {
                       stroke-width="1.5"
                     />
                     <text
-                      x={pos.x}
-                      y={pos.y - 24}
+                      x={antenne.x}
+                      y={antenne.y - 24}
                       text-anchor="middle"
                       class="text-sm font-bold fill-white"
                       dominant-baseline="middle"

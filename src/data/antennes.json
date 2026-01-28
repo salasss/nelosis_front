@@ -4,6 +4,8 @@
         "name": "Perpignan",
         "lat": 42.6986,
         "lng": 2.8956,
+        "x": 420,
+        "y": 539,
         "contact": "perpignan@lassonelosis.fr",
         "isHQ": true
     },
@@ -12,6 +14,8 @@
         "name": "Montpellier",
         "lat": 43.6108,
         "lng": 3.8767,
+        "x": 440,
+        "y": 481,
         "contact": "montpellier@lassonelosis.fr"
     },
     {
@@ -19,6 +23,8 @@
         "name": "Lyon",
         "lat": 45.7640,
         "lng": 4.8357,
+        "x": 495,
+        "y": 338,
         "contact": "lyon@lassonelosis.fr"
     },
     {
@@ -26,6 +32,8 @@
         "name": "Toulouse",
         "lat": 43.6047,
         "lng": 1.4442,
+        "x": 344,
+        "y": 497,
         "contact": "toulouse@lassonelosis.fr"
     }
 ]
