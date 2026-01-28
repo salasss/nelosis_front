@@ -6,7 +6,7 @@
         "lng": 2.8956,
         "x": 420,
         "y": 539,
-        "contact": "perpignan@lassonelosis.fr",
+        "contact": "perpignan@nelosis.fr",
         "isHQ": true
     },
     {
@@ -16,7 +16,7 @@
         "lng": 3.8767,
         "x": 440,
         "y": 481,
-        "contact": "montpellier@lassonelosis.fr"
+        "contact": "montpellier@nelosis.fr"
     },
     {
         "id": "lyon",
@@ -25,7 +25,7 @@
         "lng": 4.8357,
         "x": 495,
         "y": 338,
-        "contact": "lyon@lassonelosis.fr"
+        "contact": "lyon@nelosis.fr"
     },
     {
         "id": "toulouse",
@@ -34,6 +34,6 @@
         "lng": 1.4442,
         "x": 344,
         "y": 497,
-        "contact": "toulouse@lassonelosis.fr"
+        "contact": "toulouse@nelosis.fr"
     }
 ]
