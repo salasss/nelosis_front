@@ -3,16 +3,14 @@ import antennes from '../data/antennes.json';
 ---
 
 <div class="relative">
-  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-
-    <!-- Left: Map -->
-    <div class="lg:col-span-3 relative">
-      <div class="relative aspect-[1/1.1] max-w-2xl mx-auto">
-        <!-- Glow background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 rounded-3xl blur-3xl"></div>
-        
-        <!-- Map container -->
-        <div class="relative h-full bg-dark-secondary/30 backdrop-blur-sm rounded-3xl border border-white/10 p-8 overflow-hidden">
+  <!-- Map Only - Clean Full Width -->
+  <div class="relative max-w-4xl mx-auto">
+    <div class="relative aspect-[16/12]">
+      <!-- Glow background -->
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 rounded-3xl blur-3xl"></div>
+      
+      <!-- Map container -->
+      <div class="relative h-full bg-dark-secondary/30 backdrop-blur-sm rounded-3xl border border-white/10 p-8 overflow-hidden">
           <svg viewBox="105 18 568 567" class="w-full h-full" id="france-map">
             <defs>
               <filter id="glow">
@@ -226,96 +224,16 @@ import antennes from '../data/antennes.json';
         </div>
       </div>
     </div>
-
-    <!-- Right: List -->
-    <div class="lg:col-span-2">
-      <div class="space-y-6">
-        <div>
-          <h3 class="text-3xl font-display font-bold text-white mb-2">Nos Antennes</h3>
-          <p class="text-text-muted">Découvrez nos implantations régionales</p>
-        </div>
-        
-        <div class="space-y-3" id="antenne-list">
-          {antennes.map((antenne, index) => (
-            <div 
-              class="antenne-item group relative overflow-hidden rounded-2xl border border-white/10 bg-dark-secondary/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-dark-secondary/70 hover:scale-[1.02] opacity-0"
-              data-id={antenne.id}
-              style={`animation-delay: ${index * 100}ms`}
-            >
-              <!-- Gradient overlay on hover -->
-              <div class="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <button class="relative w-full text-left p-5">
-                <div class="flex items-start justify-between mb-2">
-                  <div class="flex items-center gap-3">
-                    <div class={`w-3 h-3 rounded-full ${antenne.isHQ ? 'bg-primary' : 'bg-accent'} shadow-lg`} style={`box-shadow: 0 0 20px ${antenne.isHQ ? '#FBA824' : '#5CC796'}50`}></div>
-                    <h4 class="text-lg font-bold text-white group-hover:text-primary transition-colors">{antenne.name}</h4>
-                  </div>
-                  {antenne.isHQ && (
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary rounded-full border border-primary/30">
-                      Siège
-                    </span>
-                  )}
-                </div>
-                <p class="text-sm text-text-muted pl-6">{antenne.contact}</p>
-                
-                <!-- Arrow indicator -->
-                <div class="absolute right-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-2 transition-all">
-                  <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <script>
   import antennes from '../data/antennes.json';
-
-  // Animate list items on load
-  setTimeout(() => {
-    document.querySelectorAll('.antenne-item').forEach((item, index) => {
-      setTimeout(() => {
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-      }, index * 100);
-    });
-  }, 100);
-
-  const listItems = document.querySelectorAll('.antenne-item');
-  const markers = document.querySelectorAll('.antenne-marker');
   
-  // Sync interactions
-  listItems.forEach(item => {
-    const button = item.querySelector('button');
-    const id = item.getAttribute('data-id');
-    const marker = document.querySelector(`.antenne-marker[data-id="${id}"]`);
-    
-    item.addEventListener('mouseenter', () => {
-      marker?.classList.add('active');
-    });
-    
-    item.addEventListener('mouseleave', () => {
-      marker?.classList.remove('active');
-    });
-
-    button?.addEventListener('click', () => {
-      const antenneData = antennes.find(a => a.id === id);
-      if (antenneData) {
-        window.location.href = `mailto:${antenneData.contact}`;
-      }
-    });
-  });
+  const markers = document.querySelectorAll('.antenne-marker');
 
   markers.forEach(marker => {
     const id = marker.getAttribute('data-id');
-    const item = document.querySelector(`.antenne-item[data-id="${id}"]`);
     
     marker.addEventListener('mouseenter', () => {
       marker.classList.add('active');
@@ -335,12 +253,11 @@ import antennes from '../data/antennes.json';
 </script>
 
 <style>
-  .antenne-item {
-    transform: translateY(20px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
   /* Marker animations */
+  .antenne-marker {
+    cursor: pointer;
+  }
+  
   .antenne-marker.active .marker-pulse {
     animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
