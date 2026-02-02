@@ -1,0 +1,208 @@
+---
+// About Section - Qui sommes-nous
+---
+
+<section id="about" class="py-32 bg-dark-secondary relative overflow-hidden">
+  <!-- Background Effects -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Gradient Orbs -->
+    <div class="about-orb about-orb-1"></div>
+    <div class="about-orb about-orb-2"></div>
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 80px 80px;"></div>
+    <!-- Noise Texture -->
+    <div class="absolute inset-0 opacity-[0.015]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
+  </div>
+
+  <div class="container mx-auto px-6 md:px-12 relative z-10">
+    <!-- Section Header - Split Design -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-20">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-[2px] bg-gradient-to-r from-accent to-primary"></div>
+          <span class="text-sm font-bold uppercase tracking-[0.3em] text-accent">À propos</span>
+        </div>
+        <h2 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
+          <span class="block text-white">Qui</span>
+          <span class="block text-white">sommes</span>
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-highlight">nous ?</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 flex flex-col justify-end">
+        <p class="text-xl md:text-2xl text-white/80 leading-relaxed mb-6 font-light">
+          <span class="text-primary font-semibold">Nélosis</span> est un réseau étudiant national dédié à l'innovation écologique et sociale.
+        </p>
+        <p class="text-lg text-text-muted leading-relaxed">
+          Fondée par des étudiants passionnés, notre association connecte les talents, les idées et les ressources pour construire ensemble un avenir plus durable. Nous croyons que chaque initiative compte.
+        </p>
+      </div>
+    </div>
+
+    <!-- Values / Pillars Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+      <!-- Pillar 1 - Innovation -->
+      <div class="about-card group" style="--card-delay: 0.1s">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
+        
+        <div class="relative z-10">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-primary">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-primary transition-colors">Innovation</h3>
+          <p class="text-text-muted leading-relaxed">
+            Nous portons des projets créatifs et concrets qui repoussent les limites de l'innovation écologique étudiante.
+          </p>
+          <div class="mt-6 pt-6 border-t border-white/5">
+            <span class="text-xs uppercase tracking-[0.2em] text-primary/60">Créativité • R&D • Impact</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 2 - Solidarité -->
+      <div class="about-card group" style="--card-delay: 0.2s">
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/10 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
+        
+        <div class="relative z-10">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-accent">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-accent transition-colors">Solidarité</h3>
+          <p class="text-text-muted leading-relaxed">
+            Notre force réside dans l'entraide et la collaboration entre étudiants de tous horizons, unis par des valeurs communes.
+          </p>
+          <div class="mt-6 pt-6 border-t border-white/5">
+            <span class="text-xs uppercase tracking-[0.2em] text-accent/60">Communauté • Partage • Entraide</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3 - Impact -->
+      <div class="about-card group" style="--card-delay: 0.3s">
+        <div class="absolute inset-0 bg-gradient-to-br from-highlight/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-highlight/10 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
+        
+        <div class="relative z-10">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-highlight/20 to-highlight/5 border border-highlight/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-highlight">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 01-5.276 3.67m0 0a9 9 0 01-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-highlight transition-colors">Impact Durable</h3>
+          <p class="text-text-muted leading-relaxed">
+            Chaque action compte. Nous mesurons et maximisons notre impact environnemental et social sur le long terme.
+          </p>
+          <div class="mt-6 pt-6 border-t border-white/5">
+            <span class="text-xs uppercase tracking-[0.2em] text-highlight/60">Écologie • Durabilité • Mesure</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission Statement / Large Quote -->
+    <div class="relative">
+      <!-- Decorative quotation mark -->
+      <div class="absolute -top-10 -left-4 md:-left-8 text-[200px] md:text-[280px] font-display font-black text-white/[0.02] leading-none select-none pointer-events-none">"</div>
+      
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+        <blockquote class="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-white leading-tight mb-8">
+          Notre mission : <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight">fédérer, inspirer et agir</span> pour un avenir où l'innovation rime avec responsabilité.
+        </blockquote>
+        
+        <div class="flex items-center justify-center gap-6">
+          <!-- CTA Button -->
+          <a href="#contact" class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]">
+            <span class="relative z-10">Rejoindre le mouvement</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+          
+          <!-- Secondary Link -->
+          <a href="#team" class="group inline-flex items-center gap-2 text-text-muted hover:text-white transition-colors">
+            <span>Découvrir l'équipe</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 transition-transform">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* About Section Background Orbs */
+  .about-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.2;
+    animation: aboutFloat 25s ease-in-out infinite;
+  }
+  
+  .about-orb-1 {
+    width: 700px;
+    height: 700px;
+    background: linear-gradient(135deg, rgba(92, 199, 150, 0.4), rgba(92, 199, 150, 0.1));
+    top: -30%;
+    left: -20%;
+    animation-delay: 0s;
+  }
+  
+  .about-orb-2 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, rgba(251, 168, 36, 0.3), rgba(251, 168, 36, 0.1));
+    bottom: -20%;
+    right: -15%;
+    animation-delay: -12s;
+  }
+  
+  @keyframes aboutFloat {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(40px, -40px) scale(1.08);
+    }
+    66% {
+      transform: translate(-30px, 30px) scale(0.95);
+    }
+  }
+  
+  /* About Cards */
+  .about-card {
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: aboutCardFadeIn 0.8s ease forwards;
+    animation-delay: var(--card-delay, 0s);
+  }
+  
+  .about-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+  
+  @keyframes aboutCardFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
