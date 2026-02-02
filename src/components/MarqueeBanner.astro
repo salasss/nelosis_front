@@ -1,0 +1,175 @@
+---
+// Marquee Banner - Style Webflow/Awwwards
+// Barre horizontale défilante moderne entre sections - TILTED
+---
+
+<div class="marquee-wrapper relative py-12 overflow-hidden">
+  <section class="marquee-section relative py-6 overflow-hidden bg-dark-secondary/80 border-y border-white/10 -rotate-2 scale-105">
+    <!-- Gradient Overlays pour effet de fondu -->
+    <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark-secondary/80 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark-secondary/80 to-transparent z-10 pointer-events-none"></div>
+  
+  <!-- Marquee Container -->
+  <div class="marquee-container flex">
+    <!-- Premier groupe (original) -->
+    <div class="marquee-content flex items-center gap-8 animate-marquee">
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Innovation</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-accent">◆</span>
+        <span>Écologie</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-highlight">★</span>
+        <span>Impact</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Engagement</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-accent">◆</span>
+        <span>Durabilité</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-highlight">★</span>
+        <span>Communauté</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Futur</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-accent">◆</span>
+        <span>Transition</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-highlight">★</span>
+        <span>Étudiants</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Réseau</span>
+      </span>
+    </div>
+    
+    <!-- Deuxième groupe (clone pour boucle infinie) -->
+    <div class="marquee-content flex items-center gap-8 animate-marquee" aria-hidden="true">
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Innovation</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-accent">◆</span>
+        <span>Écologie</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-highlight">★</span>
+        <span>Impact</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Engagement</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-accent">◆</span>
+        <span>Durabilité</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-highlight">★</span>
+        <span>Communauté</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Futur</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-accent">◆</span>
+        <span>Transition</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-highlight">★</span>
+        <span>Étudiants</span>
+      </span>
+      <span class="marquee-item">
+        <span class="text-primary">●</span>
+        <span>Réseau</span>
+      </span>
+    </div>
+  </div>
+</section>
+</div>
+
+<style>
+  .marquee-wrapper {
+    background: transparent;
+  }
+
+  .marquee-section {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .marquee-container {
+    width: max-content;
+  }
+
+  .marquee-content {
+    flex-shrink: 0;
+    padding-right: 2rem;
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: white;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+
+  .marquee-item:hover {
+    transform: scale(1.05);
+  }
+
+  .marquee-item span:first-child {
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Pause on hover pour interaction */
+  .marquee-section:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .marquee-item {
+      font-size: 1rem;
+      gap: 0.5rem;
+    }
+    
+    .marquee-content {
+      gap: 1.5rem;
+    }
+  }
+</style>
