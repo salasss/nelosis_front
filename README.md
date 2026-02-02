@@ -18,7 +18,6 @@ Ce site est construit avec :
 
 - **[Astro](https://astro.build/)** : Framework web rapide et performant.
 - **[Tailwind CSS](https://tailwindcss.com/)** : Framework CSS utilitaire pour le design.
-- **Leaflet** : Pour la carte interactive des antennes.
 - **JSON** : Gestion des données (projets, équipe, antennes) via des fichiers JSON locaux pour une maintenance facile.
 
 ## 🧞 Commandes
