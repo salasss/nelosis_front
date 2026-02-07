@@ -1,26 +1,27 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import MarqueeBanner from '../components/MarqueeBanner.astro';
-import AboutSection from '../components/AboutSection.astro';
-import Footer from '../components/Footer.astro';
-import Button from '../components/Button.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import InteractiveMap from '../components/InteractiveMap.astro';
-import TeamMember from '../components/TeamMember.astro';
-import ContactSection from '../components/ContactSection.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import MarqueeBanner from "../components/MarqueeBanner.astro";
+import AboutSection from "../components/AboutSection.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import InteractiveMap from "../components/InteractiveMap.astro";
+import TeamMember from "../components/TeamMember.astro";
+import ContactSection from "../components/ContactSection.astro";
 
-import projects from '../data/projects.json';
-import team from '../data/team.json';
+import { Image } from "astro:assets";
+import projects from "../data/projects";
+import team from "../data/team";
 ---
 
 <BaseLayout title="Nélosis - Innovation Écologique Étudiante">
   <Header />
-  
+
   <main>
     <Hero />
-    
+
     <MarqueeBanner />
 
     <AboutSection />
@@ -29,8 +30,14 @@ import team from '../data/team.json';
     <section id="programs" class="py-32 bg-dark relative overflow-hidden">
       <!-- Background Elements -->
       <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]"></div>
-        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]"></div>
+        <div
+          class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]"
+        >
+        </div>
       </div>
 
       <div class="container mx-auto px-6 md:px-12 relative z-10">
@@ -38,48 +45,90 @@ import team from '../data/team.json';
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           <div class="lg:col-span-7">
             <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-[2px] bg-gradient-to-r from-primary to-accent"></div>
-              <span class="text-sm font-bold uppercase tracking-[0.3em] text-primary">Nos Initiatives</span>
+              <div class="w-12 h-[2px] bg-gradient-to-r from-primary to-accent">
+              </div>
+              <span
+                class="text-sm font-bold uppercase tracking-[0.3em] text-primary"
+                >Nos Initiatives</span
+              >
             </div>
-            <h2 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
+            <h2
+              class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]"
+            >
               <span class="block text-white">Projets</span>
-              <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight">Innovants</span>
+              <span
+                class="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight"
+                >Innovants</span
+              >
             </h2>
           </div>
           <div class="lg:col-span-5 flex flex-col justify-end">
             <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-8">
-              Découvrez les projets phares portés par nos étudiants. Chaque initiative repousse les limites de l'innovation écologique.
+              Découvrez les projets phares portés par nos étudiants. Chaque
+              initiative repousse les limites de l'innovation écologique.
             </p>
             <div class="flex items-center gap-6">
-              <a href="#" class="group inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all duration-300">
+              <a
+                href="#"
+                class="group inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all duration-300"
+              >
                 <span class="text-white font-semibold">Explorer tout</span>
-                <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/40 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-primary group-hover:translate-x-0.5 transition-transform">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                <div
+                  class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/40 transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="w-4 h-4 text-primary group-hover:translate-x-0.5 transition-transform"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
                   </svg>
                 </div>
               </a>
               <div class="hidden md:flex items-center gap-2 text-text-muted">
-                <span class="text-4xl font-display font-bold text-white">{projects.length}</span>
-                <span class="text-sm uppercase tracking-wider">Projets<br/>actifs</span>
+                <span class="text-4xl font-display font-bold text-white"
+                  >{projects.length}</span
+                >
+                <span class="text-sm uppercase tracking-wider"
+                  >Projets<br />actifs</span
+                >
               </div>
             </div>
           </div>
         </div>
 
         <!-- Projects Grid - Bento Style -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px]">
-          {projects.map((project, index) => (
-            <ProjectCard {...project} />
-          ))}
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px]"
+        >
+          {projects.map((project, index) => <ProjectCard {...project} />)}
         </div>
-        
+
         <!-- Bottom CTA - Mobile -->
         <div class="mt-16 text-center md:hidden">
-          <a href="#" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full">
+          <a
+            href="#"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full"
+          >
             <span>Voir tous les projets</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
             </svg>
           </a>
         </div>
@@ -95,9 +144,17 @@ import team from '../data/team.json';
         <div class="network-orb network-orb-2"></div>
         <div class="network-orb network-orb-3"></div>
         <!-- Grid pattern overlay -->
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div
+          class="absolute inset-0 opacity-[0.03]"
+          style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 60px 60px;"
+        >
+        </div>
         <!-- Noise texture -->
-        <div class="absolute inset-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=&quot;0 0 256 256&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cfilter id=&quot;noise&quot;%3E%3CfeTurbulence type=&quot;fractalNoise&quot; baseFrequency=&quot;0.9&quot; numOctaves=&quot;4&quot; stitchTiles=&quot;stitch&quot;/%3E%3C/filter%3E%3Crect width=&quot;100%25&quot; height=&quot;100%25&quot; filter=&quot;url(%23noise)&quot;/%3E%3C/svg%3E');"></div>
+        <div
+          class="absolute inset-0 opacity-[0.02]"
+          style='background-image: url(&apos;data:image/svg+xml,%3Csvg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E&apos;);'
+        >
+        </div>
       </div>
 
       <div class="container mx-auto px-6 md:px-12 relative z-10">
@@ -105,22 +162,37 @@ import team from '../data/team.json';
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           <div class="lg:col-span-6">
             <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-[2px] bg-gradient-to-r from-accent to-primary"></div>
-              <span class="text-sm font-bold uppercase tracking-[0.3em] text-accent">Implantation Nationale</span>
+              <div class="w-12 h-[2px] bg-gradient-to-r from-accent to-primary">
+              </div>
+              <span
+                class="text-sm font-bold uppercase tracking-[0.3em] text-accent"
+                >Implantation Nationale</span
+              >
             </div>
-            <h2 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
+            <h2
+              class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]"
+            >
               <span class="block text-white">Notre</span>
-              <span class="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-highlight">Réseau</span>
+              <span
+                class="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-highlight"
+                >Réseau</span
+              >
             </h2>
           </div>
           <div class="lg:col-span-6 flex flex-col justify-end">
             <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-8">
-              De Perpignan à Lyon, le réseau Nélosis s'étend pour connecter les étudiants engagés dans la transition écologique. Rejoignez l'antenne la plus proche de chez vous.
+              De Perpignan à Lyon, le réseau Nélosis s'étend pour connecter les
+              étudiants engagés dans la transition écologique. Rejoignez
+              l'antenne la plus proche de chez vous.
             </p>
             <div class="flex items-center gap-8">
               <div class="flex items-center gap-3">
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 flex items-center justify-center">
-                  <span class="text-2xl font-display font-bold text-accent">4</span>
+                <div
+                  class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 flex items-center justify-center"
+                >
+                  <span class="text-2xl font-display font-bold text-accent"
+                    >4</span
+                  >
                 </div>
                 <div class="text-sm text-text-muted">
                   <span class="block text-white font-semibold">Antennes</span>
@@ -128,131 +200,349 @@ import team from '../data/team.json';
                 </div>
               </div>
               <div class="hidden md:flex items-center gap-3">
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                <div
+                  class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-primary"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                    ></path>
                   </svg>
                 </div>
                 <div class="text-sm text-text-muted">
-                  <span class="block text-white font-semibold">Sud de la France</span>
+                  <span class="block text-white font-semibold"
+                    >Sud de la France</span
+                  >
                   couverture
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- Antennes Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           <!-- Perpignan - Siège -->
           <div class="antenne-card antenne-card-hq group">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
+            </div>
             <div class="relative z-10">
               <div class="flex items-start justify-between mb-6">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21" />
+                <div
+                  class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/20"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-white"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"
+                    ></path>
                   </svg>
                 </div>
-                <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-primary/20 text-primary rounded-full border border-primary/30">Siège</span>
+                <span
+                  class="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-primary/20 text-primary rounded-full border border-primary/30"
+                  >Siège</span
+                >
               </div>
-              <h3 class="text-2xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors">Perpignan</h3>
-              <p class="text-text-muted text-sm mb-6">Quartier général du réseau Nélosis, au cœur de la Catalogne française.</p>
-              <a href="mailto:perpignan@nelosis.fr" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors group/link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              <h3
+                class="text-2xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors"
+              >
+                Perpignan
+              </h3>
+              <p class="text-text-muted text-sm mb-6">
+                Quartier général du réseau Nélosis, au cœur de la Catalogne
+                française.
+              </p>
+              <a
+                href="mailto:perpignan@nelosis.fr"
+                class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors group/link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  ></path>
                 </svg>
-                <span class="text-sm font-medium group-hover/link:underline">perpignan@nelosis.fr</span>
+                <span class="text-sm font-medium group-hover/link:underline"
+                  >perpignan@nelosis.fr</span
+                >
               </a>
             </div>
-            <div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full text-primary">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <div
+              class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-full h-full text-primary"
+              >
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                ></path>
               </svg>
             </div>
           </div>
-          
+
           <!-- Montpellier -->
           <div class="antenne-card group">
-            <div class="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
+            </div>
             <div class="relative z-10">
               <div class="flex items-start justify-between mb-6">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent/60 flex items-center justify-center shadow-lg shadow-accent/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                <div
+                  class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent/60 flex items-center justify-center shadow-lg shadow-accent/20"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-white"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                    ></path>
                   </svg>
                 </div>
               </div>
-              <h3 class="text-2xl font-display font-bold text-white mb-2 group-hover:text-accent transition-colors">Montpellier</h3>
-              <p class="text-text-muted text-sm mb-6">Au cœur de l'Occitanie, dynamique et tournée vers l'innovation verte.</p>
-              <a href="mailto:montpellier@nelosis.fr" class="inline-flex items-center gap-2 text-accent hover:text-white transition-colors group/link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              <h3
+                class="text-2xl font-display font-bold text-white mb-2 group-hover:text-accent transition-colors"
+              >
+                Montpellier
+              </h3>
+              <p class="text-text-muted text-sm mb-6">
+                Au cœur de l'Occitanie, dynamique et tournée vers l'innovation
+                verte.
+              </p>
+              <a
+                href="mailto:montpellier@nelosis.fr"
+                class="inline-flex items-center gap-2 text-accent hover:text-white transition-colors group/link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  ></path>
                 </svg>
-                <span class="text-sm font-medium group-hover/link:underline">montpellier@nelosis.fr</span>
+                <span class="text-sm font-medium group-hover/link:underline"
+                  >montpellier@nelosis.fr</span
+                >
               </a>
             </div>
-            <div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full text-accent">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <div
+              class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-full h-full text-accent"
+              >
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                ></path>
               </svg>
             </div>
           </div>
-          
+
           <!-- Lyon -->
           <div class="antenne-card group">
-            <div class="absolute inset-0 bg-gradient-to-br from-highlight/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-highlight/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
+            </div>
             <div class="relative z-10">
               <div class="flex items-start justify-between mb-6">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-highlight to-highlight/60 flex items-center justify-center shadow-lg shadow-highlight/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                <div
+                  class="w-12 h-12 rounded-xl bg-gradient-to-br from-highlight to-highlight/60 flex items-center justify-center shadow-lg shadow-highlight/20"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-white"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                    ></path>
                   </svg>
                 </div>
               </div>
-              <h3 class="text-2xl font-display font-bold text-white mb-2 group-hover:text-highlight transition-colors">Lyon</h3>
-              <p class="text-text-muted text-sm mb-6">Capitale de la gastronomie et hub de l'engagement étudiant écologique.</p>
-              <a href="mailto:lyon@nelosis.fr" class="inline-flex items-center gap-2 text-highlight hover:text-white transition-colors group/link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              <h3
+                class="text-2xl font-display font-bold text-white mb-2 group-hover:text-highlight transition-colors"
+              >
+                Lyon
+              </h3>
+              <p class="text-text-muted text-sm mb-6">
+                Capitale de la gastronomie et hub de l'engagement étudiant
+                écologique.
+              </p>
+              <a
+                href="mailto:lyon@nelosis.fr"
+                class="inline-flex items-center gap-2 text-highlight hover:text-white transition-colors group/link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  ></path>
                 </svg>
-                <span class="text-sm font-medium group-hover/link:underline">lyon@nelosis.fr</span>
+                <span class="text-sm font-medium group-hover/link:underline"
+                  >lyon@nelosis.fr</span
+                >
               </a>
             </div>
-            <div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full text-highlight">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <div
+              class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-full h-full text-highlight"
+              >
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                ></path>
               </svg>
             </div>
           </div>
-          
+
           <!-- Toulouse -->
           <div class="antenne-card group">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
+            </div>
             <div class="relative z-10">
               <div class="flex items-start justify-between mb-6">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-500/60 flex items-center justify-center shadow-lg shadow-purple-500/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                <div
+                  class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-500/60 flex items-center justify-center shadow-lg shadow-purple-500/20"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-white"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                    ></path>
                   </svg>
                 </div>
               </div>
-              <h3 class="text-2xl font-display font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Toulouse</h3>
-              <p class="text-text-muted text-sm mb-6">La ville rose, berceau de l'aéronautique et de l'innovation durable.</p>
-              <a href="mailto:toulouse@nelosis.fr" class="inline-flex items-center gap-2 text-purple-400 hover:text-white transition-colors group/link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              <h3
+                class="text-2xl font-display font-bold text-white mb-2 group-hover:text-purple-400 transition-colors"
+              >
+                Toulouse
+              </h3>
+              <p class="text-text-muted text-sm mb-6">
+                La ville rose, berceau de l'aéronautique et de l'innovation
+                durable.
+              </p>
+              <a
+                href="mailto:toulouse@nelosis.fr"
+                class="inline-flex items-center gap-2 text-purple-400 hover:text-white transition-colors group/link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  ></path>
                 </svg>
-                <span class="text-sm font-medium group-hover/link:underline">toulouse@nelosis.fr</span>
+                <span class="text-sm font-medium group-hover/link:underline"
+                  >toulouse@nelosis.fr</span
+                >
               </a>
             </div>
-            <div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full text-purple-400">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <div
+              class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-full h-full text-purple-400"
+              >
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                ></path>
               </svg>
             </div>
           </div>
@@ -260,23 +550,47 @@ import team from '../data/team.json';
 
         <!-- Interactive Map -->
         <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-accent/10 via-primary/10 to-highlight/10 rounded-[2rem] blur-xl opacity-50"></div>
-          <div class="relative bg-dark/50 backdrop-blur-sm rounded-3xl border border-white/10 p-4 md:p-8">
+          <div
+            class="absolute -inset-4 bg-gradient-to-r from-accent/10 via-primary/10 to-highlight/10 rounded-[2rem] blur-xl opacity-50"
+          >
+          </div>
+          <div
+            class="relative bg-dark/50 backdrop-blur-sm rounded-3xl border border-white/10 p-4 md:p-8"
+          >
             <InteractiveMap />
           </div>
         </div>
-        
+
         <!-- Join CTA -->
         <div class="mt-16 text-center">
-          <div class="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-white/5 to-transparent rounded-3xl border border-white/10">
+          <div
+            class="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-white/5 to-transparent rounded-3xl border border-white/10"
+          >
             <div class="text-left">
-              <h3 class="text-xl font-display font-bold text-white mb-2">Pas d'antenne près de chez vous ?</h3>
-              <p class="text-text-muted">Créez la vôtre et rejoignez le mouvement Nélosis !</p>
+              <h3 class="text-xl font-display font-bold text-white mb-2">
+                Pas d'antenne près de chez vous ?
+              </h3>
+              <p class="text-text-muted">
+                Créez la vôtre et rejoignez le mouvement Nélosis !
+              </p>
             </div>
-            <a href="#contact" class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent to-primary text-white font-semibold rounded-full hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 whitespace-nowrap">
+            <a
+              href="#contact"
+              class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent to-primary text-white font-semibold rounded-full hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 whitespace-nowrap"
+            >
               <span>Créer une antenne</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 group-hover:translate-x-1 transition-transform">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"></path>
               </svg>
             </a>
           </div>
@@ -293,37 +607,50 @@ import team from '../data/team.json';
         opacity: 0.4;
         animation: networkFloat 20s ease-in-out infinite;
       }
-      
+
       .network-orb-1 {
         width: 500px;
         height: 500px;
-        background: linear-gradient(135deg, rgba(92, 199, 150, 0.3), rgba(92, 199, 150, 0.1));
+        background: linear-gradient(
+          135deg,
+          rgba(92, 199, 150, 0.3),
+          rgba(92, 199, 150, 0.1)
+        );
         top: -10%;
         right: -10%;
         animation-delay: 0s;
       }
-      
+
       .network-orb-2 {
         width: 400px;
         height: 400px;
-        background: linear-gradient(135deg, rgba(251, 168, 36, 0.3), rgba(251, 168, 36, 0.1));
+        background: linear-gradient(
+          135deg,
+          rgba(251, 168, 36, 0.3),
+          rgba(251, 168, 36, 0.1)
+        );
         bottom: 10%;
         left: -5%;
         animation-delay: -7s;
       }
-      
+
       .network-orb-3 {
         width: 300px;
         height: 300px;
-        background: linear-gradient(135deg, rgba(255, 125, 125, 0.3), rgba(255, 125, 125, 0.1));
+        background: linear-gradient(
+          135deg,
+          rgba(255, 125, 125, 0.3),
+          rgba(255, 125, 125, 0.1)
+        );
         top: 50%;
         left: 40%;
         transform: translate(-50%, -50%);
         animation-delay: -14s;
       }
-      
+
       @keyframes networkFloat {
-        0%, 100% {
+        0%,
+        100% {
           transform: translate(0, 0) scale(1);
         }
         25% {
@@ -336,42 +663,54 @@ import team from '../data/team.json';
           transform: translate(-30px, -20px) scale(1.02);
         }
       }
-      
+
       /* Antenne Cards */
       .antenne-card {
         position: relative;
         padding: 1.75rem;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 1.5rem;
         overflow: hidden;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      
+
       .antenne-card::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.02) 100%);
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
         opacity: 0;
         transition: opacity 0.4s ease;
       }
-      
+
       .antenne-card:hover {
         transform: translateY(-8px);
         border-color: rgba(255, 255, 255, 0.2);
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       }
-      
+
       .antenne-card:hover::before {
         opacity: 1;
       }
-      
+
       .antenne-card-hq {
         border-color: rgba(251, 168, 36, 0.3);
-        background: linear-gradient(135deg, rgba(251, 168, 36, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(251, 168, 36, 0.1) 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
       }
-      
+
       .antenne-card-hq:hover {
         border-color: rgba(251, 168, 36, 0.5);
         box-shadow: 0 25px 50px -12px rgba(251, 168, 36, 0.2);
@@ -386,7 +725,11 @@ import team from '../data/team.json';
         <div class="team-orb team-orb-1"></div>
         <div class="team-orb team-orb-2"></div>
         <!-- Grid Pattern -->
-        <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 80px 80px;"></div>
+        <div
+          class="absolute inset-0 opacity-[0.02]"
+          style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 80px 80px;"
+        >
+        </div>
       </div>
 
       <div class="container mx-auto px-6 md:px-12 relative z-10">
@@ -394,58 +737,115 @@ import team from '../data/team.json';
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           <div class="lg:col-span-7">
             <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-[2px] bg-gradient-to-r from-primary to-accent"></div>
-              <span class="text-sm font-bold uppercase tracking-[0.3em] text-primary">Bureau National</span>
+              <div class="w-12 h-[2px] bg-gradient-to-r from-primary to-accent">
+              </div>
+              <span
+                class="text-sm font-bold uppercase tracking-[0.3em] text-primary"
+                >Bureau National</span
+              >
             </div>
-            <h2 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]">
+            <h2
+              class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95]"
+            >
               <span class="block text-white">L'Équipe</span>
-              <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight">Nélosis</span>
+              <span
+                class="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight"
+                >Nélosis</span
+              >
             </h2>
           </div>
           <div class="lg:col-span-5 flex flex-col justify-end">
             <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-8">
-              Le bureau national qui œuvre au quotidien pour le développement du réseau et l'accompagnement des initiatives étudiantes.
+              Le bureau national qui œuvre au quotidien pour le développement du
+              réseau et l'accompagnement des initiatives étudiantes.
             </p>
             <div class="flex items-center gap-3">
               <div class="flex -space-x-3">
-                {team.slice(0, 3).map((member, i) => (
-                  <div class="w-10 h-10 rounded-full border-2 border-dark overflow-hidden" style={`z-index: ${3 - i}`}>
-                    <img src={member.image} alt={member.name} class="w-full h-full object-cover" />
-                  </div>
-                ))}
+                {
+                  team.slice(0, 3).map((member, i) => (
+                    <div
+                      class="w-10 h-10 rounded-full border-2 border-dark overflow-hidden"
+                      style={`z-index: ${3 - i}`}
+                    >
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))
+                }
               </div>
               <div class="text-sm text-text-muted">
-                <span class="text-white font-semibold">{team.length} membres</span> du bureau
+                <span class="text-white font-semibold"
+                  >{team.length} membres</span
+                > du bureau
               </div>
             </div>
           </div>
         </div>
 
         <!-- Team Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {team.map((member, index) => (
-            <TeamMember {...member} index={index} />
-          ))}
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          {
+            team.map((member, index) => (
+              <TeamMember {...member} index={index} />
+            ))
+          }
         </div>
 
         <!-- Join Team CTA -->
         <div class="mt-20 text-center">
-          <div class="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-white/5 via-white/[0.02] to-transparent rounded-3xl border border-white/10">
+          <div
+            class="inline-flex flex-col md:flex-row items-center gap-6 p-8 bg-gradient-to-r from-white/5 via-white/[0.02] to-transparent rounded-3xl border border-white/10"
+          >
             <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              <div
+                class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-primary"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+                  ></path>
                 </svg>
               </div>
               <div class="text-left">
-                <h3 class="text-lg font-display font-bold text-white">Rejoindre l'aventure ?</h3>
-                <p class="text-sm text-text-muted">On recrute des passionnés !</p>
+                <h3 class="text-lg font-display font-bold text-white">
+                  Rejoindre l'aventure ?
+                </h3>
+                <p class="text-sm text-text-muted">
+                  On recrute des passionnés !
+                </p>
               </div>
             </div>
-            <a href="#contact" class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">
+            <a
+              href="#contact"
+              class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+            >
               <span>Nous contacter</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 group-hover:translate-x-1 transition-transform">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
               </svg>
             </a>
           </div>
@@ -462,27 +862,36 @@ import team from '../data/team.json';
         opacity: 0.3;
         animation: teamFloat 25s ease-in-out infinite;
       }
-      
+
       .team-orb-1 {
         width: 600px;
         height: 600px;
-        background: linear-gradient(135deg, rgba(251, 168, 36, 0.4), rgba(251, 168, 36, 0.1));
+        background: linear-gradient(
+          135deg,
+          rgba(251, 168, 36, 0.4),
+          rgba(251, 168, 36, 0.1)
+        );
         top: -15%;
         left: -10%;
         animation-delay: 0s;
       }
-      
+
       .team-orb-2 {
         width: 500px;
         height: 500px;
-        background: linear-gradient(135deg, rgba(92, 199, 150, 0.3), rgba(92, 199, 150, 0.1));
+        background: linear-gradient(
+          135deg,
+          rgba(92, 199, 150, 0.3),
+          rgba(92, 199, 150, 0.1)
+        );
         bottom: -10%;
         right: -5%;
         animation-delay: -12s;
       }
-      
+
       @keyframes teamFloat {
-        0%, 100% {
+        0%,
+        100% {
           transform: translate(0, 0) scale(1);
         }
         33% {
@@ -504,20 +913,20 @@ import team from '../data/team.json';
   // Simple Intersection Observer for scroll animations
   const observerOptions = {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.1
+    rootMargin: "0px",
+    threshold: 0.1,
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        entry.target.classList.add("visible");
         observer.unobserve(entry.target); // Only animate once
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('.fade-in-up').forEach(el => {
+  document.querySelectorAll(".fade-in-up").forEach((el) => {
     observer.observe(el);
   });
 </script>
@@ -526,7 +935,9 @@ import team from '../data/team.json';
   .fade-in-up {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
   }
 
   .fade-in-up.visible {
@@ -535,7 +946,13 @@ import team from '../data/team.json';
   }
 
   /* Stagger delays */
-  .stagger-container .fade-in-up:nth-child(1) { transition-delay: 0.1s; }
-  .stagger-container .fade-in-up:nth-child(2) { transition-delay: 0.2s; }
-  .stagger-container .fade-in-up:nth-child(3) { transition-delay: 0.3s; }
+  .stagger-container .fade-in-up:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .stagger-container .fade-in-up:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .stagger-container .fade-in-up:nth-child(3) {
+    transition-delay: 0.3s;
+  }
 </style>

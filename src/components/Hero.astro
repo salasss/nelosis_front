@@ -1,5 +1,7 @@
 ---
 import Button from "../components/Button.astro";
+import { Image } from "astro:assets";
+import heroLogo from "../assets/images/LogoarrieereVF.png";
 ---
 
 <section
@@ -10,25 +12,43 @@ import Button from "../components/Button.astro";
   <div class="absolute inset-0 z-0">
     <!-- Base Gradient -->
     <div class="absolute inset-0 bg-dark"></div>
-    
+
     <!-- Animated Gradient Orbs -->
-    <div class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full opacity-30 blur-[120px] animate-pulse-slow" style="background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);"></div>
-    <div class="absolute bottom-[-30%] left-[-15%] w-[600px] h-[600px] rounded-full opacity-20 blur-[100px] animate-float" style="background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
-    <div class="absolute top-[40%] left-[30%] w-[400px] h-[400px] rounded-full opacity-10 blur-[80px] animate-pulse-slow" style="background: radial-gradient(circle, var(--color-highlight) 0%, transparent 70%); animation-delay: 2s;"></div>
-    
+    <div
+      class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] rounded-full opacity-30 blur-[120px] animate-pulse-slow"
+      style="background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);"
+    >
+    </div>
+    <div
+      class="absolute bottom-[-30%] left-[-15%] w-[600px] h-[600px] rounded-full opacity-20 blur-[100px] animate-float"
+      style="background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"
+    >
+    </div>
+    <div
+      class="absolute top-[40%] left-[30%] w-[400px] h-[400px] rounded-full opacity-10 blur-[80px] animate-pulse-slow"
+      style="background: radial-gradient(circle, var(--color-highlight) 0%, transparent 70%); animation-delay: 2s;"
+    >
+    </div>
+
     <!-- Grid Pattern -->
-    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
-    
+    <div
+      class="absolute inset-0 opacity-[0.02]"
+      style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 60px 60px;"
+    >
+    </div>
+
     <!-- Noise Texture -->
-    <div class="absolute inset-0 opacity-[0.015]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
+    <div
+      class="absolute inset-0 opacity-[0.015]"
+      style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"
+    >
+    </div>
   </div>
 
   <div class="container mx-auto px-6 md:px-12 relative z-10 pt-32 pb-20">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-      
       <!-- Left Column: Text Content -->
       <div class="lg:col-span-7 space-y-8 order-2 lg:order-1">
-        
         <!-- Badge -->
         <div class="overflow-hidden">
           <div
@@ -36,10 +56,15 @@ import Button from "../components/Button.astro";
             style="--delay: 0s"
           >
             <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"
+              ></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"
+              ></span>
             </span>
-            <span class="text-white/80 text-sm font-medium tracking-wide">Réseau Étudiant National</span>
+            <span class="text-white/80 text-sm font-medium tracking-wide"
+              >Réseau Étudiant National</span
+            >
           </div>
         </div>
 
@@ -58,7 +83,10 @@ import Button from "../components/Button.astro";
               class="hero-animate text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-display font-bold leading-[0.95] tracking-tight"
               style="--delay: 0.2s"
             >
-              <span class="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight">pour le futur</span>
+              <span
+                class="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight"
+                >pour le futur</span
+              >
             </h1>
           </div>
         </div>
@@ -69,7 +97,8 @@ import Button from "../components/Button.astro";
             class="hero-animate text-lg md:text-xl text-white/50 leading-relaxed"
             style="--delay: 0.3s"
           >
-            Le Réseau Nélosis propulse les initiatives étudiantes à impact écologique. Rejoignez le mouvement qui transforme les campus.
+            Le Réseau Nélosis propulse les initiatives étudiantes à impact
+            écologique. Rejoignez le mouvement qui transforme les campus.
           </p>
         </div>
 
@@ -78,65 +107,114 @@ import Button from "../components/Button.astro";
           class="hero-animate flex flex-wrap items-center gap-4"
           style="--delay: 0.4s"
         >
-          <a href="#programs" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]">
+          <a
+            href="#programs"
+            class="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02]"
+          >
             <span class="relative z-10">Explorer les projets</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
             </svg>
-            <div class="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+            </div>
           </a>
-          
-          <a href="#contact" class="group inline-flex items-center gap-3 px-8 py-4 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-white font-semibold rounded-full transition-all duration-300">
+
+          <a
+            href="#contact"
+            class="group inline-flex items-center gap-3 px-8 py-4 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-white font-semibold rounded-full transition-all duration-300"
+          >
             <span>Devenir membre</span>
-            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            <div
+              class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-3 h-3"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"></path>
               </svg>
             </div>
           </a>
         </div>
 
         <!-- Stats Row -->
-        <div
-          class="hero-animate pt-10 mt-4"
-          style="--delay: 0.5s"
-        >
+        <div class="hero-animate pt-10 mt-4" style="--delay: 0.5s">
           <div class="flex flex-wrap items-center gap-8 md:gap-12">
             <!-- Stat 1 -->
             <div class="group cursor-default">
               <div class="flex items-baseline gap-1">
-                <span class="text-5xl md:text-6xl font-display font-bold text-white counter" data-target="3">0</span>
+                <span
+                  class="text-5xl md:text-6xl font-display font-bold text-white counter"
+                  data-target="3">0</span
+                >
                 <span class="text-2xl font-bold text-primary">+</span>
               </div>
-              <div class="text-sm text-white/40 font-medium uppercase tracking-wider mt-1">
+              <div
+                class="text-sm text-white/40 font-medium uppercase tracking-wider mt-1"
+              >
                 Antennes
               </div>
             </div>
-            
+
             <!-- Divider -->
-            <div class="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
-            
+            <div
+              class="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent"
+            >
+            </div>
+
             <!-- Stat 2 -->
             <div class="group cursor-default">
               <div class="flex items-baseline gap-1">
-                <span class="text-5xl md:text-6xl font-display font-bold text-white counter" data-target="50">0</span>
+                <span
+                  class="text-5xl md:text-6xl font-display font-bold text-white counter"
+                  data-target="50">0</span
+                >
                 <span class="text-2xl font-bold text-accent">+</span>
               </div>
-              <div class="text-sm text-white/40 font-medium uppercase tracking-wider mt-1">
+              <div
+                class="text-sm text-white/40 font-medium uppercase tracking-wider mt-1"
+              >
                 Étudiants
               </div>
             </div>
-            
+
             <!-- Divider -->
-            <div class="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
-            
+            <div
+              class="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent"
+            >
+            </div>
+
             <!-- Stat 3 -->
             <div class="group cursor-default">
               <div class="flex items-baseline gap-1">
-                <span class="text-5xl md:text-6xl font-display font-bold text-white counter" data-target="5">0</span>
+                <span
+                  class="text-5xl md:text-6xl font-display font-bold text-white counter"
+                  data-target="5">0</span
+                >
                 <span class="text-2xl font-bold text-highlight">+</span>
               </div>
-              <div class="text-sm text-white/40 font-medium uppercase tracking-wider mt-1">
+              <div
+                class="text-sm text-white/40 font-medium uppercase tracking-wider mt-1"
+              >
                 Projets
               </div>
             </div>
@@ -145,7 +223,9 @@ import Button from "../components/Button.astro";
       </div>
 
       <!-- Right Column: Visual -->
-      <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end">
+      <div
+        class="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end"
+      >
         <div
           class="hero-animate relative w-full max-w-md lg:max-w-lg aspect-square"
           style="--delay: 0.2s"
@@ -153,29 +233,40 @@ import Button from "../components/Button.astro";
         >
           <!-- Glow Behind -->
           <div class="absolute inset-0 scale-110">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/20 rounded-full blur-[80px] animate-pulse-slow"></div>
+            <div
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/20 rounded-full blur-[80px] animate-pulse-slow"
+            >
+            </div>
           </div>
-          
+
           <!-- Main Image Container -->
-          <div 
+          <div
             class="relative w-full h-full rounded-3xl overflow-hidden"
             id="hero-image-container"
           >
             <!-- Background Gradient -->
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-dark-secondary to-accent/10"></div>
-            
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/10 via-dark-secondary to-accent/10"
+            >
+            </div>
+
             <!-- Logo Image -->
-            <div class="relative w-full h-full flex items-center justify-center p-8">
-              <img
-                src="/assets/images/LogoarrieereVF.png"
+            <div
+              class="relative w-full h-full flex items-center justify-center p-8"
+            >
+              <Image
+                src={heroLogo}
                 alt="Nélosis Logo"
                 class="w-full h-full object-contain drop-shadow-2xl animate-float"
                 id="hero-logo"
               />
             </div>
-            
+
             <!-- Border -->
-            <div class="absolute inset-0 rounded-3xl border border-white/10 pointer-events-none"></div>
+            <div
+              class="absolute inset-0 rounded-3xl border border-white/10 pointer-events-none"
+            >
+            </div>
           </div>
 
           <!-- Floating Card 1 - Top Right -->
@@ -183,10 +274,25 @@ import Button from "../components/Button.astro";
             class="absolute -top-4 -right-4 md:top-4 md:right-[-2rem] parallax-element"
             data-speed="20"
           >
-            <div class="flex items-center gap-3 px-5 py-3 bg-dark-secondary/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-accent">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+            <div
+              class="flex items-center gap-3 px-5 py-3 bg-dark-secondary/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5 text-accent"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                  ></path>
                 </svg>
               </div>
               <div>
@@ -201,23 +307,44 @@ import Button from "../components/Button.astro";
             class="absolute -bottom-4 -left-4 md:bottom-8 md:left-[-2rem] parallax-element"
             data-speed="-15"
           >
-            <div class="flex items-center gap-3 px-5 py-3 bg-dark-secondary/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl">
+            <div
+              class="flex items-center gap-3 px-5 py-3 bg-dark-secondary/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl"
+            >
               <div class="relative flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-3 w-3 bg-primary"
+                ></span>
               </div>
-              <span class="text-white font-semibold text-sm">Impact Positif</span>
+              <span class="text-white font-semibold text-sm"
+                >Impact Positif</span
+              >
             </div>
           </div>
-          
+
           <!-- Floating Badge - Top Left -->
           <div
             class="absolute top-8 -left-4 md:top-12 md:left-[-1rem] parallax-element hidden md:block"
             data-speed="12"
           >
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-highlight/20 to-highlight/5 border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-2xl">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-highlight">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-highlight/20 to-highlight/5 border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-2xl"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-7 h-7 text-highlight"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"
+                ></path>
               </svg>
             </div>
           </div>
@@ -225,11 +352,15 @@ import Button from "../components/Button.astro";
       </div>
     </div>
   </div>
-  
+
   <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity"
+  >
     <span class="text-xs text-white/50 uppercase tracking-[0.3em]">Scroll</span>
-    <div class="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+    <div
+      class="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2"
+    >
       <div class="w-1 h-2 bg-white/50 rounded-full animate-bounce"></div>
     </div>
   </div>
@@ -257,8 +388,15 @@ import Button from "../components/Button.astro";
   }
 
   @keyframes pulseSlow {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.05); }
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
   }
 
   /* Float animation */
@@ -267,8 +405,13 @@ import Button from "../components/Button.astro";
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   /* 3D perspective for image container */
@@ -284,12 +427,12 @@ import Button from "../components/Button.astro";
 
 <script>
   // Mouse Parallax Effect
-  const heroVisual = document.getElementById('hero-visual');
-  const imageContainer = document.getElementById('hero-image-container');
-  const parallaxElements = document.querySelectorAll('.parallax-element');
+  const heroVisual = document.getElementById("hero-visual");
+  const imageContainer = document.getElementById("hero-image-container");
+  const parallaxElements = document.querySelectorAll(".parallax-element");
 
   if (heroVisual && imageContainer) {
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener("mousemove", (e) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
 
@@ -301,25 +444,26 @@ import Button from "../components/Button.astro";
 
       // Move floating elements
       parallaxElements.forEach((el) => {
-        const speed = parseInt(el.getAttribute('data-speed') || '10');
-        (el as HTMLElement).style.transform = `translate(${xPos * speed}px, ${yPos * speed}px)`;
+        const speed = parseInt(el.getAttribute("data-speed") || "10");
+        (el as HTMLElement).style.transform =
+          `translate(${xPos * speed}px, ${yPos * speed}px)`;
       });
     });
 
     // Reset on mouse leave
-    document.addEventListener('mouseleave', () => {
-      imageContainer.style.transform = 'rotateY(0) rotateX(0)';
+    document.addEventListener("mouseleave", () => {
+      imageContainer.style.transform = "rotateY(0) rotateX(0)";
       parallaxElements.forEach((el) => {
-        (el as HTMLElement).style.transform = 'translate(0, 0)';
+        (el as HTMLElement).style.transform = "translate(0, 0)";
       });
     });
   }
 
   // Counter Animation
   const runCounters = () => {
-    const counters = document.querySelectorAll('.counter');
+    const counters = document.querySelectorAll(".counter");
     counters.forEach((counter) => {
-      const target = parseInt(counter.getAttribute('data-target') || '0');
+      const target = parseInt(counter.getAttribute("data-target") || "0");
       const duration = 2000;
       const step = target / (duration / 16);
       let current = 0;
@@ -347,9 +491,9 @@ import Button from "../components/Button.astro";
         }
       });
     },
-    { threshold: 0.3 }
+    { threshold: 0.3 },
   );
 
-  const heroSection = document.getElementById('hero');
+  const heroSection = document.getElementById("hero");
   if (heroSection) observer.observe(heroSection);
 </script>

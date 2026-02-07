@@ -21,9 +21,10 @@ import {
 interface Props {
   name: string;
   class?: string;
+  [key: string]: any;
 }
 
-const { name, class: className } = Astro.props;
+const { name, class: className, ...rest } = Astro.props;
 
 const iconMap: Record<string, any> = {
   leaf: Leaf,
@@ -47,4 +48,4 @@ const iconMap: Record<string, any> = {
 const IconComponent = iconMap[name];
 ---
 
-{IconComponent && <IconComponent class={className} />}
+{IconComponent && <IconComponent class={className} {...rest} />}
