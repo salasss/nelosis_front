@@ -1,5 +1,22 @@
 ---
-import { Leaf, LifeBuoy, Box, School, Lock, Hourglass } from "lucide-astro";
+import {
+  Leaf,
+  LifeBuoy,
+  Box,
+  School,
+  Lock,
+  Hourglass,
+  Menu,
+  X,
+  ChevronDown,
+  ChevronRight,
+  ArrowRight,
+  Linkedin,
+  Instagram,
+  Mail,
+  MapPin,
+  Heart,
+} from "lucide-astro";
 
 interface Props {
   name: string;
@@ -15,6 +32,16 @@ const iconMap: Record<string, any> = {
   school: School,
   lock: Lock,
   hourglass: Hourglass,
+  menu: Menu,
+  close: X,
+  "chevron-down": ChevronDown,
+  "chevron-right": ChevronRight,
+  "arrow-right": ArrowRight,
+  linkedin: Linkedin,
+  instagram: Instagram,
+  mail: Mail,
+  "map-pin": MapPin,
+  heart: Heart,
 };
 
 const IconComponent = iconMap[name];

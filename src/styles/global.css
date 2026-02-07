@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap');
+
 @theme {
     --font-sans: 'Inter', sans-serif;
     --font-display: 'Space Grotesk', sans-serif;
@@ -46,16 +49,28 @@
     }
 }
 
-/* Font Imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap');
+@layer base {
+    html {
+        @apply bg-dark text-text-main antialiased scroll-smooth;
+        scroll-behavior: auto;
+        /* Let Lenis handle it */
+    }
 
-html {
-    background-color: var(--color-dark);
-    color: var(--color-text-main);
-    scroll-behavior: auto;
-    /* Let Lenis handle it */
+    body {
+        @apply font-sans overflow-x-hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-display;
+    }
 }
 
+/* Lenis scroll */
 html.lenis {
     height: auto;
 }
@@ -76,38 +91,21 @@ html.lenis {
     pointer-events: none;
 }
 
-body {
-    font-family: var(--font-sans);
-    overflow-x: hidden;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--font-display);
-}
-
 /* Utilities */
-.text-gradient {
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(45deg, var(--color-primary), var(--color-accent));
-}
+@layer utilities {
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    }
 
-.glass {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
+    .glass {
+        @apply border border-white/5 backdrop-blur-md bg-white/[0.03];
+    }
 
-.glow-text {
-    text-shadow: 0 0 20px rgba(251, 168, 36, 0.3);
-}
+    .glow-text {
+        text-shadow: 0 0 20px rgba(251, 168, 36, 0.3);
+    }
 
-.glow-box {
-    box-shadow: 0 0 40px rgba(251, 168, 36, 0.1);
+    .glow-box {
+        box-shadow: 0 0 40px rgba(251, 168, 36, 0.1);
+    }
 }
