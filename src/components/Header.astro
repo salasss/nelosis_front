@@ -125,7 +125,7 @@ const activeProjects = projects.filter(p => p.status !== 'coming_soon');
   <div class="mobile-menu-backdrop absolute inset-0 bg-dark/95 backdrop-blur-xl opacity-0 transition-opacity duration-500"></div>
   
   <!-- Menu Content -->
-  <div class="mobile-menu-content relative h-full flex flex-col pt-24 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-out">
+  <div class="mobile-menu-content relative z-10 h-full flex flex-col pt-24 px-6 pb-8 transform translate-x-full transition-transform duration-500 ease-out">
     <!-- Navigation Links -->
     <nav class="flex-1 flex flex-col justify-center">
       <ul class="space-y-2">
@@ -139,7 +139,7 @@ const activeProjects = projects.filter(p => p.status !== 'coming_soon');
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                   </svg>
                 </button>
-                <div class="mobile-dropdown-content hidden pl-4 pb-4 space-y-2">
+                <div class="mobile-dropdown-content max-h-0 overflow-hidden pl-4 space-y-2 transition-all duration-300">
                   {activeProjects.map(project => (
                     <a href={`/programs/${project.slug}`} class="mobile-menu-link block py-2 px-4 text-lg text-white/60 hover:text-primary hover:pl-6 transition-all duration-300 border-l-2 border-white/10 hover:border-primary">
                       {project.title}
@@ -200,9 +200,7 @@ const activeProjects = projects.filter(p => p.status !== 'coming_soon');
     opacity: 1;
   }
   
-  .mobile-menu.is-open .mobile-menu-content {
-    transform: translateX(0);
-  }
+  /* Removed manual transform override to let Tailwind classes handle it via JS toggle */
 
   /* Hamburger animation */
   #mobile-menu-toggle.is-active .hamburger-line:first-child {
@@ -239,8 +237,8 @@ const activeProjects = projects.filter(p => p.status !== 'coming_soon');
   }
   
   .mobile-dropdown-content.is-open {
-    display: block !important;
-    animation: fadeDown 0.3s ease forwards;
+    max-height: 500px;
+    padding-bottom: 1rem;
   }
 
   @keyframes fadeDown {
@@ -271,56 +269,85 @@ const activeProjects = projects.filter(p => p.status !== 'coming_soon');
 </style>
 
 <script>
-  // Header scroll effect
-  const header = document.getElementById('main-header');
-  
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
-  };
-  
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
+  document.addEventListener('DOMContentLoaded', () => {
+    // Header scroll effect
+    const header = document.getElementById('main-header');
+    
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
 
-  // Mobile menu toggle
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  mobileMenuToggle?.addEventListener('click', () => {
-    mobileMenuToggle.classList.toggle('is-active');
-    mobileMenu?.classList.toggle('is-open');
-    document.body.style.overflow = mobileMenu?.classList.contains('is-open') ? 'hidden' : '';
-  });
-
-  // Close mobile menu on link click
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuBackdrop = mobileMenu?.querySelector('.mobile-menu-backdrop');
+    const mobileMenuContent = mobileMenu?.querySelector('.mobile-menu-content');
+    
+    const closeMobileMenu = () => {
       mobileMenuToggle?.classList.remove('is-active');
       mobileMenu?.classList.remove('is-open');
       document.body.style.overflow = '';
+      
+      // Slide content out
+      mobileMenuContent?.classList.remove('translate-x-0');
+      mobileMenuContent?.classList.add('translate-x-full');
+    };
+    
+    const openMobileMenu = () => {
+      mobileMenuToggle?.classList.add('is-active');
+      mobileMenu?.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      
+      // Slide content in
+      mobileMenuContent?.classList.remove('translate-x-full');
+      mobileMenuContent?.classList.add('translate-x-0');
+    };
+    
+    mobileMenuToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (mobileMenu?.classList.contains('is-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
     });
-  });
 
-  // Mobile dropdown toggle
-  const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-  mobileDropdownToggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('is-open');
-      const content = toggle.nextElementSibling;
-      content?.classList.toggle('is-open');
+    // Close mobile menu on backdrop click
+    mobileMenuBackdrop?.addEventListener('click', () => {
+      closeMobileMenu();
     });
-  });
 
-  // Close menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu?.classList.contains('is-open')) {
-      mobileMenuToggle?.classList.remove('is-active');
-      mobileMenu?.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
+    // Close mobile menu on link click
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+
+    // Mobile dropdown toggle
+    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+    mobileDropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggle.classList.toggle('is-open');
+        const content = toggle.nextElementSibling;
+        content?.classList.toggle('is-open');
+      });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu?.classList.contains('is-open')) {
+        closeMobileMenu();
+      }
+    });
   });
 </script>
