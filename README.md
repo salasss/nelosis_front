@@ -1,6 +1,6 @@
 # Nélosis
 
-Site web officiel de l'association **Nélosis** (anciennement Lasso Nélosis), dédiée à l'innovation écologique étudiante.
+Site web officiel de l'association **Nélosis**, dédiée à l'innovation écologique étudiante.
 
 Ce projet met en avant les initiatives écologiques portées par les étudiants, présente les différentes antennes de l'association à travers la France, et permet de contacter l'équipe.
 
