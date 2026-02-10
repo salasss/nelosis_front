@@ -106,7 +106,7 @@ const activeProjects = projects.filter(p => p.status !== 'coming_soon');
 
 <!-- Mobile Menu Overlay -->
 <!-- Removed pointer-events-none from container to fix interaction issues, moved it to backdrop if needed -->
-<div class="mobile-menu fixed inset-0 z-40 pointer-events-none" id="mobile-menu">
+<div class="mobile-menu fixed inset-0 z-40 pointer-events-none lg:hidden" id="mobile-menu">
   <!-- Backdrop -->
   <div class="mobile-menu-backdrop absolute inset-0 bg-dark/95 backdrop-blur-xl opacity-0 transition-opacity duration-500 pointer-events-auto"></div>
   
