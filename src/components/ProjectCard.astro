@@ -193,7 +193,9 @@ const sizeClasses = {
           href={link}
           class="absolute inset-0 z-30"
           aria-label={`Découvrir ${title}`}
-        />
+        >
+          <span class="sr-only">Découvrir {title}</span>
+        </a>
       )
     }
 

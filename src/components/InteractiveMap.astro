@@ -1,5 +1,6 @@
 ---
-import antennes from '../data/antennes.json';
+import { antennas } from '../data/antennes';
+
 ---
 
 <div class="relative">
@@ -155,14 +156,20 @@ import antennes from '../data/antennes.json';
             </g>
 
             <!-- Antenne Markers -->
-            {antennes.map((antenne) => {
+            {antennas.map((antenne) => {
               const color = antenne.isHQ ? "#FBA824" : "#5CC796";
               return (
-                <g class="antenne-marker cursor-pointer" data-id={antenne.id}>
+                <g 
+                  class="antenne-marker cursor-pointer align-middle" 
+                  data-id={antenne.slug}
+                  role="button"
+                  tabindex="0"
+                  aria-label={`Voir l'antenne de ${antenne.name}`}
+                >
                   <!-- Outer pulse ring -->
                   <circle
-                    cx={antenne.x}
-                    cy={antenne.y}
+                    cx={antenne.coords.x}
+                    cy={antenne.coords.y}
                     r="30"
                     fill={color}
                     opacity="0"
@@ -170,8 +177,8 @@ import antennes from '../data/antennes.json';
                   />
                   <!-- Glow circle -->
                   <circle
-                    cx={antenne.x}
-                    cy={antenne.y}
+                    cx={antenne.coords.x}
+                    cy={antenne.coords.y}
                     r="18"
                     fill={color}
                     opacity="0.15"
@@ -179,8 +186,8 @@ import antennes from '../data/antennes.json';
                   />
                   <!-- Main dot with gradient -->
                   <circle
-                    cx={antenne.x}
-                    cy={antenne.y}
+                    cx={antenne.coords.x}
+                    cy={antenne.coords.y}
                     r="10"
                     fill={color}
                     class="marker-dot"
@@ -188,8 +195,8 @@ import antennes from '../data/antennes.json';
                   />
                   <!-- Inner highlight -->
                   <circle
-                    cx={antenne.x - 2}
-                    cy={antenne.y - 2}
+                    cx={antenne.coords.x - 2}
+                    cy={antenne.coords.y - 2}
                     r="4"
                     fill="white"
                     opacity="0.5"
@@ -197,8 +204,8 @@ import antennes from '../data/antennes.json';
                   <!-- Label with background -->
                   <g class="marker-label" opacity="0">
                     <rect
-                      x={antenne.x - 45}
-                      y={antenne.y - 44}
+                      x={antenne.coords.x - 45}
+                      y={antenne.coords.y - 44}
                       width="90"
                       height="28"
                       fill="rgba(15, 15, 30, 0.95)"
@@ -207,8 +214,8 @@ import antennes from '../data/antennes.json';
                       stroke-width="1.5"
                     />
                     <text
-                      x={antenne.x}
-                      y={antenne.y - 24}
+                      x={antenne.coords.x}
+                      y={antenne.coords.y - 24}
                       text-anchor="middle"
                       class="text-sm font-bold fill-white"
                       dominant-baseline="middle"
@@ -228,7 +235,7 @@ import antennes from '../data/antennes.json';
 </div>
 
 <script>
-  import antennes from '../data/antennes.json';
+  import { antennas } from '../data/antennes';
   
   const markers = document.querySelectorAll('.antenne-marker');
 
@@ -243,10 +250,20 @@ import antennes from '../data/antennes.json';
       marker.classList.remove('active');
     });
 
-    marker.addEventListener('click', () => {
-      const antenneData = antennes.find(a => a.id === id);
+    const handleClick = () => {
+      const antenneData = antennas.find(a => a.slug === id);
       if (antenneData) {
-        window.location.href = `mailto:${antenneData.contact}`;
+        window.location.href = `mailto:${antenneData.contact.email}`;
+      }
+    };
+
+    marker.addEventListener('click', handleClick);
+    
+    // Keyboard accessibility
+    marker.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+        e.preventDefault();
+        handleClick();
       }
     });
   });
