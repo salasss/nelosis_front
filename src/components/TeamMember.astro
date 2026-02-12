@@ -11,192 +11,488 @@ interface Props {
   social?: {
     linkedin?: string;
     email?: string;
-    instagram?: string;
+    phone?: string;
   };
 }
 
 const { name, role, bio, image, social, index = 0 } = Astro.props;
 
-// Role-based accent colors
-const roleColors: Record<
-  string,
-  { gradient: string; accent: string; glow: string }
-> = {
-  Président: {
-    gradient: "from-primary to-primary/60",
-    accent: "text-primary",
-    glow: "shadow-primary/30",
-  },
-  Trésorier: {
-    gradient: "from-accent to-accent/60",
-    accent: "text-accent",
-    glow: "shadow-accent/30",
-  },
-  "Vice-président": {
-    gradient: "from-highlight to-highlight/60",
-    accent: "text-highlight",
-    glow: "shadow-highlight/30",
-  },
+// Role-based accent colors using CSS custom properties
+const roleAccents: Record<string, { color: string; glow: string }> = {
+  Président: { color: "#FBA824", glow: "rgba(251,168,36,0.35)" },
+  Trésorier: { color: "#5CC796", glow: "rgba(92,199,150,0.35)" },
+  "Vice-président": { color: "#FF7D7D", glow: "rgba(255,125,125,0.35)" },
 };
 
-const colors = roleColors[role] || {
-  gradient: "from-primary to-primary/60",
-  accent: "text-primary",
-  glow: "shadow-primary/30",
+const accent = roleAccents[role] || {
+  color: "#FBA824",
+  glow: "rgba(251,168,36,0.35)",
 };
 ---
 
-<div class="team-card group relative" style={`--card-delay: ${index * 0.15}s`}>
-  <!-- Card Container -->
-  <div
-    class="relative h-full bg-dark-secondary/50 backdrop-blur-sm rounded-3xl border border-white/10 p-8 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-dark-secondary/70"
-  >
-    <!-- Background Gradient on Hover -->
-    <div
-      class={`absolute inset-0 bg-gradient-to-br ${colors.gradient.replace("to-", "to-").replace("from-", "from-")}/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-    >
-    </div>
+<div
+  class="tm-card"
+  style={`--accent: ${accent.color}; --glow: ${accent.glow}; --i: ${index};`}
+>
+  <!-- Hover border gradient -->
+  <div class="tm-border"></div>
 
-    <!-- Decorative Corner Accent -->
-    <div
-      class={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${colors.gradient} opacity-[0.03] group-hover:opacity-[0.08] rounded-bl-full transition-opacity duration-500`}
-    >
-    </div>
-
-    <!-- Content -->
-    <div class="relative z-10">
-      <!-- Image & Info Header -->
-      <div class="flex items-start gap-6 mb-6">
-        <!-- Profile Image -->
-        <div class="relative flex-shrink-0">
-          <!-- Glow Effect -->
-          <div
-            class={`absolute -inset-2 bg-gradient-to-br ${colors.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500`}
-          >
-          </div>
-
-          <!-- Image Container -->
-          <div
-            class="relative w-24 h-24 rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-white/20 transition-all duration-500 group-hover:scale-105"
-          >
-            <Image
-              src={image}
-              alt={name}
-              class="w-full h-full object-cover filter grayscale-[30%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
-            />
-
-            <!-- Shine Effect -->
-            <div
-              class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
-            >
-            </div>
-          </div>
-
-          <!-- Status Indicator -->
-          <div
-            class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-dark-secondary border-2 border-dark flex items-center justify-center"
-          >
-            <div
-              class={`w-2 h-2 rounded-full bg-gradient-to-r ${colors.gradient} animate-pulse`}
-            >
-            </div>
-          </div>
+  <div class="tm-inner">
+    <!-- Top row: Avatar + Info -->
+    <div class="tm-header">
+      <div class="tm-avatar-wrap">
+        <div class="tm-avatar-glow"></div>
+        <div class="tm-avatar">
+          <Image
+            src={image}
+            alt={name}
+            width={88}
+            height={88}
+            class="tm-avatar-img"
+          />
         </div>
-
-        <!-- Name & Role -->
-        <div class="flex-1 min-w-0 pt-2">
-          <h3
-            class={`text-xl font-display font-bold text-white mb-1 group-hover:${colors.accent} transition-colors duration-300 truncate`}
-          >
-            {name}
-          </h3>
-          <div class="flex items-center gap-2">
-            <span
-              class={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider bg-gradient-to-r ${colors.gradient}/10 ${colors.accent} rounded-full border border-current/20`}
-            >
-              <span class={`w-1.5 h-1.5 rounded-full bg-current`}></span>
-              {role}
-            </span>
-          </div>
+        <div class="tm-status">
+          <span class="tm-status-dot"></span>
         </div>
       </div>
 
-      <!-- Bio -->
-      <p
-        class="text-white/50 text-sm leading-relaxed mb-6 group-hover:text-white/70 transition-colors duration-300"
-      >
-        {bio}
-      </p>
-
-      <!-- Social Links -->
-      <div class="flex items-center gap-3">
-        {
-          social?.linkedin && (
-            <a
-              href={social.linkedin}
-              class={`group/social flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                class="w-4 h-4 text-white/60 group-hover/social:text-white transition-colors"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-              <span class="text-xs font-medium text-white/60 group-hover/social:text-white transition-colors">
-                LinkedIn
-              </span>
-            </a>
-          )
-        }
-        {
-          social?.email && (
-            <a
-              href={`mailto:${social.email}`}
-              class={`group/social flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r ${colors.gradient}/10 hover:${colors.gradient}/20 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300`}
-            >
-              <svg
-                class={`w-4 h-4 ${colors.accent}`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              <span class={`text-xs font-medium ${colors.accent}`}>Email</span>
-            </a>
-          )
-        }
+      <div class="tm-info">
+        <h3 class="tm-name">{name}</h3>
+        <span class="tm-role">
+          <span class="tm-role-dot"></span>
+          {role}
+        </span>
       </div>
     </div>
 
-    <!-- Bottom Decorative Line -->
-    <div
-      class={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-    >
+    <!-- Bio -->
+    <p class="tm-bio">{bio}</p>
+
+    <!-- Divider -->
+    <div class="tm-divider"></div>
+
+    <!-- Social Links -->
+    <div class="tm-socials">
+      {
+        social?.linkedin && (
+          <a
+            href={social.linkedin}
+            class="tm-social-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`LinkedIn de ${name}`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          </a>
+        )
+      }
+
+      {
+        social?.email && (
+          <a
+            href={`mailto:${social.email}`}
+            class="tm-social-btn tm-social-accent"
+            aria-label={`Email ${name}`}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </a>
+        )
+      }
+
+      {
+        social?.phone && (
+          <a
+            href={`tel:${social.phone.replace(/\s/g, "")}`}
+            class="tm-social-btn tm-social-phone"
+            aria-label={`Appeler ${name}`}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+              />
+            </svg>
+          </a>
+        )
+      }
     </div>
   </div>
 </div>
 
 <style>
-  .team-card {
+  /* ─── Card Container ─── */
+  .tm-card {
+    position: relative;
+    border-radius: 20px;
+    padding: 1px;
+    background: rgba(255, 255, 255, 0.06);
     opacity: 0;
-    transform: translateY(30px);
-    animation: teamCardFadeIn 0.6s ease forwards;
-    animation-delay: var(--card-delay, 0s);
+    transform: translateY(24px);
+    animation: tmReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--i) * 0.12s);
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s ease;
   }
 
-  @keyframes teamCardFadeIn {
+  .tm-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 60px -15px var(--glow);
+  }
+
+  /* ─── Animated Border ─── */
+  .tm-border {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background 0.5s ease;
+  }
+
+  .tm-card:hover .tm-border {
+    background: linear-gradient(
+      135deg,
+      var(--accent) 0%,
+      transparent 40%,
+      var(--accent) 100%
+    );
+    opacity: 0.6;
+  }
+
+  /* ─── Inner Content ─── */
+  .tm-inner {
+    position: relative;
+    padding: 28px 24px 24px;
+    border-radius: 20px;
+    background: linear-gradient(
+      168deg,
+      rgba(26, 26, 46, 0.95) 0%,
+      rgba(15, 15, 30, 0.98) 100%
+    );
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+  }
+
+  /* Subtle noise texture */
+  .tm-inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: 20px;
+  }
+
+  /* Corner accent glow on hover */
+  .tm-inner::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .tm-card:hover .tm-inner::after {
+    opacity: 1;
+  }
+
+  /* ─── Header ─── */
+  .tm-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ─── Avatar ─── */
+  .tm-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .tm-avatar-glow {
+    position: absolute;
+    inset: -4px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent), transparent 60%);
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.5s ease;
+  }
+
+  .tm-card:hover .tm-avatar-glow {
+    opacity: 0.6;
+  }
+
+  .tm-avatar {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    transition: border-color 0.4s ease;
+  }
+
+  .tm-card:hover .tm-avatar {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .tm-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.7) brightness(0.9);
+    transition:
+      filter 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  .tm-card:hover .tm-avatar-img {
+    filter: saturate(1) brightness(1);
+    transform: scale(1.08);
+  }
+
+  /* Status dot */
+  .tm-status {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    background: rgba(15, 15, 30, 1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tm-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: tmPulse 2.5s ease-in-out infinite;
+  }
+
+  /* ─── Info ─── */
+  .tm-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tm-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #f5f5f5;
+    line-height: 1.3;
+    margin: 0 0 6px 0;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tm-card:hover .tm-name {
+    color: #fff;
+  }
+
+  .tm-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    padding: 4px 12px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    border-radius: 100px;
+  }
+
+  .tm-role-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ─── Bio ─── */
+  .tm-bio {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: rgba(176, 176, 176, 0.8);
+    margin: 0 0 16px 0;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+  }
+
+  .tm-card:hover .tm-bio {
+    color: rgba(200, 200, 200, 0.95);
+  }
+
+  /* ─── Divider ─── */
+  .tm-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 100%
+    );
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tm-card:hover .tm-divider {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--accent) 30%, transparent) 50%,
+      transparent 100%
+    );
+  }
+
+  /* ─── Social Buttons ─── */
+  .tm-socials {
+    display: flex;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tm-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    text-decoration: none;
+  }
+
+  .tm-social-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .tm-social-accent {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 20%, transparent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+
+  .tm-social-accent:hover {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--accent);
+    box-shadow: 0 4px 16px var(--glow);
+  }
+
+  .tm-social-phone {
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .tm-social-phone:hover {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--accent);
+    box-shadow: 0 4px 16px var(--glow);
+  }
+
+  /* ─── Animations ─── */
+  @keyframes tmReveal {
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes tmPulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.85);
+    }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .tm-inner {
+      padding: 20px 18px 18px;
+    }
+
+    .tm-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+    }
+
+    .tm-name {
+      font-size: 1rem;
     }
   }
 </style>
