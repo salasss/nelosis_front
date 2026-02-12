@@ -1,0 +1,870 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { Image } from "astro:assets";
+import programs from "../../data/programs";
+
+export async function getStaticPaths() {
+    return programs.map((program) => ({
+        params: { slug: program.slug },
+        props: { program },
+    }));
+}
+
+const { program } = Astro.props;
+---
+
+<BaseLayout
+    title={`${program.name} – Nélosis`}
+    description={program.description}
+>
+    <Header />
+
+    <main class="bg-dark min-h-screen">
+        <!-- Hero Section -->
+        <section
+            class="programme-hero"
+            style={`--prog-color: ${program.color}; --prog-accent: ${program.accentColor};`}
+        >
+            <!-- Animated background -->
+            <div class="programme-hero-bg">
+                <div class="programme-hero-orb programme-hero-orb-1"></div>
+                <div class="programme-hero-orb programme-hero-orb-2"></div>
+                <div class="programme-hero-grid"></div>
+            </div>
+
+            <div class="programme-hero-content">
+                <!-- Breadcrumb -->
+                <nav class="programme-breadcrumb">
+                    <a href="/" class="programme-breadcrumb-link">Accueil</a>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="programme-breadcrumb-sep"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                    </svg>
+                    <a href="/#programs" class="programme-breadcrumb-link"
+                        >Programmes</a
+                    >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="programme-breadcrumb-sep"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                    </svg>
+                    <span class="programme-breadcrumb-current"
+                        >{program.name}</span
+                    >
+                </nav>
+
+                <!-- Icon -->
+                <div class="programme-hero-icon-wrap">
+                    {
+                        program.icon === "leaf" && (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="programme-hero-icon"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 21c-4-4-8-7.5-8-12a8 8 0 0116 0c0 4.5-4 8-8 12z"
+                                />
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 21V10"
+                                />
+                            </svg>
+                        )
+                    }
+                    {
+                        program.icon === "sparkles" && (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="programme-hero-icon"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
+                                />
+                            </svg>
+                        )
+                    }
+                    {
+                        program.icon === "waves" && (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="programme-hero-icon"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M2.25 15c1.5-1.5 3-2.25 4.5-2.25s3 .75 4.5 2.25 3 2.25 4.5 2.25 3-.75 4.5-2.25"
+                                />
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M2.25 9c1.5-1.5 3-2.25 4.5-2.25s3 .75 4.5 2.25 3 2.25 4.5 2.25 3-.75 4.5-2.25"
+                                />
+                            </svg>
+                        )
+                    }
+                    {
+                        program.icon === "graduation-cap" && (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="programme-hero-icon"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+                                />
+                            </svg>
+                        )
+                    }
+                </div>
+
+                <h1 class="programme-hero-title">{program.name}</h1>
+                <p class="programme-hero-tagline">{program.tagline}</p>
+                <p class="programme-hero-desc">{program.description}</p>
+
+                <div class="programme-hero-stats">
+                    <div class="programme-hero-stat">
+                        <span class="programme-hero-stat-num"
+                            >{program.projects.length}</span
+                        >
+                        <span class="programme-hero-stat-label"
+                            >Projet{
+                                program.projects.length > 1 ? "s" : ""
+                            }</span
+                        >
+                    </div>
+                    <div class="programme-hero-stat-sep"></div>
+                    <div class="programme-hero-stat">
+                        <span class="programme-hero-stat-num"
+                            >{
+                                program.projects.filter(
+                                    (p) => p.status === "active",
+                                ).length
+                            }</span
+                        >
+                        <span class="programme-hero-stat-label"
+                            >Actif{
+                                program.projects.filter(
+                                    (p) => p.status === "active",
+                                ).length > 1
+                                    ? "s"
+                                    : ""
+                            }</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects List -->
+        <section
+            class="programme-projects"
+            style={`--prog-color: ${program.color};`}
+        >
+            <div class="programme-projects-container">
+                <div class="programme-projects-header">
+                    <h2 class="programme-projects-title">
+                        Projets du programme
+                    </h2>
+                    <div class="programme-projects-line"></div>
+                </div>
+
+                <div class="programme-projects-grid">
+                    {
+                        program.projects.map((project, index) => (
+                            <a
+                                href={
+                                    project.status === "coming_soon"
+                                        ? "#"
+                                        : `/programs/${project.slug}`
+                                }
+                                class={`projet-card ${project.status === "coming_soon" ? "projet-card--soon" : ""}`}
+                                style={`--proj-color: ${project.color}; transition-delay: ${index * 100}ms;`}
+                            >
+                                <div class="projet-card-inner">
+                                    {/* Status badge */}
+                                    <div class="projet-card-status">
+                                        {project.status === "coming_soon" ? (
+                                            <span class="projet-card-badge projet-card-badge--soon">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke-width="2"
+                                                    stroke="currentColor"
+                                                    class="projet-card-badge-icon"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                    />
+                                                </svg>
+                                                Bientôt
+                                            </span>
+                                        ) : (
+                                            <span class="projet-card-badge projet-card-badge--active">
+                                                <span class="projet-card-badge-dot" />
+                                                Actif
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* Logo / image */}
+                                    {project.logo && (
+                                        <div class="projet-card-logo">
+                                            <Image
+                                                src={project.logo}
+                                                alt={project.title}
+                                                class="projet-card-logo-img"
+                                                width={120}
+                                                height={120}
+                                            />
+                                        </div>
+                                    )}
+
+                                    {/* Content */}
+                                    <h3 class="projet-card-title">
+                                        {project.title}
+                                    </h3>
+                                    <p class="projet-card-subtitle">
+                                        {project.subtitle}
+                                    </p>
+                                    <p class="projet-card-desc">
+                                        {project.description}
+                                    </p>
+
+                                    {/* Leaders */}
+                                    {project.leaders &&
+                                        project.leaders.length > 0 && (
+                                            <div class="projet-card-leaders">
+                                                <span class="projet-card-leaders-label">
+                                                    Porteur
+                                                    {project.leaders.length > 1
+                                                        ? "s"
+                                                        : ""}{" "}
+                                                    :
+                                                </span>
+                                                {project.leaders.map(
+                                                    (leader) => (
+                                                        <span class="projet-card-leader">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                stroke-width="1.5"
+                                                                stroke="currentColor"
+                                                                class="projet-card-leader-icon"
+                                                            >
+                                                                <path
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                                                                />
+                                                            </svg>
+                                                            {leader.name}
+                                                        </span>
+                                                    ),
+                                                )}
+                                            </div>
+                                        )}
+
+                                    {/* CTA */}
+                                    {project.status !== "coming_soon" && (
+                                        <div class="projet-card-cta">
+                                            <span>Voir le projet</span>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="2"
+                                                stroke="currentColor"
+                                                class="projet-card-cta-arrow"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                                                />
+                                            </svg>
+                                        </div>
+                                    )}
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+
+                <!-- Back navigation -->
+                <div class="programme-back">
+                    <a href="/#programs" class="programme-back-link">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            class="programme-back-arrow"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                        </svg>
+                        <span>Retour aux programmes</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</BaseLayout>
+
+<script>
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.1 },
+    );
+
+    document.querySelectorAll(".projet-card, .fade-in-up").forEach((el) => {
+        observer.observe(el);
+    });
+</script>
+
+<style>
+    /* ═══ Hero ═══ */
+    .programme-hero {
+        position: relative;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 8rem 1.5rem 4rem;
+    }
+
+    .programme-hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .programme-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+    }
+    .programme-hero-orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--prog-color) 30%, transparent),
+            transparent 70%
+        );
+        top: -30%;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: heroOrbFloat 20s ease-in-out infinite;
+    }
+    .programme-hero-orb-2 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--prog-accent) 20%, transparent),
+            transparent 70%
+        );
+        bottom: -20%;
+        right: -10%;
+        animation: heroOrbFloat 25s ease-in-out infinite reverse;
+    }
+
+    .programme-hero-grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.02;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px
+            );
+        background-size: 60px 60px;
+    }
+
+    @keyframes heroOrbFloat {
+        0%,
+        100% {
+            transform: translateX(-50%) translate(0, 0);
+        }
+        50% {
+            transform: translateX(-50%) translate(30px, -30px);
+        }
+    }
+
+    .programme-hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        max-width: 700px;
+    }
+
+    /* Breadcrumb */
+    .programme-breadcrumb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+    }
+    .programme-breadcrumb-link {
+        font-size: 0.8rem;
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .programme-breadcrumb-link:hover {
+        color: var(--prog-color);
+    }
+    .programme-breadcrumb-sep {
+        width: 0.75rem;
+        height: 0.75rem;
+        color: #666;
+    }
+    .programme-breadcrumb-current {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--prog-color);
+    }
+
+    /* Icon */
+    .programme-hero-icon-wrap {
+        width: 5rem;
+        height: 5rem;
+        margin: 0 auto 2rem;
+        border-radius: 1.25rem;
+        background: linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--prog-color) 20%, transparent),
+            color-mix(in srgb, var(--prog-color) 8%, transparent)
+        );
+        border: 1px solid color-mix(in srgb, var(--prog-color) 30%, transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 60px -10px
+            color-mix(in srgb, var(--prog-color) 30%, transparent);
+    }
+    .programme-hero-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: var(--prog-color);
+    }
+
+    .programme-hero-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 8vw, 5.5rem);
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 0.75rem;
+        line-height: 1;
+    }
+
+    .programme-hero-tagline {
+        font-size: 1.3rem;
+        color: var(--prog-color);
+        font-weight: 600;
+        margin: 0 0 1.5rem;
+    }
+
+    .programme-hero-desc {
+        font-size: 1.05rem;
+        color: #b0b0b0;
+        line-height: 1.8;
+        margin: 0 0 2.5rem;
+    }
+
+    /* Stats */
+    .programme-hero-stats {
+        display: inline-flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem 2rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 9999px;
+        backdrop-filter: blur(10px);
+    }
+    .programme-hero-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .programme-hero-stat-num {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--prog-color);
+    }
+    .programme-hero-stat-label {
+        font-size: 0.75rem;
+        color: #b0b0b0;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+    .programme-hero-stat-sep {
+        width: 1px;
+        height: 2.5rem;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ═══ Projects Section ═══ */
+    .programme-projects {
+        padding: 6rem 0 8rem;
+        position: relative;
+    }
+
+    .programme-projects-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .programme-projects-header {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .programme-projects-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    .programme-projects-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.15),
+            transparent
+        );
+    }
+
+    /* ═══ Project Cards ═══ */
+    .programme-projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .programme-projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .projet-card {
+        display: block;
+        text-decoration: none;
+        border-radius: 1.5rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.7s ease-out,
+            transform 0.7s ease-out;
+    }
+
+    .projet-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .projet-card-inner {
+        padding: 2rem;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.5rem;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .projet-card:not(.projet-card--soon):hover .projet-card-inner {
+        border-color: color-mix(in srgb, var(--proj-color) 40%, transparent);
+        transform: translateY(-6px);
+        box-shadow:
+            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+            0 0 40px -15px var(--proj-color);
+    }
+
+    .projet-card--soon {
+        cursor: default;
+    }
+    .projet-card--soon .projet-card-inner {
+        opacity: 0.5;
+    }
+
+    /* Status badge */
+    .projet-card-status {
+        margin-bottom: 1.25rem;
+    }
+    .projet-card-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.3rem 0.75rem;
+        border-radius: 9999px;
+    }
+    .projet-card-badge--active {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .projet-card-badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #10b981;
+        animation: dotPulse 2s ease-in-out infinite;
+    }
+    .projet-card-badge--soon {
+        background: rgba(156, 163, 175, 0.1);
+        color: #9ca3af;
+        border: 1px solid rgba(156, 163, 175, 0.2);
+    }
+    .projet-card-badge-icon {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+
+    @keyframes dotPulse {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.4;
+        }
+    }
+
+    /* Logo */
+    .projet-card-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 1rem;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .projet-card-logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .projet-card-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 0.35rem;
+        transition: color 0.3s ease;
+    }
+    .projet-card:not(.projet-card--soon):hover .projet-card-title {
+        color: var(--proj-color);
+    }
+
+    .projet-card-subtitle {
+        font-size: 0.95rem;
+        color: var(--proj-color);
+        font-weight: 600;
+        margin: 0 0 0.75rem;
+    }
+
+    .projet-card-desc {
+        font-size: 0.9rem;
+        color: #b0b0b0;
+        line-height: 1.6;
+        margin: 0 0 1.25rem;
+    }
+
+    /* Leaders */
+    .projet-card-leaders {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .projet-card-leaders-label {
+        font-size: 0.75rem;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .projet-card-leader {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.8rem;
+        color: #d1d5db;
+        padding: 0.25rem 0.6rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+    }
+    .projet-card-leader-icon {
+        width: 0.85rem;
+        height: 0.85rem;
+        color: var(--proj-color);
+    }
+
+    /* CTA */
+    .projet-card-cta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--proj-color);
+        opacity: 0;
+        transform: translateX(-6px);
+        transition: all 0.3s ease;
+    }
+    .projet-card:hover .projet-card-cta {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .projet-card-cta-arrow {
+        width: 1rem;
+        height: 1rem;
+        transition: transform 0.3s ease;
+    }
+    .projet-card:hover .projet-card-cta-arrow {
+        transform: translateX(4px);
+    }
+
+    /* ═══ Back ═══ */
+    .programme-back {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .programme-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #b0b0b0;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        transition: all 0.3s ease;
+    }
+    .programme-back-link:hover {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.06);
+    }
+    .programme-back-arrow {
+        width: 1rem;
+        height: 1rem;
+        transition: transform 0.3s ease;
+    }
+    .programme-back-link:hover .programme-back-arrow {
+        transform: translateX(-4px);
+    }
+
+    /* ═══ Mobile ═══ */
+    @media (max-width: 767px) {
+        .programme-hero {
+            min-height: 60vh;
+            padding: 7rem 1.5rem 3rem;
+        }
+        .programme-hero-title {
+            font-size: 2.5rem;
+        }
+        .programme-hero-icon-wrap {
+            width: 4rem;
+            height: 4rem;
+        }
+        .programme-hero-icon {
+            width: 2rem;
+            height: 2rem;
+        }
+        .projet-card-cta {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+</style>
