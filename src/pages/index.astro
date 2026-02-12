@@ -253,17 +253,35 @@ const antenneColors = [
                 );
               })}
 
-              <!-- Inline CTA row -->
-              <a href="#contact" class="network-row network-row--cta group" style="--row-color: var(--color-accent);">
-                <span class="network-row__num text-[11px] font-mono text-white/15 w-6 flex-shrink-0">+</span>
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center flex-shrink-0 group-hover:from-accent/30 group-hover:to-primary/30 transition-all duration-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-accent">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <span class="text-sm font-semibold text-white/60 group-hover:text-white transition-colors">Créer une antenne</span>
-                  <span class="text-white/25 text-xs block">Rejoignez le mouvement</span>
+              <!-- CTA Banner — Awwwards 2026 -->
+              <a href="#contact" class="network-cta group">
+                <!-- Animated gradient border -->
+                <div class="network-cta__border" aria-hidden="true"></div>
+                <!-- Shimmer sweep -->
+                <div class="network-cta__shimmer" aria-hidden="true"></div>
+                <!-- Glow orb -->
+                <div class="network-cta__glow" aria-hidden="true"></div>
+
+                <div class="network-cta__inner">
+                  <div class="flex items-center gap-5">
+                    <!-- Pulsing dot -->
+                    <div class="relative flex-shrink-0">
+                      <div class="w-3 h-3 rounded-full bg-accent"></div>
+                      <div class="absolute inset-0 w-3 h-3 rounded-full bg-accent animate-ping opacity-75"></div>
+                    </div>
+                    <!-- Text -->
+                    <div class="flex-1 min-w-0">
+                      <span class="text-base md:text-lg font-display font-bold text-white group-hover:text-accent transition-colors duration-300">Crée ton antenne</span>
+                      <span class="text-white/40 text-xs block mt-1">Pas d'antenne près de chez toi ? Lance la tienne et rejoins le mouvement !</span>
+                    </div>
+                    <!-- Arrow pill -->
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 group-hover:bg-accent group-hover:border-accent transition-all duration-500 flex-shrink-0">
+                      <span class="text-xs font-bold uppercase tracking-wider text-accent group-hover:text-dark transition-colors duration-300">Go</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5 text-accent group-hover:text-dark group-hover:translate-x-0.5 transition-all duration-300">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </a>
             </div>
@@ -385,6 +403,103 @@ const antenneColors = [
 
       .network-map-wrapper {
         position: relative;
+      }
+
+      /* Network CTA — Awwwards 2026 */
+      .network-cta {
+        display: block;
+        position: relative;
+        margin: 0.5rem;
+        margin-top: 0.75rem;
+        border-radius: 1rem;
+        text-decoration: none;
+        overflow: hidden;
+        isolation: isolate;
+        cursor: pointer;
+      }
+
+      /* Animated rotating gradient border */
+      .network-cta__border {
+        position: absolute;
+        inset: 0;
+        border-radius: 1rem;
+        padding: 1px;
+        background: conic-gradient(from var(--cta-angle, 0deg), #5CC796, #FBA824, #FF7D7D, #a855f6, #5CC796);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: cta-rotate 4s linear infinite;
+        opacity: 0.4;
+        transition: opacity 0.4s ease;
+        z-index: 1;
+      }
+
+      .network-cta:hover .network-cta__border {
+        opacity: 1;
+      }
+
+      @keyframes cta-rotate {
+        to { --cta-angle: 360deg; }
+      }
+
+      @property --cta-angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      /* Shimmer sweep */
+      .network-cta__shimmer {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 55%, transparent 60%);
+        background-size: 250% 100%;
+        animation: cta-shimmer 6s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes cta-shimmer {
+        0%, 100% { background-position: 200% 0; }
+        50% { background-position: -50% 0; }
+      }
+
+      /* Glow orb */
+      .network-cta__glow {
+        position: absolute;
+        top: 50%;
+        right: -10%;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(92,199,150,0.2);
+        filter: blur(50px);
+        transform: translateY(-50%);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .network-cta:hover .network-cta__glow {
+        width: 200px;
+        height: 200px;
+        right: -5%;
+        background: rgba(92,199,150,0.3);
+      }
+
+      /* Inner content */
+      .network-cta__inner {
+        position: relative;
+        z-index: 3;
+        padding: 1.25rem 1.5rem;
+        border-radius: 1rem;
+        background: rgba(255,255,255,0.025);
+        transition: background 0.4s ease;
+      }
+
+      .network-cta:hover .network-cta__inner {
+        background: rgba(255,255,255,0.05);
       }
     </style>
 
