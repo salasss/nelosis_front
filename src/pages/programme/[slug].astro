@@ -1,0 +1,1116 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { Image } from "astro:assets";
+import programs from "../../data/programs";
+
+export async function getStaticPaths() {
+    return programs.map((program) => ({
+        params: { slug: program.slug },
+        props: { program },
+    }));
+}
+
+const { program } = Astro.props;
+const featuredProjects = program.projects.filter((p) => p.featured);
+const allProjects = program.projects;
+const partners = program.partners;
+---
+
+<BaseLayout
+    title={`${program.name} – Nélosis`}
+    description={program.description}
+>
+    <Header />
+    <main
+        class="prog-page"
+        style={`--pc: ${program.color}; --pa: ${program.accentColor};`}
+    >
+        <!-- ═══ HERO ═══ -->
+        <section class="prog-hero">
+            <div class="prog-hero-bg">
+                <div class="prog-hero-orb prog-hero-orb-1"></div>
+                <div class="prog-hero-orb prog-hero-orb-2"></div>
+                <div class="prog-hero-grid"></div>
+            </div>
+            <div class="prog-hero-inner">
+                <nav class="prog-crumb">
+                    <a href="/">Accueil</a><span class="prog-crumb-sep">›</span>
+                    <a href="/#programs">Programmes</a><span
+                        class="prog-crumb-sep">›</span
+                    >
+                    <span class="prog-crumb-cur">{program.name}</span>
+                </nav>
+                <h1 class="prog-hero-title">{program.name}</h1>
+                <p class="prog-hero-tagline">{program.tagline}</p>
+                <div class="prog-hero-stats">
+                    <div class="prog-stat">
+                        <span class="prog-stat-n">{allProjects.length}</span
+                        ><span class="prog-stat-l"
+                            >Projet{allProjects.length > 1 ? "s" : ""}</span>
+                    </div>
+                    <div class="prog-stat-sep"></div>
+                    <div class="prog-stat">
+                        <span class="prog-stat-n"
+                            >{
+                                allProjects.filter((p) => p.status === "active")
+                                    .length
+                            }</span
+                        ><span class="prog-stat-l"
+                            >Actif{
+                                allProjects.filter((p) => p.status === "active")
+                                    .length > 1
+                                    ? "s"
+                                    : ""
+                            }</span>
+                    </div>
+                    {
+                        partners.length > 0 && (
+                            <>
+                                <>
+                                    <div class="prog-stat-sep" />
+                                    <div class="prog-stat">
+                                        <>
+                                            <span class="prog-stat-n">
+                                                {partners.length}
+                                            </span>
+                                            <span class="prog-stat-l">
+                                                Partenaire
+                                                {partners.length > 1 ? "s" : ""}
+                                            </span>
+                                        </>
+                                    </div>
+                                </>
+                            </>
+                        )
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ 1. PRÉSENTATION ═══ -->
+        <section class="prog-section" id="presentation">
+            <div class="prog-wrap">
+                <div class="prog-sec-label">
+                    <div class="prog-sec-line"></div><span
+                        >01 — Présentation</span>
+                </div>
+                <h2 class="prog-sec-title">
+                    Pourquoi <span style={`color: var(--pc)`}
+                        >{program.name}</span
+                    > ?
+                </h2>
+                <div class="pres-grid">
+                    <div class="pres-intro fade-in-up">
+                        <p class="pres-intro-text">
+                            {program.presentation.intro}
+                        </p>
+                    </div>
+                    <div class="pres-enjeux fade-in-up">
+                        <div class="pres-card">
+                            <h3 class="pres-card-title">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="pres-card-icon"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                                    ></path></svg
+                                >
+                                Les enjeux
+                            </h3>
+                            <p class="pres-card-text">
+                                {program.presentation.enjeux}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pres-obj fade-in-up">
+                        <div class="pres-card">
+                            <h3 class="pres-card-title">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="pres-card-icon"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                                    ></path></svg
+                                >
+                                Objectifs
+                            </h3>
+                            <ul class="pres-obj-list">
+                                {
+                                    program.presentation.objectifs.map(
+                                        (obj) => (
+                                            <li class="pres-obj-item">
+                                                <span class="pres-obj-dot" />
+                                                <span>{obj}</span>
+                                            </li>
+                                        ),
+                                    )
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    {
+                        program.presentation.vision && (
+                            <div class="pres-vision fade-in-up">
+                                <div class="pres-vision-card">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="pres-vision-icon"
+                                    >
+                                        <>
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                                            />
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                            />
+                                        </>
+                                    </svg>
+                                    <p class="pres-vision-text">
+                                        <strong>Notre vision :</strong>{" "}
+                                        {program.presentation.vision}
+                                    </p>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ 2. PROJETS PHARES ═══ -->
+        {
+            featuredProjects.length > 0 && (
+                <section class="prog-section prog-section-alt" id="phares">
+                    <div class="prog-wrap">
+                        <div class="prog-sec-label">
+                            <>
+                                <div class="prog-sec-line" />
+                                <span>02 — Projets Phares</span>
+                            </>
+                        </div>
+                        <h2 class="prog-sec-title">
+                            Les projets{" "}
+                            <span style={`color: var(--pc)`}>
+                                qui font la différence
+                            </span>
+                        </h2>
+                        <div class="feat-grid">
+                            {featuredProjects.map((project, i) => (
+                                <a
+                                    href={
+                                        project.status === "coming_soon"
+                                            ? "#"
+                                            : `/programs/${project.slug}`
+                                    }
+                                    class={`feat-card fade-in-up ${project.status === "coming_soon" ? "feat-card--soon" : ""}`}
+                                    style={`--fc: ${project.color}; transition-delay: ${i * 120}ms;`}
+                                >
+                                    <div class="feat-card-inner">
+                                        <div class="feat-card-top">
+                                            {project.logo && (
+                                                <div class="feat-card-logo">
+                                                    <Image
+                                                        src={project.logo}
+                                                        alt={project.title}
+                                                        width={72}
+                                                        height={72}
+                                                        class="feat-card-logo-img"
+                                                    />
+                                                </div>
+                                            )}
+                                            <span
+                                                class={`feat-badge ${project.status === "coming_soon" ? "feat-badge--soon" : "feat-badge--active"}`}
+                                            >
+                                                {project.status ===
+                                                "coming_soon"
+                                                    ? "⏳ Bientôt"
+                                                    : "● Actif"}
+                                            </span>
+                                        </div>
+                                        <h3 class="feat-card-name">
+                                            {project.title}
+                                        </h3>
+                                        <p class="feat-card-sub">
+                                            {project.subtitle}
+                                        </p>
+                                        <p class="feat-card-desc">
+                                            {project.description}
+                                        </p>
+                                        {project.leaders &&
+                                            project.leaders.length > 0 && (
+                                                <div class="feat-card-leaders">
+                                                    {project.leaders.map(
+                                                        (l) => (
+                                                            <span class="feat-leader">
+                                                                👤 {l.name}
+                                                                {l.role
+                                                                    ? ` · ${l.role}`
+                                                                    : ""}
+                                                            </span>
+                                                        ),
+                                                    )}
+                                                </div>
+                                            )}
+                                        {project.status !== "coming_soon" && (
+                                            <div class="feat-card-cta">
+                                                <span>Découvrir →</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div class="feat-card-glow" />
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )
+        }
+
+        <!-- ═══ 3. TOUS LES PROJETS ═══ -->
+        <section class="prog-section" id="projets">
+            <div class="prog-wrap">
+                <div class="prog-sec-label">
+                    <div class="prog-sec-line"></div><span
+                        >03 — Tous les projets</span>
+                </div>
+                <h2 class="prog-sec-title">Liste complète</h2>
+                <div class="all-grid">
+                    {
+                        allProjects.map((project, i) => (
+                            <a
+                                href={
+                                    project.status === "coming_soon"
+                                        ? "#"
+                                        : `/programs/${project.slug}`
+                                }
+                                class={`all-card fade-in-up ${project.status === "coming_soon" ? "all-card--soon" : ""}`}
+                                style={`--fc: ${project.color}; transition-delay: ${i * 80}ms;`}
+                            >
+                                <div class="all-card-row">
+                                    <div class="all-card-num">
+                                        {String(i + 1).padStart(2, "0")}
+                                    </div>
+                                    <div class="all-card-info">
+                                        <h3 class="all-card-title">
+                                            {project.title}
+                                        </h3>
+                                        <p class="all-card-desc">
+                                            {project.description}
+                                        </p>
+                                    </div>
+                                    <div class="all-card-meta">
+                                        <span
+                                            class={`all-badge ${project.status === "coming_soon" ? "all-badge--soon" : "all-badge--active"}`}
+                                        >
+                                            {project.status === "coming_soon"
+                                                ? "Bientôt"
+                                                : "Actif"}
+                                        </span>
+                                        {project.status !== "coming_soon" && (
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="2"
+                                                stroke="currentColor"
+                                                class="all-card-arrow"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                                                />
+                                            </svg>
+                                        )}
+                                    </div>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ 4. PARTENAIRES ═══ -->
+        <section class="prog-section prog-section-alt" id="partenaires">
+            <div class="prog-wrap">
+                <div class="prog-sec-label">
+                    <div class="prog-sec-line"></div><span
+                        >04 — Partenaires</span>
+                </div>
+                <h2 class="prog-sec-title">
+                    Ils soutiennent <span style={`color: var(--pc)`}
+                        >{program.name}</span>
+                </h2>
+                {
+                    partners.length > 0 ? (
+                        <div class="part-grid">
+                            {partners.map((partner, i) => (
+                                <div
+                                    class="part-card fade-in-up"
+                                    style={`transition-delay: ${i * 100}ms;`}
+                                >
+                                    <div class="part-card-type">
+                                        {partner.type}
+                                    </div>
+                                    <h3 class="part-card-name">
+                                        {partner.name}
+                                    </h3>
+                                    {partner.description && (
+                                        <p class="part-card-desc">
+                                            {partner.description}
+                                        </p>
+                                    )}
+                                    {partner.url && (
+                                        <a
+                                            href={partner.url}
+                                            target="_blank"
+                                            rel="noopener"
+                                            class="part-card-link"
+                                        >
+                                            Visiter ↗
+                                        </a>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div class="part-empty fade-in-up">
+                            <p>
+                                Les partenariats pour ce programme sont en cours
+                                de développement.
+                            </p>
+                            <a href="/#contact" class="part-empty-cta">
+                                Devenir partenaire →
+                            </a>
+                        </div>
+                    )
+                }
+            </div>
+        </section>
+
+        <!-- Back -->
+        <div class="prog-wrap" style="padding-bottom: 5rem;">
+            <a href="/#programs" class="prog-back">← Retour aux programmes</a>
+        </div>
+    </main>
+    <Footer />
+</BaseLayout>
+
+<script>
+    const obs = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((e) => {
+                if (e.isIntersecting) {
+                    e.target.classList.add("visible");
+                    obs.unobserve(e.target);
+                }
+            });
+        },
+        { threshold: 0.1 },
+    );
+    document.querySelectorAll(".fade-in-up").forEach((el) => obs.observe(el));
+</script>
+
+<style>
+    .prog-page {
+        background: #0f0f1e;
+        min-height: 100vh;
+    }
+
+    /* ── Hero ── */
+    .prog-hero {
+        position: relative;
+        min-height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 8rem 1.5rem 4rem;
+    }
+    .prog-hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+    .prog-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+    }
+    .prog-hero-orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--pc) 30%, transparent),
+            transparent 70%
+        );
+        top: -30%;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: orbF 20s ease-in-out infinite;
+    }
+    .prog-hero-orb-2 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--pa) 20%, transparent),
+            transparent 70%
+        );
+        bottom: -20%;
+        right: -10%;
+        animation: orbF 25s ease-in-out infinite reverse;
+    }
+    .prog-hero-grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.02;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px
+            );
+        background-size: 60px 60px;
+    }
+    @keyframes orbF {
+        0%,
+        100% {
+            transform: translateX(-50%) translate(0, 0);
+        }
+        50% {
+            transform: translateX(-50%) translate(30px, -30px);
+        }
+    }
+    .prog-hero-inner {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        max-width: 700px;
+    }
+    .prog-crumb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+    }
+    .prog-crumb a {
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    .prog-crumb a:hover {
+        color: var(--pc);
+    }
+    .prog-crumb-sep {
+        color: #555;
+    }
+    .prog-crumb-cur {
+        color: var(--pc);
+        font-weight: 600;
+    }
+    .prog-hero-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 8vw, 5.5rem);
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 0.5rem;
+        line-height: 1;
+    }
+    .prog-hero-tagline {
+        font-size: 1.2rem;
+        color: var(--pc);
+        font-weight: 600;
+        margin: 0 0 2rem;
+    }
+    .prog-hero-stats {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0.8rem 1.5rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 9999px;
+        backdrop-filter: blur(10px);
+    }
+    .prog-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .prog-stat-n {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--pc);
+    }
+    .prog-stat-l {
+        font-size: 0.7rem;
+        color: #b0b0b0;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+    .prog-stat-sep {
+        width: 1px;
+        height: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ── Sections ── */
+    .prog-section {
+        padding: 5rem 0;
+    }
+    .prog-section-alt {
+        background: #13132a;
+    }
+    .prog-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .prog-sec-label {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    .prog-sec-line {
+        width: 2.5rem;
+        height: 2px;
+        background: linear-gradient(90deg, var(--pc), var(--pa));
+    }
+    .prog-sec-label span {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--pc);
+    }
+    .prog-sec-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 3rem;
+        line-height: 1.15;
+    }
+
+    /* ── 1. Présentation ── */
+    .pres-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+        .pres-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    .pres-intro {
+        grid-column: 1 / -1;
+    }
+    .pres-intro-text {
+        font-size: 1.15rem;
+        color: #d1d5db;
+        line-height: 1.9;
+        margin: 0;
+    }
+    .pres-card {
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.25rem;
+        height: 100%;
+        transition:
+            border-color 0.3s,
+            box-shadow 0.3s;
+    }
+    .pres-card:hover {
+        border-color: color-mix(in srgb, var(--pc) 30%, transparent);
+        box-shadow: 0 0 40px -15px var(--pc);
+    }
+    .pres-card-title {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1rem;
+    }
+    .pres-card-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        color: var(--pc);
+    }
+    .pres-card-text {
+        font-size: 0.95rem;
+        color: #b0b0b0;
+        line-height: 1.7;
+        margin: 0;
+    }
+    .pres-obj-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .pres-obj-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        color: #d1d5db;
+        line-height: 1.5;
+    }
+    .pres-obj-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--pc);
+        margin-top: 0.35rem;
+        flex-shrink: 0;
+    }
+    .pres-vision {
+        grid-column: 1 / -1;
+    }
+    .pres-vision-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem 2rem;
+        background: linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--pc) 8%, transparent),
+            transparent
+        );
+        border: 1px solid color-mix(in srgb, var(--pc) 20%, transparent);
+        border-radius: 1rem;
+    }
+    .pres-vision-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: var(--pc);
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+    }
+    .pres-vision-text {
+        font-size: 0.95rem;
+        color: #d1d5db;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    /* ── 2. Projets Phares ── */
+    .feat-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+        .feat-grid {
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        }
+    }
+    .feat-card {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        border-radius: 1.5rem;
+        overflow: hidden;
+    }
+    .feat-card-inner {
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.5rem;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .feat-card:not(.feat-card--soon):hover .feat-card-inner {
+        border-color: color-mix(in srgb, var(--fc) 40%, transparent);
+        transform: translateY(-6px);
+        box-shadow:
+            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+            0 0 50px -20px var(--fc);
+    }
+    .feat-card--soon {
+        cursor: default;
+    }
+    .feat-card--soon .feat-card-inner {
+        opacity: 0.5;
+    }
+    .feat-card-glow {
+        position: absolute;
+        inset: -1px;
+        border-radius: 1.5rem;
+        background: linear-gradient(
+            135deg,
+            var(--fc),
+            transparent 40%,
+            transparent 60%,
+            var(--fc)
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+        z-index: 0;
+    }
+    .feat-card:hover .feat-card-glow {
+        opacity: 0.2;
+    }
+    .feat-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 1.25rem;
+    }
+    .feat-card-logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .feat-card-logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .feat-badge {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.3rem 0.7rem;
+        border-radius: 9999px;
+    }
+    .feat-badge--active {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .feat-badge--soon {
+        background: rgba(156, 163, 175, 0.1);
+        color: #9ca3af;
+        border: 1px solid rgba(156, 163, 175, 0.2);
+    }
+    .feat-card-name {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 0.3rem;
+        transition: color 0.3s;
+    }
+    .feat-card:not(.feat-card--soon):hover .feat-card-name {
+        color: var(--fc);
+    }
+    .feat-card-sub {
+        font-size: 0.85rem;
+        color: var(--fc);
+        font-weight: 600;
+        margin: 0 0 0.6rem;
+    }
+    .feat-card-desc {
+        font-size: 0.85rem;
+        color: #b0b0b0;
+        line-height: 1.6;
+        margin: 0;
+        flex: 1;
+    }
+    .feat-card-leaders {
+        margin-top: 1rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .feat-leader {
+        font-size: 0.75rem;
+        color: #d1d5db;
+        padding: 0.2rem 0.5rem;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 4px;
+    }
+    .feat-card-cta {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--fc);
+        opacity: 0;
+        transform: translateX(-6px);
+        transition: all 0.3s;
+    }
+    .feat-card:hover .feat-card-cta {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* ── 3. Tous les projets ── */
+    .all-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .all-card {
+        display: block;
+        text-decoration: none;
+        border-radius: 1rem;
+        transition: all 0.3s;
+    }
+    .all-card-row {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.25rem 1.5rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 1rem;
+        transition: all 0.3s;
+    }
+    .all-card:not(.all-card--soon):hover .all-card-row {
+        border-color: color-mix(in srgb, var(--fc) 30%, transparent);
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateX(6px);
+    }
+    .all-card--soon {
+        cursor: default;
+        opacity: 0.5;
+    }
+    .all-card-num {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--fc);
+        opacity: 0.4;
+        min-width: 2.5rem;
+    }
+    .all-card-info {
+        flex: 1;
+        min-width: 0;
+    }
+    .all-card-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 0.2rem;
+    }
+    .all-card-desc {
+        font-size: 0.8rem;
+        color: #888;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .all-card-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+    .all-badge {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.6rem;
+        border-radius: 9999px;
+    }
+    .all-badge--active {
+        background: rgba(16, 185, 129, 0.08);
+        color: #10b981;
+    }
+    .all-badge--soon {
+        background: rgba(156, 163, 175, 0.08);
+        color: #9ca3af;
+    }
+    .all-card-arrow {
+        width: 1.2rem;
+        height: 1.2rem;
+        color: #555;
+        transition:
+            color 0.3s,
+            transform 0.3s;
+    }
+    .all-card:hover .all-card-arrow {
+        color: var(--fc);
+        transform: translateX(4px);
+    }
+
+    /* ── 4. Partenaires ── */
+    .part-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    @media (min-width: 640px) {
+        .part-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+    }
+    .part-card {
+        padding: 1.75rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.25rem;
+        transition:
+            border-color 0.3s,
+            box-shadow 0.3s;
+    }
+    .part-card:hover {
+        border-color: color-mix(in srgb, var(--pc) 30%, transparent);
+        box-shadow: 0 0 30px -15px var(--pc);
+    }
+    .part-card-type {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--pc);
+        margin-bottom: 0.6rem;
+        padding: 0.2rem 0.6rem;
+        background: color-mix(in srgb, var(--pc) 10%, transparent);
+        border-radius: 4px;
+        display: inline-block;
+    }
+    .part-card-name {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 0.5rem;
+    }
+    .part-card-desc {
+        font-size: 0.85rem;
+        color: #b0b0b0;
+        line-height: 1.6;
+        margin: 0;
+    }
+    .part-card-link {
+        display: inline-block;
+        margin-top: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--pc);
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+    .part-card-link:hover {
+        opacity: 0.7;
+    }
+    .part-empty {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 1.5rem;
+    }
+    .part-empty p {
+        color: #888;
+        font-size: 1rem;
+        margin: 0 0 1.25rem;
+    }
+    .part-empty-cta {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--pc);
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+    .part-empty-cta:hover {
+        opacity: 0.7;
+    }
+
+    /* ── Back ── */
+    .prog-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #b0b0b0;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.03);
+        transition: all 0.3s;
+    }
+    .prog-back:hover {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ── Fade ── */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(25px);
+        transition:
+            opacity 0.7s ease-out,
+            transform 0.7s ease-out;
+    }
+    .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 767px) {
+        .prog-hero {
+            min-height: 55vh;
+            padding: 7rem 1.5rem 3rem;
+        }
+        .prog-hero-title {
+            font-size: 2.5rem;
+        }
+        .feat-card-cta {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .all-card-row {
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .all-card-desc {
+            white-space: normal;
+        }
+    }
+</style>

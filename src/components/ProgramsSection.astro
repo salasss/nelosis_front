@@ -1,0 +1,991 @@
+---
+import programs from "../data/programs";
+---
+
+<section id="programs" class="programs-section">
+    <!-- Background -->
+    <div class="programs-bg">
+        <div class="programs-orb programs-orb-1"></div>
+        <div class="programs-orb programs-orb-2"></div>
+        <div class="programs-grid-pattern"></div>
+    </div>
+
+    <div class="programs-container">
+        <!-- Section Header -->
+        <div class="programs-header">
+            <div class="programs-header-left">
+                <div class="programs-label">
+                    <div class="programs-label-line"></div>
+                    <span>Nos Programmes</span>
+                </div>
+                <h2 class="programs-title">
+                    <span class="programs-title-white">4 Programmes</span>
+                    <span class="programs-title-gradient">Une Vision</span>
+                </h2>
+            </div>
+            <div class="programs-header-right">
+                <p class="programs-subtitle">
+                    Chaque programme est un faisceau d'innovation. De la
+                    recherche à l'impact terrain, nos étudiants repoussent les
+                    frontières de l'écologie appliquée.
+                </p>
+            </div>
+        </div>
+
+        <!-- Tree / Beam Visual -->
+        <div class="tree-visual" id="treeVisual">
+            <!-- Central trunk -->
+            <div class="tree-trunk">
+                <div class="tree-trunk-inner"></div>
+                <div class="tree-trunk-glow"></div>
+                <!-- The "source" circle -->
+                <div class="tree-source">
+                    <div class="tree-source-ring tree-source-ring-1"></div>
+                    <div class="tree-source-ring tree-source-ring-2"></div>
+                    <div class="tree-source-core">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="tree-source-icon"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                            ></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SVG for the animated branch lines -->
+            <svg
+                class="tree-branches-svg"
+                viewBox="0 0 1200 300"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <defs>
+                    {
+                        programs.map((program, i) => (
+                            <linearGradient
+                                id={`branchGrad-${i}`}
+                                x1="0.5"
+                                y1="0"
+                                x2={i < 2 ? "0.1" : "0.9"}
+                                y2="1"
+                            >
+                                <stop
+                                    offset="0%"
+                                    stop-color="rgba(251, 168, 36, 0.8)"
+                                />
+                                <stop
+                                    offset="100%"
+                                    stop-color={program.color}
+                                />
+                            </linearGradient>
+                        ))
+                    }
+                </defs>
+                <!-- Branch 0: far left -->
+                <path
+                    class="tree-branch"
+                    data-index="0"
+                    d="M 600,0 C 600,80 150,120 150,300"
+                    stroke="url(#branchGrad-0)"></path>
+                <!-- Branch 1: center-left -->
+                <path
+                    class="tree-branch"
+                    data-index="1"
+                    d="M 600,0 C 600,80 400,140 400,300"
+                    stroke="url(#branchGrad-1)"></path>
+                <!-- Branch 2: center-right -->
+                <path
+                    class="tree-branch"
+                    data-index="2"
+                    d="M 600,0 C 600,80 800,140 800,300"
+                    stroke="url(#branchGrad-2)"></path>
+                <!-- Branch 3: far right -->
+                <path
+                    class="tree-branch"
+                    data-index="3"
+                    d="M 600,0 C 600,80 1050,120 1050,300"
+                    stroke="url(#branchGrad-3)"></path>
+
+                <!-- Glow duplicates -->
+                <path
+                    class="tree-branch-glow"
+                    d="M 600,0 C 600,80 150,120 150,300"
+                    stroke={programs[0].color}></path>
+                <path
+                    class="tree-branch-glow"
+                    d="M 600,0 C 600,80 400,140 400,300"
+                    stroke={programs[1].color}></path>
+                <path
+                    class="tree-branch-glow"
+                    d="M 600,0 C 600,80 800,140 800,300"
+                    stroke={programs[2].color}></path>
+                <path
+                    class="tree-branch-glow"
+                    d="M 600,0 C 600,80 1050,120 1050,300"
+                    stroke={programs[3].color}></path>
+
+                <!-- Animated particles along branches -->
+                {
+                    programs.map((program, i) => (
+                        <circle
+                            class="tree-particle"
+                            r="3"
+                            fill={program.color}
+                        >
+                            <animateMotion
+                                dur={`${2.5 + i * 0.3}s`}
+                                repeatCount="indefinite"
+                                begin={`${i * 0.6}s`}
+                            >
+                                <mpath href={`#branchPath-${i}`} />
+                            </animateMotion>
+                        </circle>
+                    ))
+                }
+
+                <!-- Named paths for motion -->
+                <path
+                    id="branchPath-0"
+                    d="M 600,0 C 600,80 150,120 150,300"
+                    fill="none"></path>
+                <path
+                    id="branchPath-1"
+                    d="M 600,0 C 600,80 400,140 400,300"
+                    fill="none"></path>
+                <path
+                    id="branchPath-2"
+                    d="M 600,0 C 600,80 800,140 800,300"
+                    fill="none"></path>
+                <path
+                    id="branchPath-3"
+                    d="M 600,0 C 600,80 1050,120 1050,300"
+                    fill="none"></path>
+            </svg>
+
+            <!-- Program Cards - positioned at the end of each branch -->
+            <div class="tree-cards">
+                {
+                    programs.map((program, index) => (
+                        <a
+                            href={`/programme/${program.slug}`}
+                            class="program-card"
+                            data-index={index}
+                            style={`--card-color: ${program.color}; --card-accent: ${program.accentColor};`}
+                        >
+                            {/* Glow behind card */}
+                            <div class="program-card-glow" />
+
+                            {/* Card content */}
+                            <div class="program-card-inner">
+                                {/* Top: Icon + badge */}
+                                <div class="program-card-top">
+                                    <div class="program-card-icon-wrap">
+                                        <div class="program-card-icon-bg" />
+                                        {program.icon === "leaf" && (
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="currentColor"
+                                                class="program-card-icon"
+                                                width="24"
+                                                height="24"
+                                                style="width:1.5rem;height:1.5rem;flex-shrink:0;"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M12 21c-4-4-8-7.5-8-12a8 8 0 0116 0c0 4.5-4 8-8 12z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M12 21V10"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M8 14c2-1 3-3 4-5"
+                                                />
+                                            </svg>
+                                        )}
+                                        {program.icon === "sparkles" && (
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="currentColor"
+                                                class="program-card-icon"
+                                                width="24"
+                                                height="24"
+                                                style="width:1.5rem;height:1.5rem;flex-shrink:0;"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                                                />
+                                            </svg>
+                                        )}
+                                        {program.icon === "waves" && (
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="currentColor"
+                                                class="program-card-icon"
+                                                width="24"
+                                                height="24"
+                                                style="width:1.5rem;height:1.5rem;flex-shrink:0;"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M2.25 15c1.5-1.5 3-2.25 4.5-2.25s3 .75 4.5 2.25 3 2.25 4.5 2.25 3-.75 4.5-2.25"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M2.25 9c1.5-1.5 3-2.25 4.5-2.25s3 .75 4.5 2.25 3 2.25 4.5 2.25 3-.75 4.5-2.25"
+                                                />
+                                            </svg>
+                                        )}
+                                        {program.icon === "graduation-cap" && (
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="currentColor"
+                                                class="program-card-icon"
+                                                width="24"
+                                                height="24"
+                                                style="width:1.5rem;height:1.5rem;flex-shrink:0;"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+                                                />
+                                            </svg>
+                                        )}
+                                    </div>
+                                    <span class="program-card-count">
+                                        {program.projects.length} projet
+                                        {program.projects.length > 1 ? "s" : ""}
+                                    </span>
+                                </div>
+
+                                {/* Name */}
+                                <h3 class="program-card-name">
+                                    {program.name}
+                                </h3>
+
+                                {/* Tagline */}
+                                <p class="program-card-tagline">
+                                    {program.tagline}
+                                </p>
+
+                                {/* Bottom: CTA arrow */}
+                                <div class="program-card-cta">
+                                    <span>Explorer</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="2"
+                                        stroke="currentColor"
+                                        class="program-card-arrow"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            {/* Decorative corner accents */}
+                            <div class="program-card-corner program-card-corner-tl" />
+                            <div class="program-card-corner program-card-corner-br" />
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ═══ Section ═══ */
+    .programs-section {
+        position: relative;
+        padding: 8rem 0 6rem;
+        background: #0f0f1e;
+        overflow: hidden;
+    }
+
+    .programs-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .programs-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.25;
+    }
+    .programs-orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            rgba(251, 168, 36, 0.4),
+            transparent 70%
+        );
+        top: -20%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .programs-orb-2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+            circle,
+            rgba(92, 199, 150, 0.3),
+            transparent 70%
+        );
+        bottom: -10%;
+        right: -5%;
+    }
+
+    .programs-grid-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.02;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px
+            );
+        background-size: 80px 80px;
+    }
+
+    .programs-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* ═══ Header ═══ */
+    .programs-header {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    @media (min-width: 1024px) {
+        .programs-header {
+            grid-template-columns: 7fr 5fr;
+            gap: 4rem;
+        }
+    }
+
+    .programs-label {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .programs-label-line {
+        width: 3rem;
+        height: 2px;
+        background: linear-gradient(90deg, #fba824, #5cc796);
+    }
+    .programs-label span {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: #fba824;
+    }
+
+    .programs-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        line-height: 0.95;
+    }
+    .programs-title-white {
+        display: block;
+        font-size: clamp(2.8rem, 7vw, 6rem);
+        color: #fff;
+    }
+    .programs-title-gradient {
+        display: block;
+        font-size: clamp(2.8rem, 7vw, 6rem);
+        background: linear-gradient(90deg, #fba824, #5cc796, #7b8cff, #ff7d7d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .programs-header-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .programs-subtitle {
+        font-size: 1.15rem;
+        color: #b0b0b0;
+        line-height: 1.8;
+    }
+
+    /* ═══ Tree Visual ═══ */
+    .tree-visual {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Trunk */
+    .tree-trunk {
+        position: relative;
+        width: 3px;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .tree-trunk-inner {
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #fba824 30%, #fba824);
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition:
+            opacity 0.6s ease,
+            transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .tree-trunk-glow {
+        position: absolute;
+        top: 0;
+        width: 20px;
+        height: 100%;
+        background: linear-gradient(
+            180deg,
+            transparent,
+            rgba(251, 168, 36, 0.2) 50%,
+            rgba(251, 168, 36, 0.1)
+        );
+        filter: blur(8px);
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition:
+            opacity 0.8s ease,
+            transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Source (top circle) */
+    .tree-source {
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .tree-source-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1px solid rgba(251, 168, 36, 0.3);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    .tree-source-ring-1 {
+        animation: sourceRingPulse 3s ease-in-out infinite;
+    }
+    .tree-source-ring-2 {
+        inset: -8px;
+        border-color: rgba(251, 168, 36, 0.15);
+        animation: sourceRingPulse 3s ease-in-out infinite 1.5s;
+    }
+    .tree-source-core {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(
+            135deg,
+            rgba(251, 168, 36, 0.25),
+            rgba(251, 168, 36, 0.1)
+        );
+        border: 1px solid rgba(251, 168, 36, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: scale(0);
+        transition:
+            opacity 0.4s ease,
+            transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .tree-source-icon {
+        width: 16px;
+        height: 16px;
+        color: #fba824;
+    }
+
+    @keyframes sourceRingPulse {
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.5;
+        }
+        50% {
+            transform: scale(1.3);
+            opacity: 0;
+        }
+    }
+
+    /* SVG Branches */
+    .tree-branches-svg {
+        width: 100%;
+        height: 250px;
+        overflow: visible;
+    }
+
+    @media (min-width: 768px) {
+        .tree-branches-svg {
+            height: 300px;
+        }
+    }
+
+    .tree-branch {
+        fill: none;
+        stroke-width: 2;
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        transition: stroke-dashoffset 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tree-branch-glow {
+        fill: none;
+        stroke-width: 8;
+        opacity: 0.15;
+        filter: blur(4px);
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        transition: stroke-dashoffset 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tree-particle {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        filter: blur(0.5px);
+    }
+
+    /* ═══ Program Cards ═══ */
+    .tree-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        width: 100%;
+        margin-top: -1rem;
+    }
+
+    @media (min-width: 640px) {
+        .tree-cards {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .tree-cards {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+    }
+
+    .program-card {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .program-card-glow {
+        position: absolute;
+        inset: -1px;
+        border-radius: 1.5rem;
+        background: linear-gradient(
+            135deg,
+            var(--card-color) 0%,
+            transparent 40%,
+            transparent 60%,
+            var(--card-color) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 0;
+    }
+
+    .program-card:hover .program-card-glow {
+        opacity: 0.3;
+    }
+
+    .program-card-inner {
+        position: relative;
+        z-index: 1;
+        padding: 2rem 1.75rem;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.06) 0%,
+            rgba(255, 255, 255, 0.02) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.5rem;
+        backdrop-filter: blur(20px);
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .program-card:hover .program-card-inner {
+        border-color: color-mix(in srgb, var(--card-color) 40%, transparent);
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 255, 255, 0.03) 100%
+        );
+        transform: translateY(-8px);
+        box-shadow:
+            0 25px 50px -12px rgba(0, 0, 0, 0.6),
+            0 0 60px -20px var(--card-color);
+    }
+
+    /* Card Top */
+    .program-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+    }
+
+    .program-card-icon-wrap {
+        position: relative;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .program-card-icon-bg {
+        position: absolute;
+        inset: 0;
+        border-radius: 0.875rem;
+        background: linear-gradient(
+            135deg,
+            var(--card-color),
+            var(--card-accent)
+        );
+        opacity: 0.15;
+        transition: opacity 0.4s ease;
+    }
+
+    .program-card:hover .program-card-icon-bg {
+        opacity: 0.3;
+    }
+
+    .program-card-icon {
+        position: relative;
+        width: 1.5rem;
+        height: 1.5rem;
+        color: var(--card-color);
+        transition: transform 0.4s ease;
+    }
+
+    .program-card:hover .program-card-icon {
+        transform: scale(1.1);
+    }
+
+    .program-card-count {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--card-color);
+        padding: 0.3rem 0.8rem;
+        border-radius: 9999px;
+        background: color-mix(in srgb, var(--card-color) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--card-color) 20%, transparent);
+        white-space: nowrap;
+    }
+
+    /* Card Name */
+    .program-card-name {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 0.5rem;
+        transition: color 0.3s ease;
+        line-height: 1.2;
+    }
+
+    .program-card:hover .program-card-name {
+        color: var(--card-color);
+    }
+
+    /* Tagline */
+    .program-card-tagline {
+        font-size: 0.9rem;
+        color: #b0b0b0;
+        line-height: 1.6;
+        flex: 1;
+        margin: 0;
+    }
+
+    /* CTA */
+    .program-card-cta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--card-color);
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all 0.4s ease;
+    }
+
+    .program-card:hover .program-card-cta {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .program-card-arrow {
+        width: 1rem;
+        height: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .program-card:hover .program-card-arrow {
+        transform: translateX(4px);
+    }
+
+    /* Corner Accents */
+    .program-card-corner {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .program-card:hover .program-card-corner {
+        opacity: 0.5;
+    }
+
+    .program-card-corner-tl {
+        top: 12px;
+        left: 12px;
+        border-top: 2px solid var(--card-color);
+        border-left: 2px solid var(--card-color);
+        border-radius: 4px 0 0 0;
+        z-index: 2;
+    }
+
+    .program-card-corner-br {
+        bottom: 12px;
+        right: 12px;
+        border-bottom: 2px solid var(--card-color);
+        border-right: 2px solid var(--card-color);
+        border-radius: 0 0 4px 0;
+        z-index: 2;
+    }
+
+    /* ═══ Animated State (triggered by JS) ═══ */
+    .tree-visual.is-visible .tree-trunk-inner {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    .tree-visual.is-visible .tree-trunk-glow {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    .tree-visual.is-visible .tree-source-core {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .tree-visual.is-visible .tree-source-ring {
+        opacity: 1;
+    }
+    .tree-visual.is-visible .tree-branch {
+        stroke-dashoffset: 0;
+    }
+    .tree-visual.is-visible .tree-branch-glow {
+        stroke-dashoffset: 0;
+    }
+    .tree-visual.is-visible .tree-particle {
+        opacity: 0.8;
+    }
+
+    /* Staggered branch animation */
+    .tree-visual.is-visible .tree-branch[data-index="0"],
+    .tree-visual.is-visible .tree-branch-glow:nth-of-type(5) {
+        transition-delay: 0.8s;
+    }
+    .tree-visual.is-visible .tree-branch[data-index="1"],
+    .tree-visual.is-visible .tree-branch-glow:nth-of-type(6) {
+        transition-delay: 1s;
+    }
+    .tree-visual.is-visible .tree-branch[data-index="2"],
+    .tree-visual.is-visible .tree-branch-glow:nth-of-type(7) {
+        transition-delay: 1.2s;
+    }
+    .tree-visual.is-visible .tree-branch[data-index="3"],
+    .tree-visual.is-visible .tree-branch-glow:nth-of-type(8) {
+        transition-delay: 1.4s;
+    }
+
+    /* Staggered card reveal */
+    .tree-visual.is-visible .program-card:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 1.3s;
+    }
+    .tree-visual.is-visible .program-card:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 1.5s;
+    }
+    .tree-visual.is-visible .program-card:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 1.7s;
+    }
+    .tree-visual.is-visible .program-card:nth-child(4) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 1.9s;
+    }
+
+    /* ═══ Mobile adjustments ═══ */
+    @media (max-width: 767px) {
+        .programs-section {
+            padding: 5rem 0 4rem;
+        }
+        .tree-trunk {
+            height: 80px;
+        }
+        .tree-branches-svg {
+            height: 180px;
+        }
+        .program-card-inner {
+            min-height: 220px;
+            padding: 1.5rem 1.25rem;
+        }
+        .program-card-name {
+            font-size: 1.35rem;
+        }
+        .program-card-cta {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .programs-header {
+            margin-bottom: 3rem;
+        }
+    }
+</style>
+
+<script>
+    // Intersection Observer to trigger tree animation
+    const treeVisual = document.getElementById("treeVisual");
+
+    if (treeVisual) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+        );
+
+        observer.observe(treeVisual);
+    }
+
+    // Subtle parallax on cards for desktop
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+        const cards = document.querySelectorAll(".program-card");
+
+        cards.forEach((card) => {
+            card.addEventListener("mousemove", (e) => {
+                const el = card as HTMLElement;
+                const rect = el.getBoundingClientRect();
+                const x =
+                    ((e as MouseEvent).clientX - rect.left) / rect.width - 0.5;
+                const y =
+                    ((e as MouseEvent).clientY - rect.top) / rect.height - 0.5;
+
+                const inner = el.querySelector(
+                    ".program-card-inner",
+                ) as HTMLElement;
+                if (inner) {
+                    inner.style.transform = `translateY(-8px) perspective(600px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+                }
+            });
+
+            card.addEventListener("mouseleave", () => {
+                const inner = (card as HTMLElement).querySelector(
+                    ".program-card-inner",
+                ) as HTMLElement;
+                if (inner) {
+                    inner.style.transform = "";
+                }
+            });
+        });
+    }
+</script>
