@@ -159,11 +159,10 @@ import { antennas } from '../data/antennes';
             {antennas.map((antenne) => {
               const color = antenne.isHQ ? "#FBA824" : "#5CC796";
               return (
-                <g 
-                  class="antenne-marker cursor-pointer align-middle" 
+                <a
+                  href={`/antennes/${antenne.slug}`}
+                  class="antenne-marker cursor-pointer"
                   data-id={antenne.slug}
-                  role="button"
-                  tabindex="0"
                   aria-label={`Voir l'antenne de ${antenne.name}`}
                 >
                   <!-- Outer pulse ring -->
@@ -224,7 +223,7 @@ import { antennas } from '../data/antennes';
                     </text>
                   </g>
 
-                </g>
+                </a>
               );
             })}
           </svg>
@@ -235,36 +234,15 @@ import { antennas } from '../data/antennes';
 </div>
 
 <script>
-  import { antennas } from '../data/antennes';
-  
   const markers = document.querySelectorAll('.antenne-marker');
 
   markers.forEach(marker => {
-    const id = marker.getAttribute('data-id');
-    
     marker.addEventListener('mouseenter', () => {
       marker.classList.add('active');
     });
     
     marker.addEventListener('mouseleave', () => {
       marker.classList.remove('active');
-    });
-
-    const handleClick = () => {
-      const antenneData = antennas.find(a => a.slug === id);
-      if (antenneData) {
-        window.location.href = `mailto:${antenneData.contact.email}`;
-      }
-    };
-
-    marker.addEventListener('click', handleClick);
-    
-    // Keyboard accessibility
-    marker.addEventListener('keydown', (e) => {
-      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
-        e.preventDefault();
-        handleClick();
-      }
     });
   });
 </script>

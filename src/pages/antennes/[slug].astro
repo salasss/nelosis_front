@@ -1,0 +1,1417 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import { antennas } from "../../data/antennes";
+import projects from "../../data/projects";
+
+export async function getStaticPaths() {
+  return antennas.map((antenne) => ({
+    params: { slug: antenne.slug },
+    props: { antenne },
+  }));
+}
+
+const { antenne } = Astro.props;
+
+const antenneProjects = projects.filter((p) =>
+  antenne.projects_ids.includes(p.id),
+);
+
+const colorMap: Record<string, string> = {
+  perpignan: "#FBA824",
+  montpellier: "#5CC796",
+  lyon: "#FF7D7D",
+  toulouse: "#a855f6",
+  toulon: "#C7C652",
+};
+const color = colorMap[antenne.slug] || "#FBA824";
+const otherAntennas = antennas.filter((a) => a.slug !== antenne.slug);
+---
+
+<BaseLayout
+  title={`Antenne ${antenne.name} - Nélosis`}
+  description={antenne.description}
+>
+  <Header />
+
+  <main class="antenne-page bg-dark min-h-screen">
+    <!-- ============================================== -->
+    <!-- HERO — Full screen immersive                   -->
+    <!-- ============================================== -->
+    <section
+      class="hero-section relative min-h-screen flex items-end pt-32 pb-20 md:pb-32 overflow-hidden"
+    >
+      <!-- Layered BG -->
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-dark via-dark/60 to-dark z-20"
+        >
+        </div>
+        <div class="hero-gradient" style={`--accent: ${color};`}></div>
+        <div class="hero-grid"></div>
+        <!-- Floating orbs -->
+        <div class="hero-orb hero-orb--1" style={`background: ${color};`}></div>
+        <div class="hero-orb hero-orb--2" style={`background: ${color};`}></div>
+        <div class="hero-orb hero-orb--3" style={`background: ${color};`}></div>
+      </div>
+
+      <div class="container mx-auto px-6 md:px-12 relative z-30">
+        <!-- Breadcrumb -->
+        <nav
+          class="hero-breadcrumb flex items-center gap-2 mb-10 text-sm text-white/40"
+        >
+          <a href="/" class="hover:text-white transition-colors duration-300"
+            >Accueil</a
+          >
+          <span class="text-white/20">—</span>
+          <a
+            href="/#map"
+            class="hover:text-white transition-colors duration-300">Réseau</a
+          >
+          <span class="text-white/20">—</span>
+          <span style={`color: ${color};`}>{antenne.name}</span>
+        </nav>
+
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-end"
+        >
+          <!-- Left: Title Block -->
+          <div class="lg:col-span-7 hero-content">
+            <div class="flex items-center gap-4 mb-8">
+              <div
+                class="w-3 h-3 rounded-full animate-pulse"
+                style={`background: ${color}; box-shadow: 0 0 20px ${color};`}
+              >
+              </div>
+              <span
+                class="text-xs font-bold uppercase tracking-[0.4em]"
+                style={`color: ${color};`}
+              >
+                {antenne.isHQ ? "Siège National" : "Antenne Locale"}
+              </span>
+            </div>
+
+            <h1
+              class="hero-title text-6xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-display font-bold leading-[0.9] tracking-tight"
+            >
+              <span class="block text-white">{antenne.name}</span>
+            </h1>
+
+            <div class="mt-8 max-w-xl">
+              <p
+                class="text-lg md:text-xl text-white/50 leading-relaxed font-light"
+              >
+                {antenne.description}
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: Stats panel -->
+          <div class="lg:col-span-5 hero-stats">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="stat-card p-6 rounded-2xl">
+                <span
+                  class="stat-number text-4xl md:text-5xl font-display font-bold block mb-2"
+                  style={`color: ${color};`}
+                >
+                  {antenneProjects.length}
+                </span>
+                <span class="text-xs uppercase tracking-[0.3em] text-white/40"
+                  >Projets</span
+                >
+              </div>
+              <div class="stat-card p-6 rounded-2xl">
+                <span
+                  class="stat-number text-4xl md:text-5xl font-display font-bold block mb-2"
+                  style={`color: ${color};`}
+                >
+                  {antenne.partners.length}
+                </span>
+                <span class="text-xs uppercase tracking-[0.3em] text-white/40"
+                  >Partenaires</span
+                >
+              </div>
+              {
+                antenne.isHQ && (
+                  <div class="stat-card p-6 rounded-2xl col-span-2">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={`background: ${color}20;`}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-6 h-6"
+                          style={`color: ${color};`}
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <span class="text-white font-semibold block">
+                          Siège du réseau
+                        </span>
+                        <span class="text-white/40 text-sm">
+                          Quartier général Nélosis
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+              {
+                antenne.contact.email && (
+                  <a
+                    href={`mailto:${antenne.contact.email}`}
+                    class="stat-card stat-card--interactive p-6 rounded-2xl col-span-2 group flex items-center justify-between"
+                  >
+                    <div class="flex items-center gap-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-5 h-5"
+                        style={`color: ${color};`}
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                        />
+                      </svg>
+                      <span class="text-white/60 text-sm group-hover:text-white transition-colors">
+                        {antenne.contact.email}
+                      </span>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                      />
+                    </svg>
+                  </a>
+                )
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll line -->
+        <div class="hidden md:flex items-center gap-4 mt-16">
+          <div
+            class="scroll-line w-px h-16"
+            style={`background: linear-gradient(to bottom, ${color}, transparent);`}
+          >
+          </div>
+          <span
+            class="text-[10px] uppercase tracking-[0.4em] text-white/30 rotate-0"
+            >Scroll</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- SECTION DIVIDER                                -->
+    <!-- ============================================== -->
+    <div class="relative z-10">
+      <div class="container mx-auto px-6 md:px-12">
+        <div
+          class="h-px w-full"
+          style={`background: linear-gradient(to right, transparent, ${color}40, transparent);`}
+        >
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- BLOC 1 — Présentation                          -->
+    <!-- ============================================== -->
+    <section
+      class="section-block py-32 md:py-40 relative overflow-hidden"
+      id="presentation"
+    >
+      <div class="section-bg-number select-none" aria-hidden="true">01</div>
+      <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          <div class="lg:col-span-5 reveal-left">
+            <div class="sticky top-32">
+              <span class="section-label" style={`color: ${color};`}
+                >01 — Présentation</span
+              >
+              <h2
+                class="text-4xl md:text-6xl font-display font-bold text-white leading-[1.1] mt-6"
+              >
+                L'antenne<br />
+                <span style={`color: ${color};`}>en bref</span>
+              </h2>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 reveal-right">
+            <div class="space-y-8">
+              <p
+                class="text-xl md:text-2xl text-white/60 leading-relaxed font-light"
+              >
+                {antenne.description}
+              </p>
+
+              {
+                (antenne.contact.address || antenne.contact.phone) && (
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
+                    {antenne.contact.address && (
+                      <div class="info-pill group">
+                        <div
+                          class="info-pill__icon"
+                          style={`background: ${color}15; color: ${color};`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <span class="text-[10px] uppercase tracking-[0.2em] text-white/30 block mb-1">
+                            Adresse
+                          </span>
+                          <span class="text-white/70 text-sm leading-snug block">
+                            {antenne.contact.address}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                    {antenne.contact.phone && (
+                      <div class="info-pill group">
+                        <div
+                          class="info-pill__icon"
+                          style={`background: ${color}15; color: ${color};`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <span class="text-[10px] uppercase tracking-[0.2em] text-white/30 block mb-1">
+                            Téléphone
+                          </span>
+                          <span class="text-white/70 text-sm">
+                            {antenne.contact.phone}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- BLOC 2 — Projets Phares                        -->
+    <!-- ============================================== -->
+    <section
+      class="section-block py-32 md:py-40 bg-dark-secondary/50 relative overflow-hidden"
+      id="projets"
+    >
+      <div class="section-bg-number select-none" aria-hidden="true">02</div>
+      <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="max-w-3xl mb-20 reveal-up">
+          <span class="section-label" style={`color: ${color};`}
+            >02 — Projets Phares</span
+          >
+          <h2
+            class="text-4xl md:text-6xl font-display font-bold text-white leading-[1.1] mt-6"
+          >
+            Ce que nous<br />
+            <span style={`color: ${color};`}>construisons</span>
+          </h2>
+        </div>
+
+        {
+          antenneProjects.length > 0 ? (
+            <div class="space-y-6">
+              {antenneProjects.map((project, i) => (
+                <a
+                  href={`/programs/${project.slug}`}
+                  class="project-row group reveal-up"
+                  style={`--delay: ${i * 0.1}s;`}
+                >
+                  <div class="project-row__inner">
+                    <div class="flex items-center gap-6 flex-1 min-w-0">
+                      <div
+                        class="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                        style={`background: ${project.color}15;`}
+                      >
+                        <Icon
+                          name={project.icon}
+                          class="w-8 h-8 md:w-10 md:h-10"
+                          style={`color: ${project.color};`}
+                        />
+                      </div>
+                      <div class="min-w-0">
+                        <span
+                          class="text-[10px] uppercase tracking-[0.3em] block mb-1"
+                          style={`color: ${project.color};`}
+                        >
+                          {project.category}
+                        </span>
+                        <h3 class="text-2xl md:text-3xl font-display font-bold text-white group-hover:text-white transition-colors truncate">
+                          {project.title}
+                        </h3>
+                        <p class="text-white/40 text-sm mt-1 hidden md:block">
+                          {project.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3 flex-shrink-0">
+                      <span
+                        class="text-sm font-medium hidden sm:block transition-colors"
+                        style={`color: ${project.color};`}
+                      >
+                        Explorer
+                      </span>
+                      <div
+                        class="w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-500 group-hover:scale-110"
+                        style={`border-color: ${project.color}33; background: ${project.color}10;`}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          style={`color: ${project.color};`}
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state reveal-up">
+              <div
+                class="empty-state__icon"
+                style={`background: ${color}10; color: ${color};`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-display font-bold text-white mt-6">
+                Projets en préparation
+              </h3>
+              <p class="text-white/40 mt-3 max-w-md mx-auto">
+                Cette antenne prépare ses premiers projets innovants. Restez
+                connectés !
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- BLOC 3 — Écoles & Partenaires                  -->
+    <!-- ============================================== -->
+    <section
+      class="section-block py-32 md:py-40 relative overflow-hidden"
+      id="partenaires"
+    >
+      <div class="section-bg-number select-none" aria-hidden="true">03</div>
+      <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="max-w-3xl mb-20 reveal-up">
+          <span class="section-label" style={`color: ${color};`}
+            >03 — Écoles & Partenaires</span
+          >
+          <h2
+            class="text-4xl md:text-6xl font-display font-bold text-white leading-[1.1] mt-6"
+          >
+            Notre<br />
+            <span style={`color: ${color};`}>écosystème</span>
+          </h2>
+        </div>
+
+        {
+          antenne.partners.length > 0 ? (
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {antenne.partners.map((partner, i) => (
+                <div
+                  class="partner-card reveal-up"
+                  style={`--delay: ${i * 0.08}s;`}
+                >
+                  <div class="partner-card__header">
+                    <div
+                      class="partner-card__icon"
+                      style={`background: ${color}12;`}
+                    >
+                      {partner.type === "school" ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-6 h-6"
+                          style={`color: ${color};`}
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-6 h-6"
+                          style={`color: ${color};`}
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"
+                          />
+                        </svg>
+                      )}
+                    </div>
+                    <span
+                      class="text-[10px] uppercase tracking-[0.25em] px-3 py-1 rounded-full"
+                      style={`color: ${color}; background: ${color}10;`}
+                    >
+                      {partner.type === "school" ? "Formation" : "Partenaire"}
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-display font-bold text-white mt-5">
+                    {partner.name}
+                  </h3>
+                  {partner.description && (
+                    <p class="text-white/40 text-sm leading-relaxed mt-3">
+                      {partner.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state reveal-up">
+              <div
+                class="empty-state__icon"
+                style={`background: ${color}10; color: ${color};`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-display font-bold text-white mt-6">
+                Partenariats en cours
+              </h3>
+              <p class="text-white/40 mt-3 max-w-md mx-auto">
+                Nous développons activement des partenariats avec les écoles
+                locales.
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- BLOC 4 — L'Équipe Locale                       -->
+    <!-- ============================================== -->
+    <section
+      class="section-block py-32 md:py-40 bg-dark-secondary/50 relative overflow-hidden"
+      id="equipe"
+    >
+      <div class="section-bg-number select-none" aria-hidden="true">04</div>
+      <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="max-w-3xl mb-20 reveal-up">
+          <span class="section-label" style={`color: ${color};`}
+            >04 — L'Équipe</span
+          >
+          <h2
+            class="text-4xl md:text-6xl font-display font-bold text-white leading-[1.1] mt-6"
+          >
+            Les visages<br />
+            <span style={`color: ${color};`}>de {antenne.name}</span>
+          </h2>
+        </div>
+
+        {
+          antenne.team.length > 0 ? (
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {antenne.team.map((member: any, i: number) => (
+                <div
+                  class="team-card reveal-up"
+                  style={`--delay: ${i * 0.08}s;`}
+                >
+                  <div
+                    class="team-card__avatar"
+                    style={`background: linear-gradient(135deg, ${color}, ${color}60);`}
+                  >
+                    {member.name?.charAt(0) || "?"}
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-display font-bold text-white">
+                      {member.name || "Membre"}
+                    </h3>
+                    <span class="text-sm" style={`color: ${color};`}>
+                      {member.role || "Membre"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state reveal-up">
+              <div
+                class="empty-state__icon"
+                style={`background: ${color}10; color: ${color};`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-display font-bold text-white mt-6">
+                Équipe en constitution
+              </h3>
+              <p class="text-white/40 mt-3 max-w-md mx-auto mb-8">
+                Le bureau local se forme. Rejoins-nous et écris l'histoire de
+                cette antenne !
+              </p>
+              <a
+                href="#cta"
+                class="cta-button-small"
+                style={`--accent: ${color};`}
+              >
+                <span>Rejoindre l'équipe</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- BLOC 5 — CTA / Contact                         -->
+    <!-- ============================================== -->
+    <section class="py-32 md:py-40 relative overflow-hidden" id="cta">
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-[200px] opacity-15"
+          style={`background: ${color};`}
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="cta-section reveal-up" style={`--accent: ${color};`}>
+          <div class="cta-section__content">
+            <span class="section-label" style={`color: ${color};`}
+              >05 — Rejoindre</span
+            >
+
+            <h2
+              class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] mt-6"
+            >
+              Devenir membre à<br />
+              <span style={`color: ${color};`}>{antenne.name}</span>
+            </h2>
+
+            <p class="text-white/50 text-lg mt-6 max-w-lg leading-relaxed">
+              Étudiant·e, passionné·e d'écologie ou simplement curieux·se — il y
+              a une place pour toi.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-10">
+              <a
+                href={`mailto:${antenne.contact.email}?subject=Devenir%20membre%20-%20Antenne%20${antenne.name}`}
+                class="cta-button-primary"
+                style={`--accent: ${color};`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+                  ></path>
+                </svg>
+                <span>Devenir membre</span>
+              </a>
+              <a
+                href={`mailto:${antenne.contact.email}?subject=Contact%20-%20Antenne%20${antenne.name}`}
+                class="cta-button-secondary"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  ></path>
+                </svg>
+                <span>Nous écrire</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- NAV — Autres antennes (horizontal scroll)      -->
+    <!-- ============================================== -->
+    <section class="py-20 border-t border-white/5 relative z-10">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="flex items-center justify-between mb-12 reveal-up">
+          <div>
+            <span
+              class="text-[10px] uppercase tracking-[0.4em] text-white/30 block mb-3"
+              >Explorer le réseau</span
+            >
+            <h3 class="text-2xl md:text-3xl font-display font-bold text-white">
+              Autres antennes
+            </h3>
+          </div>
+          <a
+            href="/#map"
+            class="hidden md:flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors group"
+          >
+            <span>Voir la carte</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="other-antennas-grid reveal-up">
+          {
+            otherAntennas.map((other) => {
+              const otherColor = colorMap[other.slug] || "#FBA824";
+              return (
+                <a
+                  href={`/antennes/${other.slug}`}
+                  class="other-antenna-card group"
+                >
+                  <div
+                    class="other-antenna-card__glow"
+                    style={`background: ${otherColor};`}
+                  />
+                  <div class="other-antenna-card__inner">
+                    <div
+                      class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                      style={`background: ${otherColor}15;`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6"
+                        style={`color: ${otherColor};`}
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                        />
+                      </svg>
+                    </div>
+                    <h4 class="text-xl font-display font-bold text-white group-hover:text-white transition-colors">
+                      {other.name}
+                    </h4>
+                    <span class="text-xs text-white/30 uppercase tracking-widest mt-1 block">
+                      {other.isHQ ? "Siège" : "Antenne"}
+                    </span>
+                    <div
+                      class="mt-4 flex items-center gap-2 text-sm transition-all duration-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
+                      style={`color: ${otherColor};`}
+                    >
+                      <span>Découvrir</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-4"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Intersection Observer for reveal animations
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px 0px -60px 0px",
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document
+    .querySelectorAll(".reveal-up, .reveal-left, .reveal-right")
+    .forEach((el) => {
+      observer.observe(el);
+    });
+
+  // Parallax on hero orbs
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrolled = window.scrollY;
+        const orbs = document.querySelectorAll(".hero-orb");
+        orbs.forEach((orb, i) => {
+          const speed = 0.15 + i * 0.05;
+          (orb as HTMLElement).style.transform =
+            `translateY(${scrolled * speed}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>
+
+<style>
+  /* ==========================================
+     REVEAL ANIMATIONS
+     ========================================== */
+  .reveal-up,
+  .reveal-left,
+  .reveal-right {
+    opacity: 0;
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .reveal-up {
+    transform: translateY(60px);
+  }
+  .reveal-left {
+    transform: translateX(-60px);
+  }
+  .reveal-right {
+    transform: translateX(60px);
+  }
+
+  .reveal-up.revealed,
+  .reveal-left.revealed,
+  .reveal-right.revealed {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  /* ==========================================
+     HERO
+     ========================================== */
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(
+      ellipse 80% 60% at 60% 80%,
+      var(--accent),
+      transparent 70%
+    );
+    opacity: 0.12;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    opacity: 0.02;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.2;
+    z-index: 2;
+    will-change: transform;
+  }
+
+  .hero-orb--1 {
+    width: 500px;
+    height: 500px;
+    top: 10%;
+    right: -5%;
+  }
+  .hero-orb--2 {
+    width: 350px;
+    height: 350px;
+    bottom: 20%;
+    left: 5%;
+    opacity: 0.15;
+  }
+  .hero-orb--3 {
+    width: 250px;
+    height: 250px;
+    top: 40%;
+    left: 40%;
+    opacity: 0.1;
+  }
+
+  .hero-breadcrumb {
+    animation: fadeSlideDown 0.8s ease-out 0.2s both;
+  }
+  .hero-content {
+    animation: fadeSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  }
+  .hero-stats {
+    animation: fadeSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+  }
+  .hero-title {
+    letter-spacing: -0.03em;
+  }
+
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll indicator line pulse */
+  .scroll-line {
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* ==========================================
+     STAT CARDS & INFO PILLS
+     ========================================== */
+  .stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .stat-card--interactive:hover {
+    transform: translateY(-2px);
+  }
+
+  .stat-number {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .info-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+  }
+
+  .info-pill:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .info-pill__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ==========================================
+     SECTION BLOCKS
+     ========================================== */
+  .section-block {
+    position: relative;
+  }
+
+  .section-bg-number {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(8rem, 20vw, 20rem);
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.015);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+  }
+
+  /* ==========================================
+     PROJECT ROWS
+     ========================================== */
+  .project-row {
+    display: block;
+    text-decoration: none;
+  }
+
+  .project-row__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-row:hover .project-row__inner {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateX(8px);
+    box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ==========================================
+     PARTNER & TEAM CARDS
+     ========================================== */
+  .partner-card,
+  .team-card {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .partner-card:hover,
+  .team-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.4);
+  }
+
+  .partner-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .partner-card__icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .team-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .team-card__avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  /* ==========================================
+     EMPTY STATE
+     ========================================== */
+  .empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.015);
+  }
+
+  .empty-state__icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* ==========================================
+     CTA SECTION
+     ========================================== */
+  .cta-section {
+    position: relative;
+    padding: 4rem 3rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.01)
+    );
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: var(--accent);
+    filter: blur(180px);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .cta-section__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .cta-section {
+      padding: 5rem 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cta-section {
+      padding: 6rem 5rem;
+    }
+  }
+
+  .cta-button-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    background: var(--accent);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+  }
+
+  .cta-button-primary:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 16px 50px rgba(0, 0, 0, 0.3),
+      0 0 40px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .cta-button-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+  }
+
+  .cta-button-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+  }
+
+  .cta-button-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: white;
+    background: var(--accent);
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .cta-button-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ==========================================
+     OTHER ANTENNAS GRID
+     ========================================== */
+  .other-antennas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .other-antennas-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .other-antenna-card {
+    position: relative;
+    text-decoration: none;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .other-antenna-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .other-antenna-card__glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    filter: blur(60px);
+    transition: opacity 0.5s ease;
+    z-index: 0;
+  }
+
+  .other-antenna-card:hover .other-antenna-card__glow {
+    opacity: 0.06;
+  }
+
+  .other-antenna-card__inner {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.4s ease;
+    height: 100%;
+  }
+
+  .other-antenna-card:hover .other-antenna-card__inner {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+</style>

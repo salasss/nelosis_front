@@ -1,7 +1,7 @@
 export const headerNav = [
   { name: 'À propos', href: '#about' },
   { name: 'Programmes', href: '#programs', type: 'dropdown' },
-  { name: 'Carte', href: '#map' },
+  { name: 'Antennes', href: '#map', type: 'antennes-dropdown' },
   { name: 'Équipe', href: '#team' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -9,7 +9,7 @@ export const headerNav = [
 export const footerNav = [
   { name: 'À propos', href: '#about' },
   { name: 'Programmes', href: '#programs' },
-  { name: 'Notre Réseau', href: '#network' },
+  { name: 'Antennes', href: '#map' },
   { name: 'Équipe', href: '#team' },
   { name: 'Contact', href: '#contact' },
 ];
