@@ -13,6 +13,7 @@ export interface TeamMember {
   social: {
     linkedin?: string;
     email: string;
+    phone?: string;
   };
 }
 
@@ -25,7 +26,8 @@ const team: TeamMember[] = [
         image: presidentImg,
         social: {
             linkedin: "#",
-            email: "president@nelosis.fr"
+            email: "president@nelosis.fr",
+            phone: "+33 6 12 34 56 78"
         }
     },
     {
