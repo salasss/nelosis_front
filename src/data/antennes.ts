@@ -17,7 +17,39 @@ export const antennas: Antenne[] = [
       address: 'Université de Perpignan Via Domitia, 52 Avenue Paul Alduy, 66100 Perpignan'
     },
     description: `Siège historique du réseau Nélosis, l'antenne de Perpignan est au cœur de l'innovation agro-écologique. Elle collabore étroitement avec les laboratoires de l'UPVD pour développer des solutions comme Végét'All et la Bouée Végétale. C'est ici que tout a commencé.`,
-    team: [], // À remplir avec les membres locaux
+    team: [
+      {
+        name: 'Loann Faure',
+        role: 'Président',
+        bio: 'Passionné par l\'innovation sociale et l\'écologie, Loann dirige la stratégie globale de l\'association.',
+        image: "",
+        social: {
+            linkedin: "#",
+            email: "president@nelosis.fr",
+            phone: "+33 6 12 34 56 78"
+        }
+      },
+      {
+        name: 'Ali',
+        role: 'Trésorier',
+        bio: 'Expert en finance, Ali veille à la bonne gestion des ressources pour nos projets.',
+        image: "",
+        social: {
+            linkedin: "#",
+            email: "tresorier@nelosis.fr"
+        }
+      },
+      {
+        name: 'Natanaël Andral-Meignan',
+        role: 'Vice-président',
+        bio: 'Organisé et rigoureux, Natanaël coordonne les activités administratives et la communication interne.',
+        image: "",
+        social: {
+            linkedin: "#",
+            email: "secretaire@nelosis.fr"
+        }
+      }
+    ], // À remplir avec les membres locaux
     projects_ids: ['vegetall', 'bouee-vegetale'],
     partners: [
       {
