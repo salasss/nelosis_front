@@ -1,0 +1,820 @@
+---
+import articles, { formatArticleDate } from "../data/articles";
+---
+
+<section id="blog" class="blog-section relative overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="blog-mesh-1"></div>
+        <div class="blog-mesh-2"></div>
+        <div class="blog-mesh-3"></div>
+        <div class="blog-grid-pattern"></div>
+    </div>
+
+    <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <!-- Section Header -->
+        <div class="blog-header-grid">
+            <div class="blog-header-left">
+                <div class="blog-label">
+                    <span class="blog-label-line"></span>
+                    <span class="blog-label-text">Blog & Actualités</span>
+                </div>
+                <h2 class="blog-title">
+                    <span class="blog-title-white">Nos</span>
+                    <span class="blog-title-gradient">Derniers Articles</span>
+                </h2>
+            </div>
+            <div class="blog-header-right">
+                <p class="blog-subtitle">
+                    Explorez nos réflexions sur l'innovation écologique, la
+                    recherche et l'engagement étudiant au service de la
+                    transition environnementale.
+                </p>
+                <div class="blog-stats-row">
+                    <div class="blog-stat">
+                        <span class="blog-stat-number">{articles.length}</span>
+                        <span class="blog-stat-label">articles</span>
+                    </div>
+                    <div class="blog-stat-separator"></div>
+                    <div class="blog-stat">
+                        <span class="blog-stat-number"
+                            >{
+                                new Set(articles.flatMap((a) => a.tags)).size
+                            }+</span
+                        >
+                        <span class="blog-stat-label">sujets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="blog-grid">
+            {
+                articles.map((article, index) => (
+                    <a
+                        href={`/blog/${article.slug}`}
+                        class={`blog-card group ${index === 0 ? "blog-card--featured" : ""}`}
+                        style={`--card-accent: ${article.categoryColor}; --card-delay: ${index * 0.1}s;`}
+                    >
+                        {/* Card Glow */}
+                        <div class="blog-card__glow" aria-hidden="true" />
+
+                        {/* Card Inner */}
+                        <div class="blog-card__inner">
+                            {/* Top: Category + Date */}
+                            <div class="blog-card__meta">
+                                <span
+                                    class="blog-card__category"
+                                    style={`background: ${article.categoryColor}15; color: ${article.categoryColor}; border-color: ${article.categoryColor}30;`}
+                                >
+                                    {article.category}
+                                </span>
+                                <div class="blog-card__date-row">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="w-3.5 h-3.5"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+                                        />
+                                    </svg>
+                                    <time datetime={article.date}>
+                                        {formatArticleDate(article.date)}
+                                    </time>
+                                </div>
+                            </div>
+
+                            {/* Content */}
+                            <div class="blog-card__content">
+                                <h3 class="blog-card__title">
+                                    {article.title}
+                                </h3>
+                                <p class="blog-card__excerpt">
+                                    {article.excerpt}
+                                </p>
+                            </div>
+
+                            {/* Tags */}
+                            <div class="blog-card__tags">
+                                {article.tags.slice(0, 3).map((tag) => (
+                                    <span class="blog-card__tag">#{tag}</span>
+                                ))}
+                            </div>
+
+                            {/* Footer: Author + Read */}
+                            <div class="blog-card__footer">
+                                <div class="blog-card__author">
+                                    <div
+                                        class="blog-card__author-avatar"
+                                        style={`background: ${article.categoryColor}20; color: ${article.categoryColor};`}
+                                    >
+                                        {article.author
+                                            .split(" ")
+                                            .map((n) => n[0])
+                                            .join("")}
+                                    </div>
+                                    <div>
+                                        <span class="blog-card__author-name">
+                                            {article.author}
+                                        </span>
+                                        <span class="blog-card__author-role">
+                                            {article.authorRole}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="blog-card__read">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="w-3.5 h-3.5"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                    <span>{article.readTime}</span>
+                                </div>
+                            </div>
+
+                            {/* Read More CTA */}
+                            <div class="blog-card__cta">
+                                <span class="blog-card__cta-text">
+                                    Lire l'article
+                                </span>
+                                <div class="blog-card__cta-arrow">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="2.5"
+                                        stroke="currentColor"
+                                        class="w-4 h-4"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="blog-bottom-cta">
+            <div class="blog-bottom-cta__inner">
+                <div class="blog-bottom-cta__shimmer" aria-hidden="true"></div>
+                <div class="blog-bottom-cta__content">
+                    <div class="blog-bottom-cta__icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="blog-bottom-cta__title"
+                            >Restez informés</span
+                        >
+                        <span class="blog-bottom-cta__desc"
+                            >De nouveaux articles chaque mois sur l'innovation
+                            écologique</span
+                        >
+                    </div>
+                </div>
+                <a href="/#contact" class="blog-bottom-cta__btn group">
+                    <span>S'abonner</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ═══════════════════════════════════════
+     Blog Section — Awwwards / Webflow Style
+     ═══════════════════════════════════════ */
+
+    .blog-section {
+        padding: 7rem 0 6rem;
+        background: #0d0d1a;
+    }
+
+    /* ── Background Meshes ── */
+    .blog-mesh-1 {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        top: -15%;
+        right: -10%;
+        background: radial-gradient(
+            circle,
+            rgba(123, 140, 255, 0.1) 0%,
+            transparent 70%
+        );
+        filter: blur(100px);
+        animation: blogFloat 25s ease-in-out infinite;
+    }
+
+    .blog-mesh-2 {
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        bottom: -10%;
+        left: -8%;
+        background: radial-gradient(
+            circle,
+            rgba(251, 168, 36, 0.08) 0%,
+            transparent 70%
+        );
+        filter: blur(80px);
+        animation: blogFloat 25s ease-in-out infinite reverse;
+    }
+
+    .blog-mesh-3 {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(
+            circle,
+            rgba(92, 199, 150, 0.06) 0%,
+            transparent 70%
+        );
+        filter: blur(80px);
+        animation: blogFloat 20s ease-in-out infinite;
+        animation-delay: -8s;
+    }
+
+    .blog-grid-pattern {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.018) 1px,
+                transparent 1px
+            );
+        background-size: 80px 80px;
+    }
+
+    @keyframes blogFloat {
+        0%,
+        100% {
+            transform: translate(0, 0) scale(1);
+        }
+        33% {
+            transform: translate(25px, -25px) scale(1.03);
+        }
+        66% {
+            transform: translate(-15px, 15px) scale(0.97);
+        }
+    }
+
+    /* ── Header Grid ── */
+    .blog-header-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 3.5rem;
+    }
+
+    @media (min-width: 1024px) {
+        .blog-header-grid {
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: end;
+            margin-bottom: 4rem;
+        }
+    }
+
+    /* ── Label ── */
+    .blog-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1rem;
+    }
+
+    .blog-label-line {
+        width: 32px;
+        height: 2px;
+        background: linear-gradient(90deg, #7b8cff, #5cc796);
+        border-radius: 2px;
+    }
+
+    .blog-label-text {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: #7b8cff;
+    }
+
+    /* ── Title ── */
+    .blog-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        line-height: 0.95;
+        margin: 0;
+    }
+
+    .blog-title-white {
+        display: block;
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        color: #f5f5f5;
+    }
+
+    .blog-title-gradient {
+        display: block;
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        background: linear-gradient(135deg, #7b8cff, #5cc796, #fba824);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ── Subtitle ── */
+    .blog-subtitle {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #b0b0b0;
+        margin: 0 0 1.25rem 0;
+    }
+
+    @media (min-width: 1024px) {
+        .blog-subtitle {
+            font-size: 1.05rem;
+        }
+    }
+
+    .blog-stats-row {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+    }
+
+    .blog-stat {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+    }
+
+    .blog-stat-number {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #f5f5f5;
+    }
+
+    .blog-stat-label {
+        font-size: 0.8rem;
+        color: #b0b0b0;
+    }
+
+    .blog-stat-separator {
+        width: 1px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ═══════════════════════════════════════
+     Article Cards Grid
+     ═══════════════════════════════════════ */
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .blog-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .blog-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+    }
+
+    /* ── Card ── */
+    .blog-card {
+        position: relative;
+        border-radius: 1.25rem;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .blog-card:hover {
+        transform: translateY(-6px);
+    }
+
+    /* Glow effect on hover */
+    .blog-card__glow {
+        position: absolute;
+        inset: -1px;
+        border-radius: 1.25rem;
+        background: conic-gradient(
+            from var(--blog-glow-angle, 0deg),
+            transparent 40%,
+            var(--card-accent) 50%,
+            transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 0;
+        filter: blur(1px);
+    }
+
+    .blog-card:hover .blog-card__glow {
+        opacity: 0.4;
+        animation: blogGlowRotate 4s linear infinite;
+    }
+
+    @property --blog-glow-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    @keyframes blogGlowRotate {
+        to {
+            --blog-glow-angle: 360deg;
+        }
+    }
+
+    /* Card Inner */
+    .blog-card__inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.75rem;
+        border-radius: 1.25rem;
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(12px);
+        height: 100%;
+        transition: all 0.4s ease;
+    }
+
+    .blog-card:hover .blog-card__inner {
+        border-color: rgba(255, 255, 255, 0.1);
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+        );
+    }
+
+    /* ── Meta Row ── */
+    .blog-card__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    .blog-card__category {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border: 1px solid;
+    }
+
+    .blog-card__date-row {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ── Content ── */
+    .blog-card__content {
+        flex: 1;
+    }
+
+    .blog-card__title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        line-height: 1.35;
+        color: #f5f5f5;
+        margin: 0 0 0.75rem 0;
+        transition: color 0.3s ease;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .blog-card:hover .blog-card__title {
+        color: var(--card-accent);
+    }
+
+    .blog-card__excerpt {
+        font-size: 0.85rem;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* ── Tags ── */
+    .blog-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .blog-card__tag {
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 3px 8px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+    }
+
+    .blog-card:hover .blog-card__tag {
+        border-color: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* ── Footer ── */
+    .blog-card__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .blog-card__author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .blog-card__author-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .blog-card__author-name {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #f5f5f5;
+    }
+
+    .blog-card__author-role {
+        display: block;
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.35);
+    }
+
+    .blog-card__read {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ── CTA ── */
+    .blog-card__cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .blog-card:hover .blog-card__cta {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .blog-card__cta-text {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--card-accent);
+        letter-spacing: 0.02em;
+    }
+
+    .blog-card__cta-arrow {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--card-accent);
+        color: #0d0d1a;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .blog-card:hover .blog-card__cta-arrow {
+        transform: scale(1.1);
+        box-shadow: 0 4px 20px
+            color-mix(in srgb, var(--card-accent) 40%, transparent);
+    }
+
+    /* ═══════════════════════════════════════
+     Bottom CTA
+     ═══════════════════════════════════════ */
+
+    .blog-bottom-cta {
+        margin-top: 3.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .blog-bottom-cta__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 1.5rem 2rem;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+        .blog-bottom-cta__inner {
+            flex-direction: row;
+            gap: 2rem;
+            padding: 1.25rem 1.5rem 1.25rem 1.75rem;
+        }
+    }
+
+    .blog-bottom-cta__shimmer {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            105deg,
+            transparent 40%,
+            rgba(123, 140, 255, 0.05) 45%,
+            rgba(123, 140, 255, 0.1) 50%,
+            rgba(123, 140, 255, 0.05) 55%,
+            transparent 60%
+        );
+        background-size: 250% 100%;
+        animation: blogShimmer 8s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes blogShimmer {
+        0%,
+        100% {
+            background-position: 200% 0;
+        }
+        50% {
+            background-position: -50% 0;
+        }
+    }
+
+    .blog-bottom-cta__content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .blog-bottom-cta__icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: linear-gradient(
+            135deg,
+            rgba(123, 140, 255, 0.15),
+            rgba(123, 140, 255, 0.05)
+        );
+        border: 1px solid rgba(123, 140, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7b8cff;
+        flex-shrink: 0;
+    }
+
+    .blog-bottom-cta__title {
+        display: block;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #f5f5f5;
+    }
+
+    .blog-bottom-cta__desc {
+        display: block;
+        font-size: 0.78rem;
+        color: #b0b0b0;
+    }
+
+    .blog-bottom-cta__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        background: linear-gradient(135deg, #7b8cff, #5cc796);
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border-radius: 100px;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        white-space: nowrap;
+        position: relative;
+        z-index: 1;
+    }
+
+    .blog-bottom-cta__btn:hover {
+        box-shadow: 0 8px 32px rgba(123, 140, 255, 0.25);
+        transform: translateY(-1px);
+    }
+</style>

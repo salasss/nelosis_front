@@ -10,6 +10,7 @@ import Button from "../components/Button.astro";
 import InteractiveMap from "../components/InteractiveMap.astro";
 import TeamMember from "../components/TeamMember.astro";
 import ContactSection from "../components/ContactSection.astro";
+import BlogSection from "../components/BlogSection.astro";
 
 import { Image } from "astro:assets";
 import team from "../data/team";
@@ -146,7 +147,7 @@ const antenneColors = [
               })}
 
               <!-- CTA Banner — Awwwards 2026 -->
-              <a href="#contact" class="network-cta group">
+              <a href="/#contact" class="network-cta group">
                 <!-- Animated gradient border -->
                 <div class="network-cta__border" aria-hidden="true"></div>
                 <!-- Shimmer sweep -->
@@ -477,7 +478,7 @@ const antenneColors = [
                 <span class="team-cta-desc">On recrute des passionnés</span>
               </div>
             </div>
-            <a href="#contact" class="team-cta-btn group">
+            <a href="/#contact" class="team-cta-btn group">
               <span>Nous contacter</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -780,6 +781,8 @@ const antenneColors = [
         transform: translateY(-1px);
       }
     </style>
+
+    <BlogSection />
 
     <ContactSection />
   </main>

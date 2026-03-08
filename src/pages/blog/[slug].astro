@@ -1,0 +1,858 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import articles, { formatArticleDate } from "../../data/articles";
+import type { Article } from "../../data/articles";
+
+export async function getStaticPaths() {
+    return articles.map((article) => ({
+        params: { slug: article.slug },
+        props: { article },
+    }));
+}
+
+const { article } = Astro.props as { article: Article };
+
+// Get other articles for "Read more" section
+const otherArticles = articles.filter((a) => a.id !== article.id).slice(0, 2);
+
+// Simple markdown-like rendering: split content by ## headings
+const contentBlocks = article.content.split(/^## /m).filter(Boolean);
+const hasSubheadings = contentBlocks.length > 1;
+---
+
+<BaseLayout
+    title={`${article.title} – Blog Nélosis`}
+    description={article.excerpt}
+>
+    <Header />
+    <main class="article-page" style={`--ac: ${article.categoryColor};`}>
+        <!-- ═══ HERO ═══ -->
+        <section class="article-hero">
+            <div class="article-hero-bg">
+                <div class="article-hero-orb article-hero-orb-1"></div>
+                <div class="article-hero-orb article-hero-orb-2"></div>
+                <div class="article-hero-grid"></div>
+            </div>
+            <div class="article-hero-inner">
+                <!-- Breadcrumb -->
+                <nav class="article-crumb">
+                    <a href="/">Accueil</a><span class="article-crumb-sep"
+                        >›</span
+                    >
+                    <a href="/#blog">Blog</a><span class="article-crumb-sep"
+                        >›</span
+                    >
+                    <span class="article-crumb-cur"
+                        >{article.title.slice(0, 40)}…</span
+                    >
+                </nav>
+
+                <!-- Category Badge -->
+                <span
+                    class="article-category"
+                    style={`background: ${article.categoryColor}15; color: ${article.categoryColor}; border-color: ${article.categoryColor}30;`}
+                >
+                    {article.category}
+                </span>
+
+                <!-- Title -->
+                <h1 class="article-hero-title">{article.title}</h1>
+
+                <!-- Meta Row -->
+                <div class="article-meta-row">
+                    <div class="article-meta-author">
+                        <div
+                            class="article-meta-avatar"
+                            style={`background: ${article.categoryColor}20; color: ${article.categoryColor};`}
+                        >
+                            {
+                                article.author
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .join("")
+                            }
+                        </div>
+                        <div>
+                            <span class="article-meta-name"
+                                >{article.author}</span
+                            >
+                            <span class="article-meta-role"
+                                >{article.authorRole}</span
+                            >
+                        </div>
+                    </div>
+                    <div class="article-meta-details">
+                        <div class="article-meta-item">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-4 h-4"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+                                ></path>
+                            </svg>
+                            <time datetime={article.date}
+                                >{formatArticleDate(article.date)}</time
+                            >
+                        </div>
+                        <div class="article-meta-sep"></div>
+                        <div class="article-meta-item">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-4 h-4"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                            <span>{article.readTime} de lecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CONTENT ═══ -->
+        <section class="article-content-section">
+            <div class="article-content-wrap">
+                <!-- Main Content -->
+                <article class="article-body">
+                    {
+                        hasSubheadings ? (
+                            <>
+                                <p class="article-intro">
+                                    {contentBlocks[0].trim()}
+                                </p>
+                                {contentBlocks.slice(1).map((block) => {
+                                    const lines = block.split("\n");
+                                    const heading = lines[0].trim();
+                                    const body = lines
+                                        .slice(1)
+                                        .join("\n")
+                                        .trim();
+                                    return (
+                                        <div class="article-block">
+                                            <h2 class="article-h2">
+                                                {heading}
+                                            </h2>
+                                            {body
+                                                .split("\n\n")
+                                                .filter(Boolean)
+                                                .map((para) => (
+                                                    <p class="article-p">
+                                                        {para.trim()}
+                                                    </p>
+                                                ))}
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        ) : (
+                            <div class="article-block">
+                                {article.content
+                                    .split("\n\n")
+                                    .filter(Boolean)
+                                    .map((para) => (
+                                        <p class="article-p">{para.trim()}</p>
+                                    ))}
+                            </div>
+                        )
+                    }
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="article-sidebar">
+                    <!-- Tags -->
+                    <div class="article-sidebar-card">
+                        <h3 class="article-sidebar-title">Tags</h3>
+                        <div class="article-sidebar-tags">
+                            {
+                                article.tags.map((tag) => (
+                                    <span class="article-sidebar-tag">
+                                        #{tag}
+                                    </span>
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="article-sidebar-card">
+                        <h3 class="article-sidebar-title">Partager</h3>
+                        <div class="article-share-row">
+                            <button
+                                class="article-share-btn"
+                                title="Copier le lien"
+                                data-share-link
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-4 h-4"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-1.424a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.34 8.813"
+                                    ></path>
+                                </svg>
+                                <span>Copier le lien</span>
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- ═══ MORE ARTICLES ═══ -->
+        {
+            otherArticles.length > 0 && (
+                <section class="article-more">
+                    <div class="article-more-wrap">
+                        <div class="article-more-header">
+                            <div class="article-more-label">
+                                <span class="article-more-line" />
+                                <span class="article-more-text">
+                                    Continuer la lecture
+                                </span>
+                            </div>
+                            <h2 class="article-more-title">
+                                Autres{" "}
+                                <span style={`color: var(--ac);`}>
+                                    articles
+                                </span>
+                            </h2>
+                        </div>
+                        <div class="article-more-grid">
+                            {otherArticles.map((other) => (
+                                <a
+                                    href={`/blog/${other.slug}`}
+                                    class="article-more-card group"
+                                >
+                                    <div class="article-more-card-inner">
+                                        <span
+                                            class="article-more-cat"
+                                            style={`background: ${other.categoryColor}15; color: ${other.categoryColor}; border-color: ${other.categoryColor}30;`}
+                                        >
+                                            {other.category}
+                                        </span>
+                                        <h3 class="article-more-card-title">
+                                            {other.title}
+                                        </h3>
+                                        <p class="article-more-card-excerpt">
+                                            {other.excerpt.slice(0, 120)}…
+                                        </p>
+                                        <div class="article-more-card-footer">
+                                            <span class="article-more-card-date">
+                                                {formatArticleDate(other.date)}
+                                            </span>
+                                            <span class="article-more-card-read">
+                                                {other.readTime}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                        <div class="article-back-cta">
+                            <a href="/#blog" class="article-back-btn">
+                                ← Retour au blog
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            )
+        }
+    </main>
+    <Footer />
+</BaseLayout>
+
+<script>
+    // Copy link button
+    const shareBtn = document.querySelector("[data-share-link]");
+    if (shareBtn) {
+        shareBtn.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                const span = shareBtn.querySelector("span");
+                if (span) {
+                    const original = span.textContent;
+                    span.textContent = "Copié !";
+                    setTimeout(() => {
+                        span.textContent = original;
+                    }, 2000);
+                }
+            } catch (e) {
+                // fallback
+            }
+        });
+    }
+
+    // Scroll animations
+    const obs = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((e) => {
+                if (e.isIntersecting) {
+                    e.target.classList.add("visible");
+                    obs.unobserve(e.target);
+                }
+            });
+        },
+        { threshold: 0.1 },
+    );
+    document.querySelectorAll(".fade-in-up").forEach((el) => obs.observe(el));
+</script>
+
+<style>
+    .article-page {
+        background: #0f0f1e;
+        min-height: 100vh;
+    }
+
+    /* ═══ HERO ═══ */
+    .article-hero {
+        position: relative;
+        padding: 10rem 1.5rem 5rem;
+        overflow: hidden;
+    }
+
+    .article-hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .article-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+    }
+
+    .article-hero-orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--ac) 25%, transparent),
+            transparent 70%
+        );
+        top: -30%;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: articleOrbFloat 20s ease-in-out infinite;
+    }
+
+    .article-hero-orb-2 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--ac) 15%, transparent),
+            transparent 70%
+        );
+        bottom: -20%;
+        right: -10%;
+        animation: articleOrbFloat 25s ease-in-out infinite reverse;
+    }
+
+    .article-hero-grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.02;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px
+            );
+        background-size: 60px 60px;
+    }
+
+    @keyframes articleOrbFloat {
+        0%,
+        100% {
+            transform: translateX(-50%) translate(0, 0);
+        }
+        50% {
+            transform: translateX(-50%) translate(30px, -30px);
+        }
+    }
+
+    .article-hero-inner {
+        position: relative;
+        z-index: 10;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Breadcrumb */
+    .article-crumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+    }
+
+    .article-crumb a {
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .article-crumb a:hover {
+        color: var(--ac);
+    }
+
+    .article-crumb-sep {
+        color: #555;
+    }
+
+    .article-crumb-cur {
+        color: var(--ac);
+        font-weight: 600;
+    }
+
+    /* Category */
+    .article-category {
+        display: inline-flex;
+        padding: 5px 16px;
+        border-radius: 100px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border: 1px solid;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Title */
+    .article-hero-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 2rem;
+        line-height: 1.15;
+    }
+
+    /* Meta Row */
+    .article-meta-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem 2rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.25rem;
+        backdrop-filter: blur(10px);
+    }
+
+    @media (min-width: 768px) {
+        .article-meta-row {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .article-meta-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .article-meta-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .article-meta-name {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #f5f5f5;
+    }
+
+    .article-meta-role {
+        display: block;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .article-meta-details {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .article-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .article-meta-sep {
+        width: 1px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ═══ CONTENT ═══ */
+    .article-content-section {
+        padding: 0 1.5rem 5rem;
+    }
+
+    .article-content-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+        .article-content-wrap {
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+        }
+    }
+
+    /* Article Body */
+    .article-body {
+        max-width: 720px;
+    }
+
+    .article-intro {
+        font-size: 1.15rem;
+        line-height: 1.85;
+        color: #d1d5db;
+        margin: 0 0 2.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .article-block {
+        margin-bottom: 2.5rem;
+    }
+
+    .article-h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #f5f5f5;
+        margin: 0 0 1.25rem;
+        line-height: 1.3;
+        position: relative;
+        padding-left: 1.25rem;
+    }
+
+    .article-h2::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.2em;
+        width: 4px;
+        height: 1em;
+        border-radius: 2px;
+        background: var(--ac);
+    }
+
+    .article-p {
+        font-size: 1.02rem;
+        line-height: 1.85;
+        color: #b0b0b0;
+        margin: 0 0 1.25rem;
+    }
+
+    .article-p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Sidebar */
+    .article-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+        .article-sidebar {
+            position: sticky;
+            top: 6rem;
+            align-self: start;
+        }
+    }
+
+    .article-sidebar-card {
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 1.25rem;
+    }
+
+    .article-sidebar-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #f5f5f5;
+        margin: 0 0 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .article-sidebar-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .article-sidebar-tag {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.45);
+        padding: 4px 10px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.3s;
+    }
+
+    .article-sidebar-tag:hover {
+        border-color: var(--ac);
+        color: var(--ac);
+    }
+
+    /* Share */
+    .article-share-row {
+        display: flex;
+        gap: 8px;
+    }
+
+    .article-share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        color: #b0b0b0;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .article-share-btn:hover {
+        background: color-mix(in srgb, var(--ac) 10%, transparent);
+        border-color: color-mix(in srgb, var(--ac) 30%, transparent);
+        color: var(--ac);
+    }
+
+    /* ═══ MORE ARTICLES ═══ */
+    .article-more {
+        padding: 5rem 1.5rem;
+        background: #0d0d1a;
+    }
+
+    .article-more-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .article-more-header {
+        margin-bottom: 3rem;
+    }
+
+    .article-more-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1rem;
+    }
+
+    .article-more-line {
+        width: 32px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--ac), #5cc796);
+        border-radius: 2px;
+    }
+
+    .article-more-text {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--ac);
+    }
+
+    .article-more-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        color: #fff;
+        margin: 0;
+        line-height: 1.15;
+    }
+
+    .article-more-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .article-more-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .article-more-card {
+        display: block;
+        text-decoration: none;
+        border-radius: 1.25rem;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .article-more-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .article-more-card-inner {
+        padding: 1.75rem;
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 1.25rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .article-more-card:hover .article-more-card-inner {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+        );
+    }
+
+    .article-more-cat {
+        display: inline-flex;
+        align-self: flex-start;
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border: 1px solid;
+    }
+
+    .article-more-card-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        line-height: 1.35;
+        color: #f5f5f5;
+        margin: 0;
+        transition: color 0.3s;
+    }
+
+    .article-more-card:hover .article-more-card-title {
+        color: var(--ac);
+    }
+
+    .article-more-card-excerpt {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.45);
+        margin: 0;
+        flex: 1;
+    }
+
+    .article-more-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Back CTA */
+    .article-back-cta {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .article-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 100px;
+        color: #b0b0b0;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .article-back-btn:hover {
+        background: color-mix(in srgb, var(--ac) 10%, transparent);
+        border-color: color-mix(in srgb, var(--ac) 30%, transparent);
+        color: var(--ac);
+        transform: translateY(-2px);
+    }
+
+    /* Fade animation */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.8s ease-out,
+            transform 0.8s ease-out;
+    }
+
+    .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>

@@ -74,36 +74,36 @@ const programs: Program[] = [
     id: 'vegetall',
     slug: 'vegetall',
     name: "Végét'All",
-    tagline: 'Agriculture urbaine autonome',
+    tagline: 'Lorem ipsum dolor sit',
     description:
-      "Concevoir et prototyper des systèmes d'agriculture urbaine autonomes, capables de fonctionner sans apport énergétique externe, pour ramener la nature au cœur des villes.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud.",
     color: '#C7C652',
     accentColor: '#a8a836',
     icon: 'leaf',
     presentation: {
       intro:
-        "Végét'All repense l'agriculture en milieu urbain. L'objectif : des systèmes autonomes capables de nourrir les villes sans énergie externe, en s'appuyant sur la physique et le biomimétisme.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
       enjeux:
-        "Les villes consomment 75 % des ressources mondiales et concentrent la majorité de la population. Pourtant, elles restent presque totalement dépendantes de systèmes agricoles lointains. Le programme Végét'All naît de cette fracture : comment ramener une production alimentaire locale, résiliente et à faible coût énergétique au cœur des espaces urbains ?",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
       objectifs: [
-        "Développer des extracteurs d'humidité nocturne à zéro énergie",
-        "Prototyper des toitures végétalisées autonomes en circuit fermé",
-        "Créer des micro-écosystèmes urbains réplicables et open-source",
-        "Former les étudiants aux techniques d'agro-urbanisme",
+        "Lorem ipsum dolor sit amet consectetur adipiscing",
+        "Sed do eiusmod tempor incididunt ut labore",
+        "Ut enim ad minim veniam quis nostrud exercitation",
+        "Duis aute irure dolor in reprehenderit voluptate",
       ],
       vision:
-        "À terme, chaque immeuble pourrait intégrer un module Végét'All, transformant les toits inutilisés en terres nourricières qui fonctionnent en totale autonomie.",
+        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum sed ut perspiciatis.",
     },
     partners: [
       {
-        name: 'Université de Perpignan Via Domitia',
+        name: 'Lorem Ipsum University',
         type: 'institution',
-        description: "Partenaire académique principal – laboratoire de recherche sur les matériaux et la physique appliquée.",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
       },
       {
-        name: 'PROMES-CNRS',
+        name: 'DOLOR-CNRS',
         type: 'labo',
-        description: "Laboratoire de recherche sur les procédés, matériaux et énergie solaire.",
+        description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
       },
     ],
     projects: [
@@ -111,31 +111,31 @@ const programs: Program[] = [
         id: 'extracteurs-humidite',
         slug: 'extracteurs-humidite',
         title: "Extracteurs d'humidité nocturne",
-        subtitle: "Des solutions plein les poches !",
+        subtitle: "Lorem ipsum dolor sit amet",
         description:
-          "Une approche innovante pour l'agriculture urbaine autonome basée sur l'extraction d'humidité nocturne sans dépense d'énergie.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         color: '#C7C652',
         icon: 'droplets',
         logo: vegetallImg,
         status: 'active',
         featured: true,
         leaders: [
-          { name: 'Xavier PY', role: 'Porteur de projet / Chercheur' },
+          { name: 'Lorem Ipsum', role: 'Lorem / Ipsum' },
         ],
         content: [
           {
-            title: "Quelles innovations sont mises au point actuellement ?",
-            text: "Pourquoi l'agro-urbanisme ? Gouttes de pluie sur feuille. Les extracteurs d'humidité nocturne.",
+            title: "Lorem ipsum dolor sit amet ?",
+            text: "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             image: vegetallInnovation,
           },
           {
-            title: 'Le principe',
-            text: 'Ces dispositifs sont appuyés sur le sujet de thèse de Xavier PY. Ces "entonnoirs" permettent l\'extraction d\'environ 1L d\'eau par m² et par nuit, et ce sans dépenses d\'énergie. L\'extraction est permise par deux principes physiques, le refroidissement radiatif des matériaux et les paramètres de variation de la pression de vapeur saturante. Les gouttes continument récupérées s\'infiltrent ensuite dans les sols pour irriguer le bac de culture.',
+            title: 'Lorem principe',
+            text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
             image: vegetallPrincipe,
           },
           {
-            title: "L'organisation",
-            text: "La structure même du toit est un prototype en soi. Empruntée à des domaines divers tels la terrariophilie bioactive et inspirée de principes d'aquaponie, elle est travaillée de manière à optimiser la fertilité et l'humidité du sol. Son rôle est de conserver l'eau et les nutriments rincés tout en entretenant un lent circuit d'eau qui limite les contaminations. Ce système eau/sol est autonome et demande peu d'entretien.",
+            title: "Lorem organisation",
+            text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.",
             image: vegetallOrganisation,
           },
         ],
@@ -144,9 +144,9 @@ const programs: Program[] = [
         id: 'toits-vegetalises',
         slug: 'toits-vegetalises',
         title: 'Toitures Végétalisées Autonomes',
-        subtitle: 'Des écosystèmes sur nos toits',
+        subtitle: 'Lorem ipsum dolor',
         description:
-          "Des prototypes de toits auto-suffisants intégrant récupération d'eau et culture urbaine.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.",
         color: '#C7C652',
         icon: 'home',
         status: 'coming_soon',
@@ -159,25 +159,25 @@ const programs: Program[] = [
     id: 'noctilumen',
     slug: 'noctilumen',
     name: 'NoctiLumen',
-    tagline: 'Éclairage vivant & bioluminescence',
+    tagline: 'Consectetur adipiscing elit',
     description:
-      "Explorer et développer des solutions d'éclairage basées sur la bioluminescence et les organismes vivants pour créer des alternatives durables à l'éclairage artificiel.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
     color: '#7B8CFF',
     accentColor: '#5a6be6',
     icon: 'sparkles',
     presentation: {
       intro:
-        "NoctiLumen explore la frontière entre le vivant et la lumière. Ce programme de recherche développe des solutions d'éclairage biologique — sans électricité, sans batterie — en utilisant des organismes bioluminescents.",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
       enjeux:
-        "L'éclairage artificiel représente environ 15 % de la consommation mondiale d'électricité. La pollution lumineuse perturbe les écosystèmes nocturnes et la santé humaine. NoctiLumen explore une voie radicalement différente : utiliser le vivant pour produire de la lumière.",
+        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
       objectifs: [
-        "Cultiver et stabiliser des organismes bioluminescents en milieu contrôlé",
-        "Concevoir des lampes biologiques fonctionnelles pour l'éclairage d'appoint",
-        "Étudier l'impact environnemental comparé à l'éclairage LED",
-        "Développer des protocoles de maintenance biologique accessibles",
+        "Lorem ipsum dolor sit amet consectetur",
+        "Adipiscing elit sed do eiusmod tempor",
+        "Incididunt ut labore et dolore magna aliqua",
+        "Ut enim ad minim veniam quis nostrud",
       ],
       vision:
-        "Imaginer un monde où les rues, parcs et espaces publics pourraient être éclairés par des organismes vivants, sans électricité.",
+        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.",
     },
     partners: [],
     projects: [
@@ -185,9 +185,9 @@ const programs: Program[] = [
         id: 'lampes-bioluminescentes',
         slug: 'lampes-bioluminescentes',
         title: 'Lampes Bioluminescentes',
-        subtitle: "La lumière du vivant",
+        subtitle: "Lorem ipsum dolor",
         description:
-          "Développement de lampes fonctionnant grâce à des micro-organismes bioluminescents, sans électricité.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.",
         color: '#7B8CFF',
         icon: 'lightbulb',
         status: 'coming_soon',
@@ -200,31 +200,31 @@ const programs: Program[] = [
     id: 'lagoon',
     slug: 'lagoon',
     name: 'Lagoon',
-    tagline: 'Restauration des écosystèmes aquatiques',
+    tagline: 'Sed do eiusmod tempor',
     description:
-      "Protéger et restaurer les milieux aquatiques méditerranéens grâce à des dispositifs innovants qui relancent la biodiversité locale de manière durable.",
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis.",
     color: '#5CC796',
     accentColor: '#3dab7a',
     icon: 'waves',
     presentation: {
       intro:
-        "Lagoon se consacre à la restauration des milieux aquatiques méditerranéens. Nos projets combinent ingénierie écologique et innovation matériau pour relancer des écosystèmes menacés.",
+        "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas.",
       enjeux:
-        "La Méditerranée est l'un des 25 hotspots mondiaux de biodiversité, mais aussi l'un des plus menacés. Surpêche, pollution plastique, réchauffement… Le programme Lagoon développe des solutions concrètes et reproductibles pour aider les écosystèmes côtiers à se régénérer.",
+        "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
       objectifs: [
-        "Déployer des bouées végétales pour relancer les chaînes alimentaires locales",
-        "Créer des récifs artificiels biodégradables à base de mycélium",
-        "Mesurer et documenter l'impact de nos dispositifs sur la biodiversité",
-        "Collaborer avec les pêcheurs et acteurs locaux du littoral",
+        "Lorem ipsum dolor sit amet consectetur adipiscing",
+        "Sed do eiusmod tempor incididunt ut labore",
+        "Ut enim ad minim veniam quis nostrud exercitation",
+        "Duis aute irure dolor in reprehenderit voluptate",
       ],
       vision:
-        "Chaque port méditerranéen pourrait être équipé de dispositifs Lagoon pour restaurer progressivement l'écosystème côtier environnant.",
+        "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
     },
     partners: [
       {
-        name: 'Parc Naturel Marin du Golfe du Lion',
+        name: 'Lorem Ipsum Naturel',
         type: 'institution',
-        description: "Partenaire terrain pour les déploiements en mer et le suivi scientifique.",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
     projects: [
@@ -232,21 +232,21 @@ const programs: Program[] = [
         id: 'bouee-vegetale',
         slug: 'bouee-vegetale',
         title: 'Bouée Végétale',
-        subtitle: 'Restauration de la biodiversité marine',
+        subtitle: 'Lorem ipsum dolor sit',
         description:
-          'Un dispositif flottant vivant pour relancer la chaîne alimentaire locale.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.',
         color: '#5CC796',
         icon: 'life-buoy',
         logo: boueeImg,
         status: 'active',
         featured: true,
         leaders: [
-          { name: 'Équipe Lagoon', role: 'Porteurs de projet' },
+          { name: 'Lorem Ipsum', role: 'Lorem de projet' },
         ],
         content: [
           {
-            title: 'Le concept',
-            text: "Installation de bouées recouvertes d'algues spécifiques. Ces algues attirent les poissons herbivores, qui attirent à leur tour les prédateurs plus gros, recréant ainsi un cycle alimentaire complet et durable.",
+            title: 'Lorem concept',
+            text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis.",
           },
         ],
       },
@@ -254,9 +254,9 @@ const programs: Program[] = [
         id: 'brique-mycelium',
         slug: 'brique-mycelium',
         title: 'Brique Mycélium',
-        subtitle: 'Construction vivante',
+        subtitle: 'Lorem vivante',
         description:
-          'Des briques écologiques fabriquées à base de champignons pour des récifs artificiels.',
+          'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.',
         color: '#FBA824',
         icon: 'cube',
         logo: briqueImg,
@@ -264,8 +264,8 @@ const programs: Program[] = [
         featured: true,
         content: [
           {
-            title: 'Innovation fongique',
-            text: "Remplacer les matériaux de construction traditionnels par du mycélium, une alternative biodégradable et isolante.",
+            title: 'Lorem fongique',
+            text: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
           },
         ],
       },
@@ -275,31 +275,31 @@ const programs: Program[] = [
     id: 'sensibilisation',
     slug: 'sensibilisation-innovante',
     name: 'Sensibilisation Innovante',
-    tagline: 'Éduquer pour transformer',
+    tagline: 'Ut labore et dolore',
     description:
-      "Développer des programmes de sensibilisation créatifs et impactants pour éveiller les consciences écologiques, en particulier chez les jeunes générations.",
+      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
     color: '#FF7D7D',
     accentColor: '#e65c5c',
     icon: 'graduation-cap',
     presentation: {
       intro:
-        "La Sensibilisation Innovante est le bras éducatif de Nélosis. Ce programme crée des outils et formats pédagogiques nouveaux pour toucher les publics là où ils sont, avec impact et créativité.",
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore.",
       enjeux:
-        "L'information sur les enjeux écologiques existe, mais elle peine à transformer les comportements. La sensibilisation classique (flyers, conférences) a ses limites. Ce programme explore des formats immersifs, ludiques et expérientiels pour créer un déclic durable, en ciblant notamment les jeunes générations.",
+        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
       objectifs: [
-        "Concevoir des ateliers pédagogiques immersifs pour les écoles",
-        "Développer des outils de sensibilisation numériques et interactifs",
-        "Former des étudiants-ambassadeurs pour les interventions terrain",
-        "Mesurer l'impact des actions de sensibilisation sur les comportements",
+        "Lorem ipsum dolor sit amet consectetur adipiscing",
+        "Sed do eiusmod tempor incididunt ut labore",
+        "Ut enim ad minim veniam quis nostrud exercitation",
+        "Duis aute irure dolor in reprehenderit voluptate",
       ],
       vision:
-        "Que chaque jeune ayant participé à un programme Sensibilisation Innovante devienne un acteur de changement dans son environnement.",
+        "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
     },
     partners: [
       {
-        name: 'Rectorat Occitanie',
+        name: 'Lorem Occitanie',
         type: 'institution',
-        description: "Facilitation de l'accès aux établissements scolaires de la région.",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       },
     ],
     projects: [
@@ -307,21 +307,21 @@ const programs: Program[] = [
         id: 'ecoleogie',
         slug: 'ecoleogie',
         title: 'Écoléogie',
-        subtitle: 'Éducation durable',
+        subtitle: 'Lorem durable',
         description:
-          "Sensibilisation à l'écologie pour les élèves de primaire et collège.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
         color: '#FF7D7D',
         icon: 'school',
         logo: ecoleogieImg,
         status: 'active',
         featured: true,
         leaders: [
-          { name: 'Équipe Sensibilisation', role: 'Porteurs de projet' },
+          { name: 'Lorem Ipsum', role: 'Lorem de projet' },
         ],
         content: [
           {
-            title: 'Transmission',
-            text: "Un programme pédagogique pour éveiller la conscience écologique dès le plus jeune âge.",
+            title: 'Lorem transmission',
+            text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
           },
         ],
       },

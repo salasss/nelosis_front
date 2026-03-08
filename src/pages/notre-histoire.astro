@@ -1,0 +1,1376 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import TeamMember from "../components/TeamMember.astro";
+import ContactSection from "../components/ContactSection.astro";
+import { Image } from "astro:assets";
+import team from "../data/team";
+import {
+    hero,
+    origines,
+    timeline,
+    mantra,
+    missions,
+    instagram,
+    press,
+    equipe,
+} from "../data/notre-histoire";
+
+const sectionNumbers = ["01", "02", "03", "04", "05"];
+---
+
+<BaseLayout
+    title="Notre Histoire — Nélosis"
+    description="Découvrez l'histoire, la mission et l'équipe de Nélosis, le réseau étudiant engagé pour l'innovation écologique."
+>
+    <Header />
+
+    <main>
+        <!-- ═══════════════════════════════════════════
+         HERO — Compact page header
+         ═══════════════════════════════════════════ -->
+        <section class="nh-hero">
+            <div class="nh-hero-bg">
+                <div class="nh-hero-orb nh-hero-orb--1"></div>
+                <div class="nh-hero-orb nh-hero-orb--2"></div>
+                <div class="nh-hero-noise"></div>
+            </div>
+            <div class="nh-container">
+                <div class="nh-hero-inner">
+                    <div class="nh-hero-left">
+                        <a href="/" class="nh-breadcrumb">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                width="14"
+                                height="14"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                                ></path></svg
+                            >
+                            <span>Accueil</span>
+                        </a>
+                        <h1 class="nh-hero-title">
+                            <span class="nh-hero-title-line"
+                                >{hero.titleLine1}</span
+                            >
+                            <span class="nh-hero-title-accent"
+                                >{hero.titleLine2}</span
+                            >
+                        </h1>
+                    </div>
+                    <div class="nh-hero-right">
+                        <p class="nh-hero-lead">{hero.lead}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+         1 — ORIGINES & NOM
+         ═══════════════════════════════════════════ -->
+        <section class="nh-section" id="origines">
+            <div class="nh-container">
+                <div class="nh-split">
+                    <div class="nh-split-label">
+                        <span class="nh-label-num">{sectionNumbers[0]}</span>
+                        <span class="nh-label-line"></span>
+                        <span class="nh-label-text"
+                            >{origines.sectionLabel}</span
+                        >
+                    </div>
+                    <div class="nh-split-content">
+                        <h2 class="nh-heading">
+                            D'où vient <em>Nélosis</em> ?
+                        </h2>
+                        <div class="nh-text-cols">
+                            {origines.paragraphs.map((p) => <p set:html={p} />)}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline horizontal -->
+                <div class="nh-tl">
+                    <div class="nh-tl-track" aria-hidden="true">
+                        <div class="nh-tl-track-fill"></div>
+                    </div>
+                    {
+                        timeline.map((item, i) => (
+                            <div
+                                class={`nh-tl-item nh-tl-item--${item.color}`}
+                                style={`--tl-delay: ${i * 0.1}s;`}
+                            >
+                                <span class="nh-tl-year">{item.year}</span>
+                                <div class="nh-tl-dot" />
+                                <span class="nh-tl-desc">
+                                    {item.description}
+                                </span>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+         2 — MANTRA & MISSIONS
+         ═══════════════════════════════════════════ -->
+        <section class="nh-section nh-section--alt" id="missions">
+            <div class="nh-container">
+                <div class="nh-split">
+                    <div class="nh-split-label">
+                        <span class="nh-label-num">{sectionNumbers[1]}</span>
+                        <span class="nh-label-line"></span>
+                        <span class="nh-label-text">{mantra.sectionLabel}</span>
+                    </div>
+                    <div class="nh-split-content">
+                        <blockquote class="nh-mantra">
+                            {mantra.quote}
+                        </blockquote>
+                        <p class="nh-mantra-sub">{mantra.description}</p>
+                    </div>
+                </div>
+
+                <div class="nh-missions-grid">
+                    {
+                        missions.map((mission) => (
+                            <div class="nh-mission-card">
+                                <div
+                                    class={`nh-mission-icon nh-mission-icon--${mission.color}`}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d={mission.iconPath}
+                                        />
+                                    </svg>
+                                </div>
+                                <h3 class="nh-mission-title">
+                                    {mission.title}
+                                </h3>
+                                <p class="nh-mission-desc">
+                                    {mission.description}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+         3 — ACTUALITÉS (Instagram)
+         ═══════════════════════════════════════════ -->
+        <section class="nh-section" id="actu">
+            <div class="nh-container">
+                <div class="nh-split">
+                    <div class="nh-split-label">
+                        <span class="nh-label-num">{sectionNumbers[2]}</span>
+                        <span class="nh-label-line"></span>
+                        <span class="nh-label-text"
+                            >{instagram.sectionLabel}</span
+                        >
+                    </div>
+                    <div class="nh-split-content">
+                        <h2 class="nh-heading">
+                            Suivez-nous <em>en direct</em>
+                        </h2>
+                        <p class="nh-text">{instagram.description}</p>
+                    </div>
+                </div>
+
+                <div class="nh-insta-banner">
+                    <div class="nh-insta-banner-inner">
+                        <div class="nh-insta-left">
+                            <div class="nh-insta-icon">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    width="28"
+                                    height="28"
+                                    ><path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+                                    ></path></svg
+                                >
+                            </div>
+                            <div>
+                                <span class="nh-insta-handle"
+                                    >{instagram.handle}</span
+                                >
+                                <span class="nh-insta-sub"
+                                    >{instagram.subtitle}</span
+                                >
+                            </div>
+                        </div>
+                        <a
+                            href={instagram.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="nh-insta-btn"
+                        >
+                            <span>{instagram.buttonText}</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="2.5"
+                                stroke="currentColor"
+                                width="14"
+                                height="14"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                                ></path></svg
+                            >
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+         4 — ILS PARLENT DE NOUS
+         ═══════════════════════════════════════════ -->
+        <section class="nh-section nh-section--alt" id="presse">
+            <div class="nh-container">
+                <div class="nh-split">
+                    <div class="nh-split-label">
+                        <span class="nh-label-num">{sectionNumbers[3]}</span>
+                        <span class="nh-label-line"></span>
+                        <span class="nh-label-text">Parutions</span>
+                    </div>
+                    <div class="nh-split-content">
+                        <h2 class="nh-heading">Ils parlent <em>de nous</em></h2>
+                        <p class="nh-text">
+                            Les médias et partenaires qui ont couvert nos
+                            actions et projets.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="nh-press-grid">
+                    {
+                        press.map((item) => (
+                            <a
+                                href={item.url}
+                                class="nh-press-card"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <div class="nh-press-source">{item.source}</div>
+                                <h3 class="nh-press-title">{item.title}</h3>
+                                <div class="nh-press-meta">
+                                    <span>{item.date}</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="2"
+                                        stroke="currentColor"
+                                        width="14"
+                                        height="14"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                                        />
+                                    </svg>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+         5 — ÉQUIPE
+         ═══════════════════════════════════════════ -->
+        <section class="nh-section" id="equipe">
+            <div class="nh-container">
+                <div class="nh-split">
+                    <div class="nh-split-label">
+                        <span class="nh-label-num">{sectionNumbers[4]}</span>
+                        <span class="nh-label-line"></span>
+                        <span class="nh-label-text">{equipe.sectionLabel}</span>
+                    </div>
+                    <div class="nh-split-content">
+                        <h2 class="nh-heading">L'Équipe <em>Nélosis</em></h2>
+                        <p class="nh-text">{equipe.description}</p>
+                    </div>
+                </div>
+
+                <div class="nh-team-grid">
+                    {
+                        team.map((member, index) => (
+                            <TeamMember {...member} index={index} />
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+         6 — CONTACT
+         ═══════════════════════════════════════════ -->
+        <ContactSection />
+    </main>
+    <Footer />
+</BaseLayout>
+
+<style>
+    /* ═══════════════════════════════════════
+     Notre Histoire — Awwwards 2026 Redesign
+     ═══════════════════════════════════════ */
+
+    /* ── Container & Utilities ── */
+    .nh-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+    }
+
+    .nh-section {
+        padding: 6rem 0;
+        background: #0f0f1e;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nh-section--alt {
+        background: #0d0d1a;
+    }
+
+    /* Add subtle grid pattern to all sections */
+    .nh-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.015) 1px,
+                transparent 1px
+            );
+        background-size: 80px 80px;
+        pointer-events: none;
+    }
+
+    /* ═══ HERO ═══ */
+    .nh-hero {
+        position: relative;
+        padding: 11rem 0 5rem;
+        background: #0f0f1e;
+        overflow: hidden;
+    }
+
+    .nh-hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .nh-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        animation: nhOrbFloat 20s ease-in-out infinite;
+    }
+
+    .nh-hero-orb--1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            rgba(251, 168, 36, 0.25),
+            transparent 70%
+        );
+        top: -25%;
+        left: 15%;
+        animation-delay: 0s;
+    }
+
+    .nh-hero-orb--2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+            circle,
+            rgba(92, 199, 150, 0.2),
+            transparent 70%
+        );
+        bottom: -30%;
+        right: 5%;
+        animation-delay: -10s;
+    }
+
+    @keyframes nhOrbFloat {
+        0%,
+        100% {
+            transform: translate(0, 0) scale(1);
+        }
+        25% {
+            transform: translate(30px, -25px) scale(1.05);
+        }
+        50% {
+            transform: translate(-20px, 20px) scale(0.95);
+        }
+        75% {
+            transform: translate(-25px, -15px) scale(1.02);
+        }
+    }
+
+    .nh-hero-noise {
+        position: absolute;
+        inset: 0;
+        opacity: 0.02;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px
+            );
+        background-size: 60px 60px;
+    }
+
+    .nh-hero-inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: end;
+        position: relative;
+        z-index: 2;
+    }
+
+    @media (min-width: 1024px) {
+        .nh-hero-inner {
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+        }
+    }
+
+    .nh-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        margin-bottom: 1.5rem;
+        padding: 6px 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 100px;
+        transition: all 0.3s ease;
+        width: fit-content;
+    }
+
+    .nh-breadcrumb:hover {
+        color: #fba824;
+        border-color: rgba(251, 168, 36, 0.2);
+        background: rgba(251, 168, 36, 0.05);
+    }
+
+    .nh-hero-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        line-height: 0.95;
+        margin: 0;
+    }
+
+    .nh-hero-title-line {
+        display: block;
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        color: #fff;
+        letter-spacing: -0.03em;
+    }
+
+    .nh-hero-title-accent {
+        display: block;
+        font-size: clamp(3.5rem, 8vw, 6.5rem);
+        background: linear-gradient(135deg, #fba824, #5cc796, #ff7d7d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.03em;
+    }
+
+    .nh-hero-lead {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+        max-width: 480px;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 1.25rem;
+        backdrop-filter: blur(12px);
+    }
+
+    /* ═══ SPLIT LAYOUT ═══ */
+    .nh-split {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+        .nh-split {
+            grid-template-columns: 220px 1fr;
+            gap: 3rem;
+        }
+    }
+
+    .nh-split-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding-top: 0.35rem;
+    }
+
+    .nh-label-num {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.12);
+        letter-spacing: 0.05em;
+    }
+
+    .nh-label-line {
+        width: 24px;
+        height: 2px;
+        background: linear-gradient(90deg, #fba824, #5cc796);
+        margin-top: 0.5em;
+        flex-shrink: 0;
+        border-radius: 2px;
+    }
+
+    .nh-label-text {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: #fba824;
+    }
+
+    .nh-heading {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1.25rem;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+    }
+
+    .nh-heading em {
+        font-style: normal;
+        background: linear-gradient(135deg, #fba824, #5cc796);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nh-text {
+        font-size: 1rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+        max-width: 560px;
+    }
+
+    .nh-text-cols {
+        columns: 1;
+        gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .nh-text-cols {
+            columns: 2;
+        }
+    }
+
+    .nh-text-cols p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 0 1.25rem;
+        break-inside: avoid;
+    }
+
+    .nh-text-cols strong {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .nh-text-cols em {
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ═══ TIMELINE HORIZONTAL ═══ */
+    .nh-tl {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
+        padding: 3rem 0 1.5rem;
+        z-index: 2;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nh-tl::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Track line */
+    .nh-tl-track {
+        position: absolute;
+        top: var(--track-top, 50%);
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .nh-tl-track-fill {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #fba824, #5cc796, #ff7d7d, #fba824);
+        background-size: 200% 100%;
+        animation: tlTrackFlow 8s linear infinite;
+        opacity: 0.5;
+    }
+
+    @keyframes tlTrackFlow {
+        0% {
+            background-position: 0% 0;
+        }
+        100% {
+            background-position: 200% 0;
+        }
+    }
+
+    /* Item */
+    .nh-tl-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        flex: 1 0 0;
+        min-width: 140px;
+        cursor: default;
+        animation: tlItemReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: var(--tl-delay);
+    }
+
+    @keyframes tlItemReveal {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Year */
+    .nh-tl-year {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.02em;
+        padding-bottom: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+    .nh-tl-item:hover .nh-tl-year {
+        transform: translateY(-3px);
+    }
+
+    .nh-tl-item--primary:hover .nh-tl-year {
+        color: #fba824;
+    }
+    .nh-tl-item--accent:hover .nh-tl-year {
+        color: #5cc796;
+    }
+    .nh-tl-item--highlight:hover .nh-tl-year {
+        color: #ff7d7d;
+    }
+
+    /* Dot */
+    .nh-tl-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        position: relative;
+        z-index: 3;
+        flex-shrink: 0;
+        margin-bottom: 1rem;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nh-tl-dot::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border-radius: 50%;
+        border: 2px solid;
+        opacity: 0.3;
+        animation: tlPulse 3s ease-in-out infinite;
+        animation-delay: var(--tl-delay);
+    }
+
+    .nh-tl-dot::after {
+        content: "";
+        position: absolute;
+        inset: -10px;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .nh-tl-item:hover .nh-tl-dot {
+        transform: scale(1.5);
+    }
+
+    .nh-tl-item:hover .nh-tl-dot::after {
+        opacity: 0.2;
+    }
+
+    @keyframes tlPulse {
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+        50% {
+            transform: scale(1.4);
+            opacity: 0;
+        }
+    }
+
+    /* Dot colours */
+    .nh-tl-item--primary .nh-tl-dot {
+        background: #fba824;
+        box-shadow: 0 0 16px rgba(251, 168, 36, 0.5);
+    }
+    .nh-tl-item--primary .nh-tl-dot::before {
+        border-color: #fba824;
+    }
+    .nh-tl-item--primary .nh-tl-dot::after {
+        background: radial-gradient(
+            circle,
+            rgba(251, 168, 36, 0.35),
+            transparent 70%
+        );
+    }
+
+    .nh-tl-item--accent .nh-tl-dot {
+        background: #5cc796;
+        box-shadow: 0 0 16px rgba(92, 199, 150, 0.5);
+    }
+    .nh-tl-item--accent .nh-tl-dot::before {
+        border-color: #5cc796;
+    }
+    .nh-tl-item--accent .nh-tl-dot::after {
+        background: radial-gradient(
+            circle,
+            rgba(92, 199, 150, 0.35),
+            transparent 70%
+        );
+    }
+
+    .nh-tl-item--highlight .nh-tl-dot {
+        background: #ff7d7d;
+        box-shadow: 0 0 16px rgba(255, 125, 125, 0.5);
+    }
+    .nh-tl-item--highlight .nh-tl-dot::before {
+        border-color: #ff7d7d;
+    }
+    .nh-tl-item--highlight .nh-tl-dot::after {
+        background: radial-gradient(
+            circle,
+            rgba(255, 125, 125, 0.35),
+            transparent 70%
+        );
+    }
+
+    /* Description */
+    .nh-tl-desc {
+        font-size: 0.82rem;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: center;
+        max-width: 150px;
+        padding: 0 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .nh-tl-item:hover .nh-tl-desc {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ═══ MANTRA ═══ */
+    .nh-mantra {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 1.25rem;
+        padding: 1.5rem 0 1.5rem 2rem;
+        border: none;
+        letter-spacing: -0.01em;
+        position: relative;
+        border-left: 3px solid;
+        border-image: linear-gradient(180deg, #fba824, #5cc796, #ff7d7d) 1;
+        background: linear-gradient(
+            90deg,
+            rgba(251, 168, 36, 0.05),
+            transparent 60%
+        );
+        border-radius: 0 1rem 1rem 0;
+    }
+
+    .nh-mantra-sub {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+        max-width: 560px;
+    }
+
+    /* ═══ MISSIONS GRID ═══ */
+    .nh-missions-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    @media (min-width: 640px) {
+        .nh-missions-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .nh-missions-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .nh-mission-card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 1.25rem;
+        padding: 2rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nh-mission-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 1.25rem;
+        background: linear-gradient(
+            135deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.02) 50%,
+            transparent 60%
+        );
+        background-size: 250% 100%;
+        animation: missionShimmer 8s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes missionShimmer {
+        0%,
+        100% {
+            background-position: 200% 0;
+        }
+        50% {
+            background-position: -50% 0;
+        }
+    }
+
+    .nh-mission-card:hover {
+        border-color: rgba(255, 255, 255, 0.12);
+        transform: translateY(-6px);
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+        );
+    }
+
+    .nh-mission-icon {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 0.875rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.25rem;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nh-mission-card:hover .nh-mission-icon {
+        transform: scale(1.15) rotate(-5deg);
+    }
+
+    .nh-mission-icon svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .nh-mission-icon--primary {
+        background: rgba(251, 168, 36, 0.12);
+        border: 1px solid rgba(251, 168, 36, 0.15);
+        color: #fba824;
+    }
+    .nh-mission-card:hover .nh-mission-icon--primary {
+        box-shadow: 0 0 30px rgba(251, 168, 36, 0.2);
+    }
+
+    .nh-mission-icon--accent {
+        background: rgba(92, 199, 150, 0.12);
+        border: 1px solid rgba(92, 199, 150, 0.15);
+        color: #5cc796;
+    }
+    .nh-mission-card:hover .nh-mission-icon--accent {
+        box-shadow: 0 0 30px rgba(92, 199, 150, 0.2);
+    }
+
+    .nh-mission-icon--highlight {
+        background: rgba(255, 125, 125, 0.12);
+        border: 1px solid rgba(255, 125, 125, 0.15);
+        color: #ff7d7d;
+    }
+    .nh-mission-card:hover .nh-mission-icon--highlight {
+        box-shadow: 0 0 30px rgba(255, 125, 125, 0.2);
+    }
+
+    .nh-mission-icon--soft {
+        background: rgba(199, 198, 82, 0.12);
+        border: 1px solid rgba(199, 198, 82, 0.15);
+        color: #c7c652;
+    }
+    .nh-mission-card:hover .nh-mission-icon--soft {
+        box-shadow: 0 0 30px rgba(199, 198, 82, 0.2);
+    }
+
+    .nh-mission-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0;
+    }
+
+    .nh-mission-desc {
+        font-size: 0.88rem;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.4);
+        margin: 0;
+        transition: color 0.3s ease;
+    }
+
+    .nh-mission-card:hover .nh-mission-desc {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ═══ INSTAGRAM BANNER ═══ */
+    .nh-insta-banner {
+        border-radius: 1.25rem;
+        overflow: hidden;
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        position: relative;
+        z-index: 2;
+    }
+
+    .nh-insta-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            105deg,
+            transparent 40%,
+            rgba(225, 48, 108, 0.04) 45%,
+            rgba(131, 58, 180, 0.06) 50%,
+            rgba(225, 48, 108, 0.04) 55%,
+            transparent 60%
+        );
+        background-size: 250% 100%;
+        animation: instaShimmer 6s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    @keyframes instaShimmer {
+        0%,
+        100% {
+            background-position: 200% 0;
+        }
+        50% {
+            background-position: -50% 0;
+        }
+    }
+
+    .nh-insta-banner:hover {
+        border-color: rgba(225, 48, 108, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 16px 48px -12px rgba(225, 48, 108, 0.15);
+    }
+
+    .nh-insta-banner-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.75rem 2rem;
+        align-items: flex-start;
+        position: relative;
+        z-index: 1;
+    }
+
+    @media (min-width: 768px) {
+        .nh-insta-banner-inner {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .nh-insta-left {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+    }
+
+    .nh-insta-icon {
+        width: 3.25rem;
+        height: 3.25rem;
+        border-radius: 1rem;
+        background: linear-gradient(135deg, #833ab4, #e1306c, #f77737);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        flex-shrink: 0;
+        box-shadow: 0 4px 20px rgba(225, 48, 108, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .nh-insta-banner:hover .nh-insta-icon {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .nh-insta-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .nh-insta-handle {
+        display: block;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #fff;
+    }
+
+    .nh-insta-sub {
+        display: block;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.4);
+        margin-top: 0.2rem;
+    }
+
+    .nh-insta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 9999px;
+        color: #fff;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        white-space: nowrap;
+    }
+
+    .nh-insta-btn:hover {
+        background: linear-gradient(135deg, #833ab4, #e1306c);
+        border-color: transparent;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(225, 48, 108, 0.35);
+    }
+
+    /* ═══ PRESS GRID ═══ */
+    .nh-press-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+        .nh-press-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .nh-press-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .nh-press-card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 1.25rem;
+        padding: 2rem 1.75rem;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nh-press-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #fba824, #5cc796);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nh-press-card:hover::after {
+        transform: scaleX(1);
+    }
+
+    .nh-press-card:hover {
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px);
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.02)
+        );
+        box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+    }
+
+    .nh-press-source {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #fba824;
+    }
+
+    .nh-press-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+        line-height: 1.45;
+        flex: 1;
+        transition: color 0.3s ease;
+    }
+
+    .nh-press-card:hover .nh-press-title {
+        color: #fba824;
+    }
+
+    .nh-press-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: auto;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nh-press-meta svg {
+        opacity: 0;
+        transform: translate(-4px, 4px);
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        color: #fba824;
+    }
+
+    .nh-press-card:hover .nh-press-meta svg {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    /* ═══ TEAM GRID ═══ */
+    .nh-team-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+        .nh-team-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .nh-team-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* ═══ SCROLL REVEAL ═══ */
+    .nh-split,
+    .nh-timeline,
+    .nh-missions-grid,
+    .nh-insta-banner,
+    .nh-press-grid,
+    .nh-team-grid {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nh-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 767px) {
+        .nh-container {
+            padding: 0 1.25rem;
+        }
+
+        .nh-hero {
+            padding: 8rem 0 3.5rem;
+        }
+
+        .nh-section {
+            padding: 4rem 0;
+        }
+
+        .nh-split {
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .nh-insta-banner-inner {
+            padding: 1.25rem;
+        }
+
+        .nh-hero-lead {
+            padding: 1.25rem;
+        }
+
+        .nh-mission-card {
+            padding: 1.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Intersection Observer for scroll animations
+    const nhElements = document.querySelectorAll(
+        ".nh-split, .nh-tl, .nh-missions-grid, .nh-insta-banner, .nh-press-grid, .nh-team-grid",
+    );
+
+    const nhObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("nh-visible");
+                    nhObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
+    );
+
+    nhElements.forEach((el) => nhObserver.observe(el));
+
+    // Align track to dot center
+    const tlDot = document.querySelector(".nh-tl-dot");
+    const tl = document.querySelector(".nh-tl");
+    if (tlDot && tl) {
+        const align = () => {
+            const dotRect = tlDot.getBoundingClientRect();
+            const tlRect = tl.getBoundingClientRect();
+            const center = dotRect.top + dotRect.height / 2 - tlRect.top;
+            (tl as HTMLElement).style.setProperty("--track-top", center + "px");
+        };
+        align();
+        window.addEventListener("resize", align);
+    }
+</script>

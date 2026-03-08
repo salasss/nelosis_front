@@ -55,7 +55,7 @@ const projects: Project[] = [
             },
             {
                 title: "Le principe",
-                text: "Ces dispositifs sont appuyés sur le sujet de thèse de Xavier PY. Ces \"entonnoirs\" permettent l'extraction d'environ 1L d'eau par m² et par nuit, et ce sans dépenses d'énergie. L'extraction est permise par deux principes physiques, le refroidissement radiatif des matériaux et les paramètres de variation de la pression de vapeur saturante. Les gouttes continument récupérées s'infiltrent ensuite dans les sols pour irriguer le bac de culture.",
+                text: "Ces dispositifs sont appuyés sur le sujet de thèse de xxxxxx. Ces \"entonnoirs\" permettent l'extraction d'environ 1L d'eau par m² et par nuit, et ce sans dépenses d'énergie. L'extraction est permise par deux principes physiques, le refroidissement radiatif des matériaux et les paramètres de variation de la pression de vapeur saturante. Les gouttes continument récupérées s'infiltrent ensuite dans les sols pour irriguer le bac de culture.",
                 image: vegetallPrincipe
             },
             {
