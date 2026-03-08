@@ -1,372 +1,796 @@
 ---
-// About Section - Manifesto Style
+// About Section - Corporate Modern / Awwwards Style
 ---
 
-<section id="about" class="bg-dark relative">
-  <!-- Section 1: Hero Statement -->
-  <div class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[200px] opacity-0 manifesto-glow"></div>
-    </div>
-    
-    <div class="container mx-auto px-6 md:px-12 relative z-10">
-      <div class="max-w-6xl mx-auto text-center">
-        <div class="overflow-hidden mb-8">
-          <span class="manifesto-badge inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02]">
-            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-            <span class="text-white/50 text-sm font-medium tracking-[0.2em] uppercase">Qui sommes-nous</span>
-          </span>
+<section id="about" class="about-section">
+  <!-- Subtle background effects -->
+  <div class="about-bg">
+    <div class="about-noise"></div>
+    <div class="about-gradient-orb about-gradient-orb--1"></div>
+    <div class="about-gradient-orb about-gradient-orb--2"></div>
+  </div>
+
+  <div class="about-container">
+    <!-- Row 1: Badge + Headline side by side -->
+    <div class="about-hero">
+      <div class="about-hero-left">
+        <div class="about-badge" data-animate="fade-up">
+          <span class="about-badge-dot"></span>
+          <span class="about-badge-text">Qui sommes-nous</span>
         </div>
-        
-        <h2 class="manifesto-title">
-          <span class="manifesto-word block">Nous</span>
-          <span class="manifesto-word block">sommes</span>
-          <span class="manifesto-word block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">Nélosis</span>
+        <h2 class="about-headline" data-animate="fade-up" data-delay="1">
+          <span class="about-headline-line">Nous sommes</span>
+          <span class="about-headline-accent">Nélosis</span>
         </h2>
       </div>
-    </div>
-    
-    <!-- Scroll hint -->
-    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-40">
-      <div class="w-px h-16 bg-gradient-to-b from-transparent via-white/50 to-transparent"></div>
-    </div>
-  </div>
-
-  <!-- Section 2: Manifesto Words -->
-  <div class="min-h-screen flex items-center justify-center relative">
-    <div class="container mx-auto px-6 md:px-12">
-      <div class="max-w-5xl mx-auto">
-        <p class="manifesto-paragraph text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight text-center">
-          <span class="manifesto-char">Un</span>
-          <span class="manifesto-char">réseau</span>
-          <span class="manifesto-char text-primary">étudiant</span>
-          <span class="manifesto-char">qui</span>
-          <span class="manifesto-char text-accent">innove</span>
-          <span class="manifesto-char">,</span>
-          <span class="manifesto-char text-highlight">connecte</span>
-          <span class="manifesto-char">et</span>
-          <span class="manifesto-char">transforme</span>
-          <span class="manifesto-char">.</span>
+      <div class="about-hero-right" data-animate="fade-up" data-delay="2">
+        <p class="about-lead">
+          Un réseau étudiant qui <em>innove</em>, <em>connecte</em> et <em
+            >transforme</em
+          >. Nous construisons les ponts entre les campus pour un avenir
+          durable.
         </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section 3: Values - Horizontal Scroll Text -->
-  <div class="py-32 relative overflow-hidden">
-    <div class="marquee-manifesto">
-      <div class="marquee-manifesto-track">
-        <span class="marquee-manifesto-word">Innovation</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Solidarité</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Impact</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Écologie</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Communauté</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Innovation</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Solidarité</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Impact</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Écologie</span>
-        <span class="marquee-manifesto-dot">●</span>
-        <span class="marquee-manifesto-word">Communauté</span>
-        <span class="marquee-manifesto-dot">●</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section 4: Three Pillars -->
-  <div class="min-h-screen flex items-center relative">
-    <div class="container mx-auto px-6 md:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-px bg-white/5">
-        
-        <!-- Pillar 1 -->
-        <div class="manifesto-pillar group relative bg-dark p-12 md:p-16 min-h-[50vh] flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/5">
-          <div>
-            <span class="text-[200px] md:text-[280px] font-display font-black text-white/[0.02] absolute top-0 left-0 leading-none select-none">01</span>
-            <div class="relative z-10">
-              <div class="w-3 h-3 rounded-full bg-primary mb-8 group-hover:scale-150 transition-transform duration-500"></div>
-              <h3 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 group-hover:text-primary transition-colors duration-300">Innover</h3>
-            </div>
+        <div class="about-stats">
+          <div class="about-stat">
+            <span class="about-stat-number">4</span>
+            <span class="about-stat-label">Programmes</span>
           </div>
-          <p class="text-lg text-white/40 leading-relaxed relative z-10 group-hover:text-white/60 transition-colors">
-            Repousser les limites. Créer des solutions. Penser autrement pour un futur durable.
-          </p>
-        </div>
-
-        <!-- Pillar 2 -->
-        <div class="manifesto-pillar group relative bg-dark p-12 md:p-16 min-h-[50vh] flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/5">
-          <div>
-            <span class="text-[200px] md:text-[280px] font-display font-black text-white/[0.02] absolute top-0 left-0 leading-none select-none">02</span>
-            <div class="relative z-10">
-              <div class="w-3 h-3 rounded-full bg-accent mb-8 group-hover:scale-150 transition-transform duration-500"></div>
-              <h3 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 group-hover:text-accent transition-colors duration-300">Connecter</h3>
-            </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat">
+            <span class="about-stat-number">7</span>
+            <span class="about-stat-label">Antennes</span>
           </div>
-          <p class="text-lg text-white/40 leading-relaxed relative z-10 group-hover:text-white/60 transition-colors">
-            Relier les talents. Unir les campus. Construire ensemble une communauté engagée.
-          </p>
-        </div>
-
-        <!-- Pillar 3 -->
-        <div class="manifesto-pillar group relative bg-dark p-12 md:p-16 min-h-[50vh] flex flex-col justify-between">
-          <div>
-            <span class="text-[200px] md:text-[280px] font-display font-black text-white/[0.02] absolute top-0 left-0 leading-none select-none">03</span>
-            <div class="relative z-10">
-              <div class="w-3 h-3 rounded-full bg-highlight mb-8 group-hover:scale-150 transition-transform duration-500"></div>
-              <h3 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 group-hover:text-highlight transition-colors duration-300">Agir</h3>
-            </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat">
+            <span class="about-stat-number">50+</span>
+            <span class="about-stat-label">Membres</span>
           </div>
-          <p class="text-lg text-white/40 leading-relaxed relative z-10 group-hover:text-white/60 transition-colors">
-            Passer à l'action. Mesurer l'impact. Transformer les idées en réalité tangible.
-          </p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Section 5: Final Statement + CTA -->
-  <div class="min-h-[70vh] flex items-center justify-center relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/5 to-transparent"></div>
+    <!-- Marquee Strip -->
+    <div class="about-marquee" data-animate="fade-up" data-delay="3">
+      <div class="about-marquee-track">
+        <span class="about-marquee-word">Innovation</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Solidarité</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Impact</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Écologie</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Communauté</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Innovation</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Solidarité</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Impact</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Écologie</span>
+        <span class="about-marquee-dot">✦</span>
+        <span class="about-marquee-word">Communauté</span>
+        <span class="about-marquee-dot">✦</span>
+      </div>
     </div>
-    
-    <div class="container mx-auto px-6 md:px-12 text-center relative z-10">
-      <div class="max-w-4xl mx-auto">
-        <p class="manifesto-final text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-12">
-          Prêt à <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">rejoindre</span> le mouvement ?
-        </p>
-        
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#contact" class="group relative inline-flex items-center gap-4 px-10 py-5 bg-white text-dark font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105">
-            <span class="relative z-10">Nous rejoindre</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <span class="absolute inset-0 bg-white group-hover:opacity-0 transition-opacity duration-300"></span>
-          </a>
-          
-          <a href="#team" class="group inline-flex items-center gap-3 px-8 py-5 text-white/60 hover:text-white font-medium transition-colors">
-            <span>Découvrir l'équipe</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 transition-transform">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-            </svg>
-          </a>
+
+    <!-- Three Pillars - Compact Cards -->
+    <div class="about-pillars">
+      <div class="about-pillar" data-animate="fade-up" data-delay="4">
+        <div class="about-pillar-number">01</div>
+        <div class="about-pillar-content">
+          <div class="about-pillar-icon-row">
+            <div class="about-pillar-icon about-pillar-icon--primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                ></path></svg
+              >
+            </div>
+            <h3 class="about-pillar-title">Innover</h3>
+          </div>
+          <p class="about-pillar-desc">
+            Repousser les limites. Créer des solutions. Penser autrement pour un
+            futur durable.
+          </p>
         </div>
+        <div class="about-pillar-line about-pillar-line--primary"></div>
+      </div>
+
+      <div class="about-pillar" data-animate="fade-up" data-delay="5">
+        <div class="about-pillar-number">02</div>
+        <div class="about-pillar-content">
+          <div class="about-pillar-icon-row">
+            <div class="about-pillar-icon about-pillar-icon--accent">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+                ></path></svg
+              >
+            </div>
+            <h3 class="about-pillar-title">Connecter</h3>
+          </div>
+          <p class="about-pillar-desc">
+            Relier les talents. Unir les campus. Construire ensemble une
+            communauté engagée.
+          </p>
+        </div>
+        <div class="about-pillar-line about-pillar-line--accent"></div>
+      </div>
+
+      <div class="about-pillar" data-animate="fade-up" data-delay="6">
+        <div class="about-pillar-number">03</div>
+        <div class="about-pillar-content">
+          <div class="about-pillar-icon-row">
+            <div class="about-pillar-icon about-pillar-icon--highlight">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
+                ></path></svg
+              >
+            </div>
+            <h3 class="about-pillar-title">Agir</h3>
+          </div>
+          <p class="about-pillar-desc">
+            Passer à l'action. Mesurer l'impact. Transformer les idées en
+            réalité tangible.
+          </p>
+        </div>
+        <div class="about-pillar-line about-pillar-line--highlight"></div>
+      </div>
+    </div>
+
+    <!-- CTA Row -->
+    <div class="about-cta-row" data-animate="fade-up" data-delay="7">
+      <p class="about-cta-text">
+        Prêt à <span class="about-cta-highlight">rejoindre</span> le mouvement ?
+      </p>
+      <div class="about-cta-actions">
+        <a href="#contact" class="about-cta-btn about-cta-btn--primary">
+          <span>Nous rejoindre</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            width="16"
+            height="16"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg
+          >
+        </a>
+        <a href="#team" class="about-cta-btn about-cta-btn--ghost">
+          <span>Découvrir l'équipe</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            width="14"
+            height="14"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"></path></svg
+          >
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Manifesto Title - Giant Typography */
-  .manifesto-title {
-    font-size: clamp(4rem, 18vw, 14rem);
-    font-weight: 900;
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    color: white;
-  }
-  
-  .manifesto-word {
-    opacity: 0;
-    transform: translateY(100px);
-    animation: manifestoReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  
-  .manifesto-word:nth-child(1) { animation-delay: 0.1s; }
-  .manifesto-word:nth-child(2) { animation-delay: 0.2s; }
-  .manifesto-word:nth-child(3) { animation-delay: 0.4s; }
-  
-  @keyframes manifestoReveal {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Badge animation */
-  .manifesto-badge {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: manifestoBadge 0.8s ease forwards;
-  }
-  
-  @keyframes manifestoBadge {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Glow animation */
-  .manifesto-glow {
-    animation: manifestoGlow 3s ease-in-out infinite alternate;
-  }
-  
-  @keyframes manifestoGlow {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-    to { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-  }
-  
-  /* Paragraph word reveal */
-  .manifesto-char {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(40px) rotateX(-40deg);
-    animation: charReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    transform-origin: center bottom;
-    margin-right: 0.2em;
-  }
-  
-  .manifesto-char:nth-child(1) { animation-delay: 0.1s; }
-  .manifesto-char:nth-child(2) { animation-delay: 0.15s; }
-  .manifesto-char:nth-child(3) { animation-delay: 0.2s; }
-  .manifesto-char:nth-child(4) { animation-delay: 0.25s; }
-  .manifesto-char:nth-child(5) { animation-delay: 0.3s; }
-  .manifesto-char:nth-child(6) { animation-delay: 0.32s; }
-  .manifesto-char:nth-child(7) { animation-delay: 0.37s; }
-  .manifesto-char:nth-child(8) { animation-delay: 0.42s; }
-  .manifesto-char:nth-child(9) { animation-delay: 0.47s; }
-  .manifesto-char:nth-child(10) { animation-delay: 0.52s; }
-  
-  @keyframes charReveal {
-    to {
-      opacity: 1;
-      transform: translateY(0) rotateX(0);
-    }
-  }
-  
-  /* Marquee */
-  .marquee-manifesto {
+  /* ═══ Section ═══ */
+  .about-section {
+    position: relative;
+    padding: 8rem 0 6rem;
+    background: #0f0f1e;
     overflow: hidden;
-    white-space: nowrap;
   }
-  
-  .marquee-manifesto-track {
+
+  .about-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .about-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  .about-gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+  }
+
+  .about-gradient-orb--1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+      circle,
+      rgba(251, 168, 36, 0.4),
+      transparent 70%
+    );
+    top: -15%;
+    right: -5%;
+  }
+
+  .about-gradient-orb--2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba(92, 199, 150, 0.3),
+      transparent 70%
+    );
+    bottom: -10%;
+    left: -5%;
+  }
+
+  .about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ═══ Hero Row ═══ */
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    .about-hero {
+      grid-template-columns: 1.1fr 1fr;
+      gap: 5rem;
+    }
+  }
+
+  /* Badge */
+  .about-badge {
     display: inline-flex;
     align-items: center;
-    gap: 3rem;
-    animation: marqueeScroll 30s linear infinite;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    margin-bottom: 1.5rem;
   }
-  
-  .marquee-manifesto-word {
-    font-size: clamp(3rem, 10vw, 8rem);
-    font-weight: 900;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
-    letter-spacing: -0.02em;
-    transition: all 0.3s ease;
+
+  .about-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #5cc796;
+    animation: dotPulse 2s ease-in-out infinite;
   }
-  
-  .marquee-manifesto-word:hover {
-    color: white;
-    -webkit-text-stroke: 1px white;
-  }
-  
-  .marquee-manifesto-dot {
-    font-size: 1rem;
-    color: var(--color-primary);
-    opacity: 0.5;
-  }
-  
-  @keyframes marqueeScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  
-  /* Pillars */
-  .manifesto-pillar {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-  
-  .manifesto-pillar.visible {
-    animation: pillarReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  
-  .manifesto-pillar:nth-child(1).visible { animation-delay: 0.1s; }
-  .manifesto-pillar:nth-child(2).visible { animation-delay: 0.2s; }
-  .manifesto-pillar:nth-child(3).visible { animation-delay: 0.3s; }
-  
-  @keyframes pillarReveal {
-    to {
+
+  @keyframes dotPulse {
+    0%,
+    100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(0.7);
     }
   }
-  
-  /* Final statement */
-  .manifesto-final {
-    opacity: 0;
-    transform: translateY(40px);
+
+  .about-badge-text {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.45);
   }
-  
-  .manifesto-final.visible {
-    animation: finalReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  /* Headline */
+  .about-headline {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    line-height: 0.95;
+    margin: 0;
   }
-  
-  @keyframes finalReveal {
+
+  .about-headline-line {
+    display: block;
+    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    color: #fff;
+    letter-spacing: -0.03em;
+  }
+
+  .about-headline-accent {
+    display: block;
+    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+    background: linear-gradient(135deg, #fba824, #5cc796);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em;
+  }
+
+  /* Right column */
+  .about-hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .about-lead {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .about-lead em {
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+  }
+
+  /* Stats */
+  .about-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .about-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .about-stat-number {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+  }
+
+  .about-stat-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .about-stat-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* ═══ Marquee ═══ */
+  .about-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 2rem 0;
+    margin-bottom: 3.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  .about-marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    animation: marquee 25s linear infinite;
+  }
+
+  .about-marquee-word {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .about-marquee-word:hover {
+    color: #fff;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+  }
+
+  .about-marquee-dot {
+    font-size: 0.5rem;
+    color: #fba824;
+    opacity: 0.4;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
     to {
-      opacity: 1;
-      transform: translateY(0);
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ═══ Pillars ═══ */
+  .about-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .about-pillars {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .about-pillar {
+    position: relative;
+    background: #0f0f1e;
+    padding: 2.25rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: background 0.4s ease;
+    cursor: default;
+    overflow: hidden;
+  }
+
+  .about-pillar:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .about-pillar-number {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.12);
+    letter-spacing: 0.1em;
+  }
+
+  .about-pillar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .about-pillar-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .about-pillar-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .about-pillar:hover .about-pillar-icon {
+    transform: scale(1.1);
+  }
+
+  .about-pillar-icon svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .about-pillar-icon--primary {
+    background: rgba(251, 168, 36, 0.12);
+    color: #fba824;
+  }
+
+  .about-pillar-icon--accent {
+    background: rgba(92, 199, 150, 0.12);
+    color: #5cc796;
+  }
+
+  .about-pillar-icon--highlight {
+    background: rgba(255, 125, 125, 0.12);
+    color: #ff7d7d;
+  }
+
+  .about-pillar-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .about-pillar:nth-child(1):hover .about-pillar-title {
+    color: #fba824;
+  }
+  .about-pillar:nth-child(2):hover .about-pillar-title {
+    color: #5cc796;
+  }
+  .about-pillar:nth-child(3):hover .about-pillar-title {
+    color: #ff7d7d;
+  }
+
+  .about-pillar-desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .about-pillar:hover .about-pillar-desc {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Bottom accent line */
+  .about-pillar-line {
+    height: 2px;
+    border-radius: 2px;
+    width: 0;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    margin-top: auto;
+  }
+
+  .about-pillar:hover .about-pillar-line {
+    width: 100%;
+  }
+
+  .about-pillar-line--primary {
+    background: linear-gradient(90deg, #fba824, transparent);
+  }
+  .about-pillar-line--accent {
+    background: linear-gradient(90deg, #5cc796, transparent);
+  }
+  .about-pillar-line--highlight {
+    background: linear-gradient(90deg, #ff7d7d, transparent);
+  }
+
+  /* ═══ CTA Row ═══ */
+  .about-cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  @media (min-width: 768px) {
+    .about-cta-row {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .about-cta-text {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .about-cta-highlight {
+    background: linear-gradient(135deg, #fba824, #5cc796);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .about-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .about-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    white-space: nowrap;
+  }
+
+  .about-cta-btn--primary {
+    background: #fff;
+    color: #0f0f1e;
+  }
+
+  .about-cta-btn--primary:hover {
+    background: linear-gradient(135deg, #fba824, #5cc796);
+    color: #0f0f1e;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(251, 168, 36, 0.25);
+  }
+
+  .about-cta-btn--primary svg {
+    transition: transform 0.3s ease;
+  }
+
+  .about-cta-btn--primary:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .about-cta-btn--ghost {
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+  }
+
+  .about-cta-btn--ghost:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .about-cta-btn--ghost svg {
+    transition: transform 0.3s ease;
+  }
+
+  .about-cta-btn--ghost:hover svg {
+    transform: translateY(2px);
+  }
+
+  /* ═══ Animations ═══ */
+  [data-animate="fade-up"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-animate="fade-up"].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-delay="1"] {
+    transition-delay: 0.1s;
+  }
+  [data-delay="2"] {
+    transition-delay: 0.2s;
+  }
+  [data-delay="3"] {
+    transition-delay: 0.3s;
+  }
+  [data-delay="4"] {
+    transition-delay: 0.15s;
+  }
+  [data-delay="5"] {
+    transition-delay: 0.25s;
+  }
+  [data-delay="6"] {
+    transition-delay: 0.35s;
+  }
+  [data-delay="7"] {
+    transition-delay: 0.4s;
+  }
+
+  /* ═══ Mobile ═══ */
+  @media (max-width: 767px) {
+    .about-section {
+      padding: 5rem 0 3.5rem;
+    }
+
+    .about-stats {
+      gap: 1rem;
+    }
+
+    .about-stat-number {
+      font-size: 1.4rem;
+    }
+
+    .about-marquee-word {
+      font-size: 0.9rem;
+    }
+
+    .about-pillar {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .about-cta-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .about-cta-btn {
+      justify-content: center;
+      width: 100%;
     }
   }
 </style>
 
 <script>
   // Intersection Observer for scroll-triggered animations
-  const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  // Observe pillars
-  document.querySelectorAll('.manifesto-pillar').forEach(pillar => {
-    observer.observe(pillar);
-  });
-  
-  // Observe final statement
-  const finalStatement = document.querySelector('.manifesto-final');
-  if (finalStatement) {
-    observer.observe(finalStatement);
-  }
-  
-  // Parallax effect on scroll for the manifesto paragraph
-  const manifestoParagraph = document.querySelector('.manifesto-paragraph');
-  if (manifestoParagraph) {
-    const chars = manifestoParagraph.querySelectorAll('.manifesto-char');
-    
-    const paragraphObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  const aboutElements = document.querySelectorAll('[data-animate="fade-up"]');
+
+  const aboutObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          chars.forEach((char, index) => {
-            (char as HTMLElement).style.animationPlayState = 'running';
-          });
-          paragraphObserver.disconnect();
+          entry.target.classList.add("is-visible");
+          aboutObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.3 });
-    
-    paragraphObserver.observe(manifestoParagraph);
-    
-    // Pause animations initially
-    chars.forEach(char => {
-      (char as HTMLElement).style.animationPlayState = 'paused';
-    });
-  }
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+  );
+
+  aboutElements.forEach((el) => aboutObserver.observe(el));
 </script>
